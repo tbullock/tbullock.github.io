@@ -1,0 +1,206 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>openSUSE 11.0 Beta 1 on Dell 700m - Depth of Knowledge</title>
+  <meta name="author" content="Ted Bullock">
+
+  
+  <meta name="description" content="My laptop is in the process of updating to the latest Factory release of openSUSE 11.0.Certainly I have been hitting a couple major bugs:Bug 376742 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://tbullock.github.io/blog/2008/04/19/opensuse-110-beta-1-on-dell-700m">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Depth of Knowledge" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Depth of Knowledge</a></h1>
+  
+    <h2>Thoughts from a tech consultant.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="tbullock.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">openSUSE 11.0 Beta 1 on Dell 700m</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2008-04-19'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>19</span><span class='date-suffix'>th</span>, <span class='date-year'>2008</span></span> <span class='time'>12:00 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><div class='post'>
+My laptop is in the process of updating to the latest Factory release of openSUSE 11.0.<br /><br />Certainly I have been hitting a couple major bugs:<br /><br /><ul><br /><li><a href="https://bugzilla.novell.com/show_bug.cgi?id=376742">Bug 376742</a> - Wireless doesn&#8217;t work (wpa_supplicant doesn&#8217;t get run)</li><br /><li><a href="https://bugzilla.novell.com/show_bug.cgi?id=343858">Bug 343858</a> - gdm packages downloaded with control-center upgrade use resolution specified for external monitor</li><br /></ul><br /><br />Since Alpha 2, I have been running the weekly (zypper update -t package).<br /><br />Certainly things are starting to stabilize now. For instance, I have no problem using the machine as a workstation.<br /><br />I have to say that the Dell 700m laptop is well supported along with a good portion of my other extraneous hardware, the majority of the core functionality works very very well.<br /><br />That said, I notice that Hibernate and Suspend/Resume used to work in SUSE Linux 10.1, it doesn&#8217;t anymore.  I wonder if there is a way to revert to whatever mechanism was being used before&#8230;?<br /><br />Also, I am unsure if the SD Card reader works or not.  By working I mean, I plug an SD card into the onboard reader and a windows pops up in GNOME and asks what it should do with it.  I&#8217;ll test this again tonight; I think that the last time I looked into this was back in the 10.2 days, so things may have changed since then.<br /><br />Next is the modem.  I have never been able to successfully establish a dial-up connection with the modem.  I am really not quite certain as to what the problem is.  Again, this will be something that I will test out tonight.<br /><br />I have also never tested the firewire port. Does anyone have a firewire external harddrive that they want to lend me?<br /><br />Hmm, the last thing is the microphone.  On the 700m there is a defect in the motherboard design that creates static on the microphone port.  I have tested this a couple of years ago with a Windows XP install.  There is certainly some sort of configuration problem with 11.0b1 and esd which won&#8217;t let me turn on gnome-reclevel so I can&#8217;t test this properly at the moment.<br /><br />Certainly I need to do some research into the new pulseaudio stuff.<br /><br />Meh.<br /><br />That&#8217;s a problem for another day.<br /><br />Anyways, that&#8217;s my experience with openSUSE 11.0 and my laptop.</div>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Ted Bullock</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2008-04-19'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>19</span><span class='date-suffix'>th</span>, <span class='date-year'>2008</span></span> <span class='time'>12:00 am</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/opensuse/'>opensuse</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://tbullock.github.io/blog/2008/04/19/opensuse-110-beta-1-on-dell-700m/" data-via="" data-counturl="http://tbullock.github.io/blog/2008/04/19/opensuse-110-beta-1-on-dell-700m/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2008/04/14/yahoo-and-microsoft-thoughts/" title="Previous Post: Yahoo and Microsoft?  Thoughts">&laquo; Yahoo and Microsoft?  Thoughts</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2008/04/21/more-bugs-in-opensuse-110-beta-1/" title="Next Post: More bugs in openSUSE 11.0 Beta 1">More bugs in openSUSE 11.0 Beta 1 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/11/27/telephone-call/">Telephone Call</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/11/25/freeswitch-on-openbsd-project-status_25/">FreeSWITCH on OpenBSD - Project Status 2014-11-25</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/11/20/freeswitch-on-openbsd-project-status_20/">FreeSWITCH on OpenBSD - Project Status 2014-11-20</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/11/16/freeswitch-on-openbsd-project-status_16/">FreeSWITCH on OpenBSD - Project Status 2014-11-16</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/11/03/freeswitch-on-openbsd-project-status/">FreeSWITCH on OpenBSD - Project Status 2014-11-02</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Ted Bullock -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

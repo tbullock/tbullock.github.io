@@ -1,0 +1,200 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Aastra MBU 400 and FreeSWITCH - Depth of Knowledge</title>
+  <meta name="author" content="Ted Bullock">
+
+  
+  <meta name="description" content="Today I'm hanging out at my parents gas station/gallery/cafe/grocery store/internet publishing company. I took some time today to configure an &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://tbullock.github.io/blog/2013/03/30/aastra-mbu-400-and-freeswitch">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Depth of Knowledge" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Depth of Knowledge</a></h1>
+  
+    <h2>Thoughts from a tech consultant.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="tbullock.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Aastra MBU 400 and FreeSWITCH</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-03-30'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>30</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>12:00 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><div class='post'>
+Today I&#8217;m hanging out at my parents <a href="http://www.empressive.ca/" target="_blank">gas station/gallery/cafe/grocery store/internet publishing company</a>. I took some time today to configure an <a href="http://www.aastra.ca/aastra-mbu-400.htm" target="_blank">Aastra MBU 400</a> for use with FreeSWITCH. The MBU 400 is a discontinued Aastra product apparently targeted towards residential or small office deployments where users would want portable handsets, akin to standard wireless portables that people already have in their homes.<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://3.bp.blogspot.com/-82fCAwY9rLE/UVdBXyO8zYI/AAAAAAAAAFM/QpPdkipalMc/s1600/aastra-420d.png" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="320" src="http://3.bp.blogspot.com/-82fCAwY9rLE/UVdBXyO8zYI/AAAAAAAAAFM/QpPdkipalMc/s320/aastra-420d.png" width="244" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">Aastra 420d Portable handset which connects to MBU 400 base station, supports multiple handsets</td></tr></tbody></table>The MBU 400 base station in my possession has a traditional POTS RJ11 port on the back for connecting to standard phone systems as well as a 10/100 network port to get the device onto the network and communicate with a SIP server.<br /><br />It is possible to provision the network configuration for the base station through one of the handsets, selecting between static IP or DHCP. Also it seems possible to provision some aspects of the SIP configuration though the handset as well, although the experience would probably be tedious and is likely missing many fine grained settings. Like most SIP phones, the configuration can be pushed out with some proprietary gear from Aastra, which I don&#8217;t own, and wouldn&#8217;t buy anyway.<br /><br />The MBU 400 has a web interface, for which the default credentials are:<br /><ul><li>Username: admin</li><li>Password: 22222</li></ul>The SIP account configuration seems to require both the <i>Registrar</i> and <i>Outbound Proxy</i> fields to be filled (even if they have the same information). I pointed these towards my FreeSWITCH instance, to which I had already setup a new user extension.<br /><br />Seeing as how my FreeSWITCH server is remote (I don&#8217;t leave it sitting around my parents place), it needs to communicate over an IPv4 NAT.&nbsp; The out of the box configuration didn&#8217;t seem to work, but with a lot of diddling around with settings I managed to get it to connect.<br /><br />To get inbound and outbound calling working, I needed to turn on stun, rport and turn the keepalive time down.<br /><br />The MBU 400 is definitely an aged device which doesn&#8217;t support a lot SIP features, notably there is no support for any type of encryption at any point in the communication process. Nor does the device support TCP SIP connections, which I prefer over UDP for a variety of reasons (which I might get into some other time). Codec support is pretty sparse and I ended up with vanilla PCMU audio.<br /><br />Some conclusions:<br /><ul><li>The device is out of production. Don&#8217;t buy a new one. Support has expired from Aastra too.</li><li>Nice for setups like my parents, it answers legacy POTS calls by default, but automatically dials out on my SIP circuit.</li><li>Works with FreeSWITCH for inbound and outbound dialing, but I haven&#8217;t tested other features like message waiting or holding calls.</li><li>Buttons are a little small, and the ergonomics kind of suck.</li></ul>Modern implementations like the <a href="http://www.cisco.com/en/US/products/ps12775/index.html" target="_blank">Cisco SPA232D </a>and correlated <a href="http://www.cisco.com/en/US/prod/collateral/voicesw/ps6788/phones/ps10998/ps12776/data_sheet_c78-717757.html" target="_blank">SPA302 portable handset</a> does everything the MBU 400 does and much better.</div>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Ted Bullock</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2013-03-30'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>30</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>12:00 am</span></time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://tbullock.github.io/blog/2013/03/30/aastra-mbu-400-and-freeswitch/" data-via="" data-counturl="http://tbullock.github.io/blog/2013/03/30/aastra-mbu-400-and-freeswitch/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/03/28/freeswitch-on-openbsd/" title="Previous Post: FreeSWITCH on OpenBSD">&laquo; FreeSWITCH on OpenBSD</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2013/05/27/running-openbsd-laptop/" title="Next Post: Running an OpenBSD Laptop">Running an OpenBSD Laptop &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/11/27/telephone-call/">Telephone Call</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/11/25/freeswitch-on-openbsd-project-status_25/">FreeSWITCH on OpenBSD - Project Status 2014-11-25</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/11/20/freeswitch-on-openbsd-project-status_20/">FreeSWITCH on OpenBSD - Project Status 2014-11-20</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/11/16/freeswitch-on-openbsd-project-status_16/">FreeSWITCH on OpenBSD - Project Status 2014-11-16</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/11/03/freeswitch-on-openbsd-project-status/">FreeSWITCH on OpenBSD - Project Status 2014-11-02</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Ted Bullock -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

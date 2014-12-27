@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Hardware | Depth of Knowledge]]></title>
+  <link href="http://tbullock.github.io/blog/categories/hardware/atom.xml" rel="self"/>
+  <link href="http://tbullock.github.io/"/>
+  <updated>2014-12-26T21:32:08-07:00</updated>
+  <id>http://tbullock.github.io/</id>
+  <author>
+    <name><![CDATA[Ted Bullock]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Nokia 6301 and Linux Part 2]]></title>
+    <link href="http://tbullock.github.io/blog/2009/05/21/nokia-6301-and-linux-part-2/"/>
+    <updated>2009-05-21T00:00:00-06:00</updated>
+    <id>http://tbullock.github.io/blog/2009/05/21/nokia-6301-and-linux-part-2</id>
+    <content type="html"><![CDATA[<div class='post'>
+I noticed that I have a couple of dozen visitors hit my earlier posting on synchronizing linux systems with a nokia 6301, and given that I am on a bit of high after just posting my previous note about connecting to the net through the the GPRS and bluetooth functions on the nokia 6301 I figure I will follow with my latest discoveries fiddling fun.<br /><br />I must be turning into a google zealot because everytime I turn around there is another google service available which I want to twiddle.  Let me explain.<br /><br />Currently Evolution does not support synchronizing itself in any sane fashion against a syncml device like the nokia 6301.  So all my contacts living inside my client have become increasingly disconnected with the contacts listed with gmail and the contacts that I have on my cell phone.<br /><br />Obviously the context between these three application is somewhat different in each case.  Like I often want to be able to grab a map of my next intended target from the evolution address book, but rarely want to do this inside of gmail itself, and I usually cannot be bothered with any of that rigamarole on the cell phone.  Nevertheless, it would still be nice if they were synchronized.<br /><br />So here steps in google to the rescue with its online syncml service, along with <a href="http://www.google.com/mobile/">instructions on how to configure</a> the sister device of the 6301 (6300 in this case) to use its service.  Note that the Nokia 6301 and 6300 are S40 series Symbian OS devices.<br /><br />I won&#8217;t go into the details of the configuration since they are adequately specified elsewhere, but figure I will get to the point, thanks google for providing a working sync service.<br /><br />Next I want to point out that gmail is available as a binary application on most recent nokia phones including the slightly older models such as the 6301.  As a side note, this works with Google Apps as well.<br /><br />Check out http://m.google.com for all the goodies, including google maps.<br /><br />Sigh, I can feel the tendrils of zealotness swirling around me&#8230;  Somebody kick me if I go too far.<br /><br />Anyways, while this isn&#8217;t exactly a Nokia 6301 and Linux article, the same results can be achieved, so I figure it is a good enough equivalent.</div>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Linux, Bluetooth, and GRPS Internet]]></title>
+    <link href="http://tbullock.github.io/blog/2009/05/21/linux-bluetooth-and-grps-internet/"/>
+    <updated>2009-05-21T00:00:00-06:00</updated>
+    <id>http://tbullock.github.io/blog/2009/05/21/linux-bluetooth-and-grps-internet</id>
+    <content type="html"><![CDATA[<div class='post'>
+Currently I am sitting in Austin&#8217;s Neighborhood Pub across the street from my little condominium here in Calgary, Alberta.  Although I can see a number of wireless networks in the area, none of them are unsecured and for their own reasons, the pub itself is not particularly interested in providing wireless connectivity to its patrons.<br /><br />So this leaves me with the need to be creative in how I connect to the internet.  What&#8217;s more, in a couple weeks I am leaving for my second major cross country bicycle tour of Canada, and will likely be more or less completely away from the gentle caress of the net for most of that time.<br /><br />Anyways, as I mentioned, I need to be creative with this whole connectivity thing, and my solution is via bluetooth, to route packets through my cell phone and connect to the net via the phones GPRS (and EGPRS in some areas) data connection.<br /><br />The thing that impressed me is that this technology is alreadly quite nicely supported in linux, albeit with a bit of work on the commandline (not much, just check out pand, bnep, and of course ifconfig and dhclient).  If you want some fairly superb documentation on this check out the bluetooth article gentoo wiki.<br /><br />I imagine that other operating systems like the BSD&#8217;s would support this as well, but I haven&#8217;t confirmed it.<br /><br />Congrats to the bluez folks for delivering a working network bluetooth stack for linux.<br /><br />As a side note from what I read on <a href="http://blogs.gnome.org/dcbw/category/networkmanager/">Dan Williams&#8217; Blog</a>, this functionality will eventually make its way into network manager itself sometime around the release of 0.8.<br /><br />This makes me want to move to a phone that actually supports 3g data connections to make this all a bit faster than dialup&#8230; However, at this time there is nothing available on the market which will do everything I want from a phone (3G. UMA, Bluetooth and supports a native binary gmail application). My current Nokia 6301 does all of this except the 3G thing, so I am going to stick with it for the time being.<br /><br />Take Care, and hopefully I will post back here before I leave for my tour, but then again, even if I don&#8217;t then so be it, I will be able to post from the road.<br /><br />Please enjoy responsibly</div>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[How to Synchronize a Nokia 6301 in Linux - Investigation]]></title>
+    <link href="http://tbullock.github.io/blog/2008/10/17/how-to-synchronize-nokia-6301-in-linux/"/>
+    <updated>2008-10-17T00:00:00-06:00</updated>
+    <id>http://tbullock.github.io/blog/2008/10/17/how-to-synchronize-nokia-6301-in-linux</id>
+    <content type="html"><![CDATA[<div class='post'>
+This afternoon I received my brand new <a href="http://www.nokia.ca/A4787033">Nokia 6301</a> cell phone.  In many respects, I really do like the thing.<br /><br />This nokia smartphone has a wifi antenna which allows it to be used as a VOIP handset if you are in range of an appropriate network and also supports all the normal functionality of your typical cell phone.  It also supports Bluetooth and has a mini-usb adapter.<br /><br />When physically connected to a modern linux machine (in my case openSUSE 11.0), it initially identifies itself as a USB Mass Storage device and the desktop responds appropriately by mounting it like any other USB drive.  However, the phone specifies a couple of other connectivity options, including &#8220;Data Storage&#8221; (USB Mass Storage),  &#8220;Media & Printing&#8221; (MTP) and &#8220;PC Suite&#8221;.<br /><br />When you choose &#8220;Media & Printing&#8221;, the device switches to <a href="http://en.wikipedia.org/wiki/Media_Transfer_Protocol">MTP mode</a> (Woohoo, go libmtp!) which libmtp supports very nicely, although after perusing the datastructure, I am not clear which folders are the &#8220;correct&#8221; folders for which type of file.  I guess this would just require some testing inside of Windows to see where the nokia tools put things.  That said, this also means that f-spot should work pretty much out of the box.<br /><br />Anyways, the third option &#8220;PC Suite&#8221; puts the device into a state which the nokia PC Suite application can use to synchronize the phone with Microsoft Outlook or Lotus Notes.  This third area is the most interesting for me at the moment.  I want my Evolution Contact List and Calendar to synchronize with with the phone so that I don&#8217;t need to pull out my laptop just to check if my flight to New York leaves at 10:45 or 11:45.<br /><br />There do seem to be a number of tools for solving this problem, however they are not particularly explanatory, nor have I actually been able to sync my calendar, todo list or contact list to the phone in yet in Linux.<br /><br />So, that pretty much summarizes my experience to date with the Nokia 6301 in Linux.<br /><br />I definitely would appreciate someone pointing me to documentation on how to get my calendar out of the PC and onto the phone.</div>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Open Source Home Renovations]]></title>
+    <link href="http://tbullock.github.io/blog/2008/07/13/open-source-home-renovations/"/>
+    <updated>2008-07-13T00:00:00-06:00</updated>
+    <id>http://tbullock.github.io/blog/2008/07/13/open-source-home-renovations</id>
+    <content type="html"><![CDATA[<div class='post'>
+On June 30, 2008 I took possession of my very first property.  It&#8217;s an 800 square foot, two-bedroom condo in South Calgary (Alberta).<br /><br />Given that I am a massive geek, part of the renovations I am taking on in preparation for moving in, is a robust home network. This includes (at least) seven cat5e, and six rg6 cable drops.  For this I have used a fancy product by Leviton.  Their Structured Media center items appear to be exactly what I need to marshal my assorted cables, and send them along to their eventual end points.<br /><br />This allows a lot of flexibility towards future home renovations, and lets you easily re-design the layout of the network at a future point in time. As far as I am concerned, this sort of cable organization is the best way to go.<br /><br />In any case, all this work is being completed with the intention of designing an ideal open source home.  My routing, media distribution, work bench, telephony and data storage system have all marshaled into a single room.  The original analog telephony network is untouched in case a future owner doesn&#8217;t want to use the fancy system that I have built.<br /><br />Anyways, I have been doing this upgrade as part of a behind the scenes project that I have been playing with to develop a home running entirely on open source software.  More on this later, expect interesting developments as the year goes on.<br /><br />-Ted</div>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[My Initial Experience With pfSense]]></title>
+    <link href="http://tbullock.github.io/blog/2008/05/13/my-initial-experience-with-pfsense/"/>
+    <updated>2008-05-13T00:00:00-06:00</updated>
+    <id>http://tbullock.github.io/blog/2008/05/13/my-initial-experience-with-pfsense</id>
+    <content type="html"><![CDATA[<div class='post'>
+As good as OpenBSD has been as my gateway router OS, I am pretty sure that I am going to move away from it to one of the pre-packaged routing systems.<br /><br />Specifically, I am talking about <a href="http://www.pfsense.org" title="Open Source firewall distribution">pfSense</a>. pfSense is a distribution of FreeBSD that uses the <a href="http://www.openbsd.org/faq/pf/">pf packet filter</a> technology originally from OpenBSD, and actually had its origins as a fork of the <a href="http://m0n0.ch/wall/">m0n0wall project</a> which uses ipfilter.  Both systems are extremely powerful, and importantly, easy for me to use, and because I want to stick with pf as my underlying packet filter, I have chosen pfSense.<br /><br />Installation onto my compact flash driven Compaq Evo D300 Small Form Factor, was very straightforward with the assistance of my card reader, dd, and a null-modem serial cable (after I figured out that installation is done via a serial terminal rather than the screen).  Certainly, anyone ready to do an embedded installation of pfsense just with parts lying around their house deserves major geek cred points.<br /><br />Right now, only 64Mb of the 2Gb flash card is partitioned for use (from the default image), which actually is not really a big deal since its a router. I&#8217;m not exactly going to mess with it very often.  Maybe.  I am forever tinkering with this stuff.  But I think that I will leave it until the next distribution update.</div>
+
+]]></content>
+  </entry>
+  
+</feed>

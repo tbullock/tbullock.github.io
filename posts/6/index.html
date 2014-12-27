@@ -1,0 +1,446 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Depth of Knowledge</title>
+  <meta name="author" content="Ted Bullock">
+
+  
+  <meta name="description" content="Over the past several days, I have been working to rearrange how the comlore.com domain is organized.Originally, I purchased the domain as part of a &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://tbullock.github.io/posts/6">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Depth of Knowledge" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Depth of Knowledge</a></h1>
+  
+    <h2>Thoughts from a tech consultant.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="tbullock.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/01/09/changes-to-comlorecom/">Changes to Comlore.com</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2009-01-09'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>9</span><span class='date-suffix'>th</span>, <span class='date-year'>2009</span></span> <span class='time'>12:00 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+Over the past several days, I have been working to rearrange how the comlore.com domain is organized.<br /><br />Originally, I purchased the domain as part of a web development business that I was running around 1999/2000, however, it sat at a pretty basic level for the majority of five years.<br /><br />There are a couple sites running on this domain, and traditionally they have just been subdirectories such as /bike, /httperf and /resurgence.  However, in pursuit of my new career as a freelance software engineer, I have restructured the domain.<br /><br /><ul><li>My cross canada bike website is located at http://bike.comlore.com</li><li>My httperf portal is located at http://httperf.comlore.com</li><li>This blog has moved to http://tbullock.comlore.com</li><li>Resurgence has been purged.</li><li>The root directory will be headquarters for the new business<br /></li></ul><br />A soon to be re-launched project about designing open source home theatres will be available at http://createyourhometheatre.comlore.com in the coming weeks.</div>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/12/30/httperf-status-2008-12-30/">Httperf Status - 2008-12-30</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2008-12-30'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>30</span><span class='date-suffix'>th</span>, <span class='date-year'>2008</span></span> <span class='time'>12:00 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+I have to acknowledge that I have been dropping the ball in regards to completing the next release of httperf.  While there has been a good amount of work done on this tool since the last release (0.9.0) I just haven&#8217;t gotten around to wrapping it up yet.<br /><br />Anways, I had better get to it now.<br /><br />Check CVS for the todo list.<br /><br />Other than simple procrastination, one major reason I put off development was that autoconf support for detecting the c99 constructs I was using wasn&#8217;t integrated until 2.62.<br /><br />Then I was going off on tangents, trying to implement my own libevent based http client library (which is definitely a useful project in my own opinion) and working to get mtp support introduced into the kernel.<br /><br />Anyways, where we stand today is that the head of cvs is not terribly stable at very very high request rates.  Maybe this is because httperf has never been able to achieve the rates that we are now reaching before and it has exposed some hithertofore unkown issue.<br /><br />Whatever, I&#8217;ll track it down.<br /><br />As for the libevent migration.  Well, Adrian Chadd was kind enough to do a partial port.  However there is much more work to be done in this area such as migrating timers, timeouts, dns and http control into the libevent core loop.<br /><br />Long term, httperf will dramatatically shrink in size.  Event logic, the http client, and metrics collection can all be loaded onto libevent and some (as of yet unwritten) plugins.  httperf will be a set tools implementing various workload generators and may further evolve into a workload language implementation.</div>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/12/29/spin-with-gnome-blog/">A Spin With Gnome-blog</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2008-12-29'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>29</span><span class='date-suffix'>th</span>, <span class='date-year'>2008</span></span> <span class='time'>12:00 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+<p>I was poking around the software repository for opensuse 11.1, and came across a tool called gnome-blog.  This is a panel applet which is supposed to allow me to post to my blog directly from the desktop rather than the supposedly tedious process of opening the blog website and posting from there.</p><p>Anyways, the tool is supposed to allow me to drag and drop images inline with the text, so I figure I will give it a whirl.</p><p>This version of gnome-blog is from 2006, and appears to be the most recent, so I suppose that development has stalled.  Google has failed to deliver anything of interest more recent than that.</p><p>Update: I am not impressed. So long gnome-blog.<br /></p><p><br />-Ted</p></div>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/12/26/linux-kernel-space-media-transfer/">Linux Kernel Space Media Transfer Protocol</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2008-12-26'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>26</span><span class='date-suffix'>th</span>, <span class='date-year'>2008</span></span> <span class='time'>12:00 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+So after a couple years of pondering I have finally begun work on implementing a kernel space driver for the media transfer protocol.<br /><br />Yes, yes, this is my first foray since university into kernel space, but I have had enough of the user-space solutions to implementing the media transfer protocol.  Hundreds of devices have now implemented the darn thing (including my iriver clix if you recall), and what&#8217;s more the USB.org folks have finally published the <a href="http://www.usb.org/developers/devclass_docs/MTP_1.0.zip">1.0 version of the standard</a>.<br /><br />First here is a bit of the technical reasoning.<br /><br /><ol><br /><li>Already two distinct user-space implementations which both share similar drawbacks. libmtp, and libgphoto</li><br /><li>Dependant on libusb which has stalled in development</li><br /><li>Race condition in device connection, first application to detect and connect blocks any other software from using the device until connection is dropped</li><br /></ol><br /><br />Etc, the current implementation suffers from all the problems that user space drivers suffer from in the monolithic world (even the microsoft implementation has this going on).  Also, it&#8217;s about time I get my hands dirty in the kernel for pete&#8217;s sake.<br /><br />So how is this thing going to work you might ask?<br /><br />Well, here is how I see it right now, and others are welcome to chime in on this.<br /><br />The protocol is implemented partly in kernel space, and partly in user-space depending on necessity and appropriateness.<br /><br />Kernel Space Driver (mtp):<br />Connects and manages all operations:<br />Exposes file hierarchies as a mountable file system<br />Implements protocol for transferring straight files.<br />Issues device handles to userspace which can be used asynchronously (no more device pointers!)<br />Automatic device connection<br /><br />User Space Library (libmtp-media)<br />Implements protocol for managing media (including meta-data) (music, pictures, video, etc)<br /><br />User Space Library (libmtp-cal)<br />Implements protocol for managing contact and calendar (vcard, ical, etc)<br /><br />Essentially the protocol implementation will be separated across a variety of locations.<br /><br />Anywho, after an hour or so of fiddling, here is the latest line from dmesg:<br /><br /><pre><br />usb 4-5: new high speed USB device using ehci_hcd and address 9<br />usb 4-5: configuration #1 chosen from 1 choice<br />mtp: USB Skeleton device now attached to USBSkel-192<br />usb 4-5: New USB device found, idVendor=4102, idProduct=112a<br />usb 4-5: New USB device strings: Mfr=1, Product=2, SerialNumber=3<br />usb 4-5: Product: iriver clix<br />usb 4-5: Manufacturer: iriver Limited<br />usb 4-5: SerialNumber: 41dff81c000000f33230303530313031<br />usb 4-5: USB disconnect, address 9<br />mtp: USB Skeleton #192 now disconnected<br /></pre><br /><br />Not much, but hey it&#8217;s the beginning of the road here.<br /><br />Lastly, if anyone wants to employ me to design this, I am certainly on the market.<br /><br />-Ted Bullock</div>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/10/17/how-to-synchronize-nokia-6301-in-linux/">How to Synchronize a Nokia 6301 in Linux - Investigation</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2008-10-17'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2008</span></span> <span class='time'>12:00 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+This afternoon I received my brand new <a href="http://www.nokia.ca/A4787033">Nokia 6301</a> cell phone.  In many respects, I really do like the thing.<br /><br />This nokia smartphone has a wifi antenna which allows it to be used as a VOIP handset if you are in range of an appropriate network and also supports all the normal functionality of your typical cell phone.  It also supports Bluetooth and has a mini-usb adapter.<br /><br />When physically connected to a modern linux machine (in my case openSUSE 11.0), it initially identifies itself as a USB Mass Storage device and the desktop responds appropriately by mounting it like any other USB drive.  However, the phone specifies a couple of other connectivity options, including &#8220;Data Storage&#8221; (USB Mass Storage),  &#8220;Media & Printing&#8221; (MTP) and &#8220;PC Suite&#8221;.<br /><br />When you choose &#8220;Media & Printing&#8221;, the device switches to <a href="http://en.wikipedia.org/wiki/Media_Transfer_Protocol">MTP mode</a> (Woohoo, go libmtp!) which libmtp supports very nicely, although after perusing the datastructure, I am not clear which folders are the &#8220;correct&#8221; folders for which type of file.  I guess this would just require some testing inside of Windows to see where the nokia tools put things.  That said, this also means that f-spot should work pretty much out of the box.<br /><br />Anyways, the third option &#8220;PC Suite&#8221; puts the device into a state which the nokia PC Suite application can use to synchronize the phone with Microsoft Outlook or Lotus Notes.  This third area is the most interesting for me at the moment.  I want my Evolution Contact List and Calendar to synchronize with with the phone so that I don&#8217;t need to pull out my laptop just to check if my flight to New York leaves at 10:45 or 11:45.<br /><br />There do seem to be a number of tools for solving this problem, however they are not particularly explanatory, nor have I actually been able to sync my calendar, todo list or contact list to the phone in yet in Linux.<br /><br />So, that pretty much summarizes my experience to date with the Nokia 6301 in Linux.<br /><br />I definitely would appreciate someone pointing me to documentation on how to get my calendar out of the PC and onto the phone.</div>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/10/09/problem-with-current-design-software/">The Problem With Current Design Software</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2008-10-09'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>9</span><span class='date-suffix'>th</span>, <span class='date-year'>2008</span></span> <span class='time'>12:00 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+The more experience that I have with how engineering and electrical design is done, more I am astonished at how much effort goes into problems that are fundamentally trivial.<br /><br />For instance, when designing a schematic, I need to spend a considerable amount of time figuring out which terminal block contacts are available, and whether or not the final wiring layout is electrically consistent with the schematic.<br /><br />I don&#8217;t care about that!<br /><br />No kidding.<br /><br />I cannot believe that I need to do that in this day and age.  I should be able to plug device one into device two and my design software should just know how to make it happen.  Period.<br /><br />At the end of the day I want to be able to say to my machine<br /><br /><blockquote>&#8220;Connect these devices in this order&#8221;</blockquote><br /><br />I should be able to just figure out basic system layout, and all the wiring, schematics and general fiddling should be just figured out for me.</div>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/10/07/opensuse-110-and-nouveau-driver/">openSUSE 11.0 and the Nouveau Driver</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2008-10-07'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>7</span><span class='date-suffix'>th</span>, <span class='date-year'>2008</span></span> <span class='time'>12:00 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+I recently got my nVidia dual-head <a href="http://www.pny.com/products/quadro/nvs/280NvsPciEx.asp">Quadro NVS 280 PCIe</a> graphics card functioning in openSUSE 11.0 with the open source <a href="http://nouveau.freedesktop.org/wiki/FrontPage">nouveau driver</a>!<br /><br />Originally I was inclined to use the proprietary nvidia driver since the nv driver does not support multi-head setups with my particular card.  However, the legacy nvidia driver is not functioning at the moment with the current kernel iteration of openSUSE 11.0.  So after a few hours of frustration, I blew away the proprietary driver and began work on installing nouveau.<br /><br />The binary version that is comes packaged for the distribution won&#8217;t let me start X for some reason or another, and besides, I wanted to try out the latest and greatest developments towards the driver.<br /><br />Following the <a href="http://nouveau.freedesktop.org/wiki/InstallNouveau">installation instructions</a> was straightforward after I installed the necessary devel packages that come with the distribution.  And within a few minutes I had a functioning desktop cloned across my two monitors.<br /><br />The next step was enabling telling randr to spread the desktop across both monitors, by folling the <a href="http://nouveau.freedesktop.org/wiki/Randr12Howto">randr instructions</a> on the nouveau wiki.<br /><br />Clearing out a good bit of the autogenerated cruft from the <a href="http://www.comlore.com/xorg.conf">xorg.conf</a> file provided me finally with a functioning extended desktop.  All this with the open source driver, and a bit of perseverance.<br /><br /><a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://www.comlore.com/uploaded_images/nouveau-desktop-761016.png"><img style="display:block; margin:0px auto 10px; text-align:center;cursor:pointer; cursor:hand;" src="http://www.comlore.com/uploaded_images/nouveau-desktop-760467.png" border="0" alt="" /></a><br /><br />Thanks to the folks on IRC!  Very helpful, and best wishes!<br /><br />-Ted</div>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/10/03/new-version-of-httperf-coming-soon/">New Version of Httperf Coming Soon (Httperf 0.9.1)!</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2008-10-03'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>3</span><span class='date-suffix'>rd</span>, <span class='date-year'>2008</span></span> <span class='time'>12:00 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+In spite of the fact that I barely spend any time these days working on httperf, I am pleased to note that activity has not been totally absent.<br /><br />Pretty quickly we&#8217;ll be releasing a new version of httperf with a number of enhancements.<br /><br />The most dramatic change came from Adrian Chad, who implemented a basic port to the libevent notification system.  This has dramatically improved the performance of the tool (like in the realm of &#8220;orders of magnitude&#8221;).<br /><br />New period variation option &#8211;period=vT1,D1,T2,D2&#8230;.Tn,Dn<br /><br />The idleconn tool is now optional (disabled by default), and can be built using the &#8211;enable-idleconn configure option<br /><br />New options to print result data in new formats (CSV and Key=Value), however this is still being tested.<br /><br />The idleconn program has been re-written to use libevents non-blocking dns and connection API.<br /><br />Also, a number of memory leaks have been plugged with a re-write of the timer system.<br /><br />libevent is now a build requirement.<br /><br />httperf will try to compile itself with the system compilers c99 option if available.</div>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/07/14/httperf-and-libevent-and-future-of/">Httperf and Libevent and the Future of Everything</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2008-07-14'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>14</span><span class='date-suffix'>th</span>, <span class='date-year'>2008</span></span> <span class='time'>12:00 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+Firstly, congratulations to Adrian Chadd for starting the httperf port to libevent.  Already we have seen some massive performance enhancements.  CPU usage on my opensuse 11.0 workstation has improved about %3000 percent.<br /><br />Certainly there is some stability work to be done.  I am currently getting segmentation faults with very high request loads.<br /><br />The current implementation does not use a persistent event loop, which means that the other useful features that libevent provides are not available (timers for example).<br /><br />Something I want to see developed going forward is an asynchronous http client library around.  The http work already done with libevent is certainly a start to this, but is far from complete.  Essentially, what I want is a client api where I can perform some http client action asynchronously without needing to deal with any messy details.<br /><br />The intention here is to foster a deal of code-reuse between http implementation projects that all use libevent at the core.  After that, portability sits firmly on libevent&#8217;s shoulders (where it belongs).</div>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/07/13/open-source-home-renovations/">Open Source Home Renovations</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2008-07-13'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2008</span></span> <span class='time'>12:00 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+On June 30, 2008 I took possession of my very first property.  It&#8217;s an 800 square foot, two-bedroom condo in South Calgary (Alberta).<br /><br />Given that I am a massive geek, part of the renovations I am taking on in preparation for moving in, is a robust home network. This includes (at least) seven cat5e, and six rg6 cable drops.  For this I have used a fancy product by Leviton.  Their Structured Media center items appear to be exactly what I need to marshal my assorted cables, and send them along to their eventual end points.<br /><br />This allows a lot of flexibility towards future home renovations, and lets you easily re-design the layout of the network at a future point in time. As far as I am concerned, this sort of cable organization is the best way to go.<br /><br />In any case, all this work is being completed with the intention of designing an ideal open source home.  My routing, media distribution, work bench, telephony and data storage system have all marshaled into a single room.  The original analog telephony network is untouched in case a future owner doesn&#8217;t want to use the fancy system that I have built.<br /><br />Anyways, I have been doing this upgrade as part of a behind the scenes project that I have been playing with to develop a home running entirely on open source software.  More on this later, expect interesting developments as the year goes on.<br /><br />-Ted</div>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/posts/7">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/posts/5">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/11/27/telephone-call/">Telephone Call</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/11/25/freeswitch-on-openbsd-project-status_25/">FreeSWITCH on OpenBSD - Project Status 2014-11-25</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/11/20/freeswitch-on-openbsd-project-status_20/">FreeSWITCH on OpenBSD - Project Status 2014-11-20</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/11/16/freeswitch-on-openbsd-project-status_16/">FreeSWITCH on OpenBSD - Project Status 2014-11-16</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/11/03/freeswitch-on-openbsd-project-status/">FreeSWITCH on OpenBSD - Project Status 2014-11-02</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Ted Bullock -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

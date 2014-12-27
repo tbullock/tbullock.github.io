@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Opensuse | Depth of Knowledge]]></title>
+  <link href="http://tbullock.github.io/blog/categories/opensuse/atom.xml" rel="self"/>
+  <link href="http://tbullock.github.io/"/>
+  <updated>2014-12-26T21:32:08-07:00</updated>
+  <id>http://tbullock.github.io/</id>
+  <author>
+    <name><![CDATA[Ted Bullock]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Nokia 6301 and Linux Part 2]]></title>
+    <link href="http://tbullock.github.io/blog/2009/05/21/nokia-6301-and-linux-part-2/"/>
+    <updated>2009-05-21T00:00:00-06:00</updated>
+    <id>http://tbullock.github.io/blog/2009/05/21/nokia-6301-and-linux-part-2</id>
+    <content type="html"><![CDATA[<div class='post'>
+I noticed that I have a couple of dozen visitors hit my earlier posting on synchronizing linux systems with a nokia 6301, and given that I am on a bit of high after just posting my previous note about connecting to the net through the the GPRS and bluetooth functions on the nokia 6301 I figure I will follow with my latest discoveries fiddling fun.<br /><br />I must be turning into a google zealot because everytime I turn around there is another google service available which I want to twiddle.  Let me explain.<br /><br />Currently Evolution does not support synchronizing itself in any sane fashion against a syncml device like the nokia 6301.  So all my contacts living inside my client have become increasingly disconnected with the contacts listed with gmail and the contacts that I have on my cell phone.<br /><br />Obviously the context between these three application is somewhat different in each case.  Like I often want to be able to grab a map of my next intended target from the evolution address book, but rarely want to do this inside of gmail itself, and I usually cannot be bothered with any of that rigamarole on the cell phone.  Nevertheless, it would still be nice if they were synchronized.<br /><br />So here steps in google to the rescue with its online syncml service, along with <a href="http://www.google.com/mobile/">instructions on how to configure</a> the sister device of the 6301 (6300 in this case) to use its service.  Note that the Nokia 6301 and 6300 are S40 series Symbian OS devices.<br /><br />I won&#8217;t go into the details of the configuration since they are adequately specified elsewhere, but figure I will get to the point, thanks google for providing a working sync service.<br /><br />Next I want to point out that gmail is available as a binary application on most recent nokia phones including the slightly older models such as the 6301.  As a side note, this works with Google Apps as well.<br /><br />Check out http://m.google.com for all the goodies, including google maps.<br /><br />Sigh, I can feel the tendrils of zealotness swirling around me&#8230;  Somebody kick me if I go too far.<br /><br />Anyways, while this isn&#8217;t exactly a Nokia 6301 and Linux article, the same results can be achieved, so I figure it is a good enough equivalent.</div>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Linux, Bluetooth, and GRPS Internet]]></title>
+    <link href="http://tbullock.github.io/blog/2009/05/21/linux-bluetooth-and-grps-internet/"/>
+    <updated>2009-05-21T00:00:00-06:00</updated>
+    <id>http://tbullock.github.io/blog/2009/05/21/linux-bluetooth-and-grps-internet</id>
+    <content type="html"><![CDATA[<div class='post'>
+Currently I am sitting in Austin&#8217;s Neighborhood Pub across the street from my little condominium here in Calgary, Alberta.  Although I can see a number of wireless networks in the area, none of them are unsecured and for their own reasons, the pub itself is not particularly interested in providing wireless connectivity to its patrons.<br /><br />So this leaves me with the need to be creative in how I connect to the internet.  What&#8217;s more, in a couple weeks I am leaving for my second major cross country bicycle tour of Canada, and will likely be more or less completely away from the gentle caress of the net for most of that time.<br /><br />Anyways, as I mentioned, I need to be creative with this whole connectivity thing, and my solution is via bluetooth, to route packets through my cell phone and connect to the net via the phones GPRS (and EGPRS in some areas) data connection.<br /><br />The thing that impressed me is that this technology is alreadly quite nicely supported in linux, albeit with a bit of work on the commandline (not much, just check out pand, bnep, and of course ifconfig and dhclient).  If you want some fairly superb documentation on this check out the bluetooth article gentoo wiki.<br /><br />I imagine that other operating systems like the BSD&#8217;s would support this as well, but I haven&#8217;t confirmed it.<br /><br />Congrats to the bluez folks for delivering a working network bluetooth stack for linux.<br /><br />As a side note from what I read on <a href="http://blogs.gnome.org/dcbw/category/networkmanager/">Dan Williams&#8217; Blog</a>, this functionality will eventually make its way into network manager itself sometime around the release of 0.8.<br /><br />This makes me want to move to a phone that actually supports 3g data connections to make this all a bit faster than dialup&#8230; However, at this time there is nothing available on the market which will do everything I want from a phone (3G. UMA, Bluetooth and supports a native binary gmail application). My current Nokia 6301 does all of this except the 3G thing, so I am going to stick with it for the time being.<br /><br />Take Care, and hopefully I will post back here before I leave for my tour, but then again, even if I don&#8217;t then so be it, I will be able to post from the road.<br /><br />Please enjoy responsibly</div>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Pulseaudio Stereo Server]]></title>
+    <link href="http://tbullock.github.io/blog/2009/01/17/pulseaudio-stereo-server/"/>
+    <updated>2009-01-17T00:00:00-07:00</updated>
+    <id>http://tbullock.github.io/blog/2009/01/17/pulseaudio-stereo-server</id>
+    <content type="html"><![CDATA[<div class='post'>
+Ever since the speakers on my laptop decided to die, I have been looking for ways to get audio out of the machine.<br /><br />There are a couple options:<br /><ul><li>Don&#8217;t have sound</li><li>Use headphones, or a speaker connected to the headphone port</li><li>Use a network sound server</li></ul>Given that I love the concept of tinkering around with weird technical thingamajigs, I decided to give the latter a try.<br /><br />So here is what I want to do.<br /><br />My mythtv frontend in the living room is connected to a very decent speaker system, also, there are other &#8220;always on&#8221; machines around the house which are hooked up to speakers.<br /><br />I want my laptop to auto-detect the existence of the sound systems on these machines and connect to them at a push of a button, then route all of my computers audio through those speakers.<br /><br />Anyways, I have not been able to get my laptops pulseaudio client to connect to a system wide instance running on the media server.  If anyone has gotten a similar system running, I would love to hear about it.<br /><br />Let me know.<br /><br />-Ted</div>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Install Mythtv on openSUSE 11.1]]></title>
+    <link href="http://tbullock.github.io/blog/2009/01/15/install-mythtv-on-opensuse-111/"/>
+    <updated>2009-01-15T00:00:00-07:00</updated>
+    <id>http://tbullock.github.io/blog/2009/01/15/install-mythtv-on-opensuse-111</id>
+    <content type="html"><![CDATA[<div class='post'>
+Last night I had one of those tinkering fits that occasionally over take me, and I updated my mythtv operating system to openSUSE 11.1.  Since there aren&#8217;t any really good instructions for this procedure (even the mythtv wiki is a bit stretched), I figured I&#8217;ll post my instructions here.<br /><br />My backend (and frontend) machine:<br /><ul><li>Pentium D 920</li><li>1Gb Ram</li><li>Hauppauge PVR-350</li><li>900 Gb  hardware RAID 5 (4 x 300 Gb) with Areca ARC-1210 controller</li><li>Geforce 7300 GS</li></ul>With the exception of the video, all the components in the machine here have good out of the box drivers.<br /><br />Anyways, I chose the basic X11 installation from the DVD, since I wanted to avoid installing too much extraneous software.<br /><br />The majority of the install is done from the command line so here goes (As best as I can remember):<br /><br /><pre>zypper ar http://packman.unixheads.org/suse/11.1<br />zypper install mythtv-backend mythtv-doc myththemes mysql<br />rcmysql start && mysqladmin -u root password mysecretpassword<br /><br />mysql -u root -p < /usr/share/doc/packages/mythtv-doc/database/mc.sql<br /><br />mysql -u root -p mythconverg<br />   grant all on mythconverg.* to mythtv@"%" identified by "mythtv";<br />   flush privileges;<br />   quit;<br /></pre><br /><br />Then with a running X session run the setup program, and there is plenty of documentation available for this on the <a href="http://www.mythtv.org/wiki/index.php/User_Manual:Detailed_configuration_Backend">mythtv wiki</a><br /><br /><pre>mythtv-setup</pre><br /><br />Next I created a user &#8220;myth&#8221;, installed gdm, and configured the autologin, note that no password was set here for the user &#8220;myth&#8221; <br /><br /><pre>useradd myth -m<br />zypper install gdm<br />sed s/DISPLAYMANAGER="xdm"/DISPLAYMANAGER="gdm" /etc/sysconfig/displaymanager<br />sed s/DISPLAYMANAGER_AUTOLOGIN=""/DISPLAYMANAGER_AUTOLOGIN="myth" /etc/sysconfig/displaymanager<br /></pre><br /><br />Next I started yast and from the run level editor, I added both mythbackend and mysql to the start in run levels 3 and 5<br /><br />Finally to get the frontend to display upon boot I edited the file /home/myth/.dmrc to read<br /><br /><pre>[Desktop]<br />Session=mythTV</pre><br /><br />Restarted the machine to test all was well, and I was up and running.<br /><br />Not bad, as far as time goes either.  In total the installation took me about an hour and half.<br /><br />-Ted</div>
+
+
+<h2>Comments</h2>
+
+
+<div class='comments'>
+<div class='comment'>
+<div class='author'>Ted Bullock</div>
+<div class='content'>
+Generally speaking you want to look at using gdm or kdm for the auto login features when going for a mythtv install.<br><br>I have no idea whether or not XFCE has a login manager these days anyways&#8230;. hmm, certainly something to look up in due time<br><br>Anywho, you will need to install one or the other of the standard login managers.<br><br>As to your other question regarding the architecture thingy, I would personally go for 64bit on any machine that supports it.  I have no empirical rational behind this  but it really won&#39;t hurt.</div>
+</div>
+<div class='comment'>
+<div class='author'>jniffen</div>
+<div class='content'>
+Oh, one other question?<br><br>If a system had an AMD BE2400 with 2GB RAM would you install the 32 or 64 bit version of OpenSuse 11.1?<br><br>Thanks</div>
+</div>
+</div>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[More Bugs in openSUSE 11.0 Beta 1]]></title>
+    <link href="http://tbullock.github.io/blog/2008/04/21/more-bugs-in-opensuse-110-beta-1/"/>
+    <updated>2008-04-21T00:00:00-06:00</updated>
+    <id>http://tbullock.github.io/blog/2008/04/21/more-bugs-in-opensuse-110-beta-1</id>
+    <content type="html"><![CDATA[<div class='post'>
+Although I haven&#8217;t done another major test run at openSUSE 11.0, I did have noticed that <a href="https://bugzilla.novell.com/show_bug.cgi?id=343858">Bug 343858</a> (gdm packages downloaded with control-center upgrade use resolution specified for external monitor) is mostly fixed. I did hit the problem with maximized windows in metacity not filling the screen in certain circumstances.  All should be well on this front.<br /><br />Having xrandr extend my desktop to an external monitor is currently not possible without explicitly using the Virtual keyword in xorg.conf.  I filed <a href="https://bugzilla.novell.com/show_bug.cgi?id=381765">bug 381765</a>, however the problem is apparently inherent with RANDR 1.2<br /><br />Oh well.<br /><br />I still have not grasped how the new pulseaudio stuff is supposed to let me record things from my microphone.  There are too many switches to play with for my emotional well-being (or something&#8230; Anyways I haven&#8217;t learned it yet).<br /><br />Testing a SD card in the 700m&#8217;s onboard reader was problematic.  An icon for the card flickered on and off the desktop about 100 times with lots of pop up windows trying to let me know of deep seeded grief, and checking dmesg shows numerous IO errors.  I have not filed a bug yet, but I will sometime this week.<br /><br />Anyways, it seems that the system is starting to now formally stabilize; and while this release won&#8217;t meet my every wim (working nouveau? autoconf 2.62? ifolder? bongo?), I will definitely be migrating most of my machines after the release.  Unless something dramatic occurs, the media server probably won&#8217;t change until support concludes from Novell for 10.3.<br /><br />More later.<br /><br />-Ted</div>
+
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,200 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Running an OpenBSD Laptop - Depth of Knowledge</title>
+  <meta name="author" content="Ted Bullock">
+
+  
+  <meta name="description" content="I've been a long time user of OpenBSD for various projects since I worked for Nortel back in the good old days (2004? Wow, that's nine years and &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://tbullock.github.io/blog/2013/05/27/running-openbsd-laptop">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Depth of Knowledge" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Depth of Knowledge</a></h1>
+  
+    <h2>Thoughts from a tech consultant.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="tbullock.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Running an OpenBSD Laptop</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-05-27'><span class='date'><span class='date-month'>May</span> <span class='date-day'>27</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>12:00 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><div class='post'>
+I&#8217;ve been a long time user of OpenBSD for various projects since I worked for Nortel back in the good old days (2004? Wow, that&#8217;s nine years and counting). My experience with the operating system is mostly on howling servers that you would never run on your desk.<br /><br />Anyway, I&#8217;ve been working on porting some software to OpenBSD for a couple months and kept thinking to myself<br /><blockquote class="tr_bq">&#8220;Boy I should get a proper workstation setup&#8221;</blockquote>At first I was just using an ssh shell to one of my servers and working off that, which was a pain in the ass when the network was slow or out, or otherwise unavailable.<br /><br />Second thought was,<br /><blockquote class="tr_bq">&#8220;Maybe a VM on my main laptop will do?&#8221;</blockquote>Uh, no. I don&#8217;t like VMs, and to be honest I need a bit more performance than typing into a VM console. I have friend that is a VM hipster who thinks they are the best thing since butter, but I&#8217;m just not that kind of guy.<br /><br />Anyway, after setting up a workstation on a spare P4 that has been sitting on the shelf behind me for a couple years and enjoying the experience, I grabbed a Dell D620 from a local company which sold all its old gear to me for a tuppence.<br /><br /><h3>Power Management</h3>Last year I sat through a talk by Theo de Raadt where he claimed that OpenBSD has the best ACPI implementation of any of the free operating systems. After noticing that the stock installation of OpenBSD ran a little hot on the D620, I opened the <a href="http://www.openbsd.org/cgi-bin/man.cgi?query=acpi" rel="nofollow" target="_blank">acpi(4)</a> man page which said:<br /><blockquote class="tr_bq">&#8220;Userland may access <b>acpi </b>by using the <a href="http://www.openbsd.org/cgi-bin/man.cgi?query=apm&amp;sektion=4&amp;arch=i386&amp;apropos=0&amp;manpath=OpenBSD+Current" target="_blank">apm(4)</a> device.&#8221;</blockquote>After a little bit of reading, I concluded that editing rc.conf.local to start the apmd daemon (responsible for handling the power management stuff) in &#8220;keep my computer cool mode&#8221; should do the trick.<br /><br /><blockquote class="tr_bq">apmd_flags=&#8221;-C&#8221;</blockquote>On the advice of a random webpage I un-commented the line in /etc/sysctl.conf which tells the system to suspend whenever the laptop lid is closed.<br /><blockquote class="tr_bq">machdep.lidsuspend=1 </blockquote>After a nice demo by Henning Braur after his talk at BSDCan this year I am pleased to confirm a nice suspend and resume experience. Not only does the laptop take a nice nap when the lid is closed, it actually gets out of bed and back to work when its open.<br /><h3>Docking</h3>Along with the laptop came a dock, which I specifically wanted to enable a modest transition from mobile to fixed workstation. And after a solid 7 minutes of rummaging through man pages I couldn&#8217;t find any hooks to detecting when the machine has been docked.<br /><br />Basically I wanted the following to automatically happen when the laptop is docked<br /><ol><li>Turn off wifi</li><li>Disable suspend on closed lid</li><li>Turn on my desktop monitor</li><li>Turn off the LVDS laptop panel</li></ol>1 and 2 require some root permissions which means configuring sudo, 3 and 4 are easy with xrandr (<a href="http://www.youtube.com/watch?v=tMMuVBygK-s" target="_blank">thanks keith packard</a>).<br /><br />Upon undocking, I want to reverse this behaviour.<br /><br />So far I have two scripts sitting on my desktop called docked and undocked which I can run to manually cut things over to the preferred state. I suppose this will do for now, since I have other things that need my attention.<br /><br />Does anyone know of a more elegant way to do this? Or would someone like to write up a small daemon to handle this in the background? Maybe it could be called dockd?<br /><h3>Summary</h3>In anycase, getting the system up and running has not been terribly difficult, and I should have no more excuses when it comes to getting to work on the <a href="http://tbullock.comlore.com/2013/03/freeswitch-on-openbsd.html" target="_blank">OpenBSD port of FreeSWITCH</a> I was going on about recently.<br /><br /></div>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Ted Bullock</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2013-05-27'><span class='date'><span class='date-month'>May</span> <span class='date-day'>27</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>12:00 am</span></time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://tbullock.github.io/blog/2013/05/27/running-openbsd-laptop/" data-via="" data-counturl="http://tbullock.github.io/blog/2013/05/27/running-openbsd-laptop/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/03/30/aastra-mbu-400-and-freeswitch/" title="Previous Post: Aastra MBU 400 and FreeSWITCH">&laquo; Aastra MBU 400 and FreeSWITCH</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2013/06/02/freeswitch-on-openbsd-project-status/" title="Next Post: FreeSWITCH on OpenBSD - Project Status 2013-06-02">FreeSWITCH on OpenBSD - Project Status 2013-06-02 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/11/27/telephone-call/">Telephone Call</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/11/25/freeswitch-on-openbsd-project-status_25/">FreeSWITCH on OpenBSD - Project Status 2014-11-25</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/11/20/freeswitch-on-openbsd-project-status_20/">FreeSWITCH on OpenBSD - Project Status 2014-11-20</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/11/16/freeswitch-on-openbsd-project-status_16/">FreeSWITCH on OpenBSD - Project Status 2014-11-16</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/11/03/freeswitch-on-openbsd-project-status/">FreeSWITCH on OpenBSD - Project Status 2014-11-02</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Ted Bullock -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

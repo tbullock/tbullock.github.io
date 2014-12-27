@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Development | Depth of Knowledge]]></title>
+  <link href="http://tbullock.github.io/blog/categories/development/atom.xml" rel="self"/>
+  <link href="http://tbullock.github.io/"/>
+  <updated>2014-12-26T21:32:08-07:00</updated>
+  <id>http://tbullock.github.io/</id>
+  <author>
+    <name><![CDATA[Ted Bullock]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Libevent and Pkgconfig]]></title>
+    <link href="http://tbullock.github.io/blog/2009/04/16/libevent-and-pkgconfig/"/>
+    <updated>2009-04-16T00:00:00-06:00</updated>
+    <id>http://tbullock.github.io/blog/2009/04/16/libevent-and-pkgconfig</id>
+    <content type="html"><![CDATA[<div class='post'>
+The latest trunk of libevent now has pkgconfig support due to a quick patch I sent along earlier today.<br /><br />Oooh, the majesty.</div>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Master of Orion 2 and Dosbox Party]]></title>
+    <link href="http://tbullock.github.io/blog/2009/04/08/master-of-orion-2-and-dosbox-party/"/>
+    <updated>2009-04-08T00:00:00-06:00</updated>
+    <id>http://tbullock.github.io/blog/2009/04/08/master-of-orion-2-and-dosbox-party</id>
+    <content type="html"><![CDATA[<div class='post'>
+My friend Tristan and I have been fans of Master of Orion 2 for well over a decade at this point.  Personally, the game is within my top three all time favorite games (also including Crusaders of the Dark Savant and Close Combat 2).<br /><br />Anyways, a long time ago, we discovered that network multiplayer of MOO2 was deeply slow and sucky (like impossible to play for a protracted period of time).  The games we have played against one another have either been hotseat or deeply time consuming and resulting in no real conclusion.<br /><br />Well, no more.  I finally got off my butt in regards to this issue this week and managed to get MOO2 running quite nicely in Dosbox.  This resulted in us spending about 19 hours over the course of the last weekend playing the game the way it was meant to be played (to the bitter end of course, and several times over to boot)!<br /><br />Anywho, this worked so well, that I am currently writing an NSIS installer which will pull all the necessary components off of the install CD, as well as properly configure DOSBOX such that nobody else needs to go through the decade long pain in the ass that we went through ever again.<br /><br />Basically, what I have so far asks for the path to the install CD, copies the DOS only files to the HD, patches the game and sets up a local copy of dosbox to run it.<br /><br />Later I will write a launcher which will get the dosbox environment running in some sort of sanitized location and execute various cli switches to configure the gameplay itself.<br /><br />Weee!<br /><br />-Ted</div>
+
+
+<h2>Comments</h2>
+
+
+<div class='comments'>
+<div class='comment'>
+<div class='author'>siron</div>
+<div class='content'>
+Hi,<br><br>have you also tried to play online? Meeting point is the moo2 IRC channel on quakenet:<br><br><a href="http://masteroforion2.blogspot.com/2006/05/dosbox-guide.html" rel="nofollow">DOSBox Guide for MOO2 online</a></div>
+</div>
+</div>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Drafting Software in the Free World]]></title>
+    <link href="http://tbullock.github.io/blog/2008/04/09/drafting-software-in-free-world/"/>
+    <updated>2008-04-09T00:00:00-06:00</updated>
+    <id>http://tbullock.github.io/blog/2008/04/09/drafting-software-in-free-world</id>
+    <content type="html"><![CDATA[<div class='post'>
+So here at the new job with Rising Edge Engineering, I have been learning all about electrical drafting, document control and the meaning of life.<br /><br />One of things that I see that is missing in the open source universe is suitable open source drafting software.  Inkscape, and OpenOffice.org Draw are not designed for this stuff.  So is there anything out there that can be used for something resembling real drafting&#8230;?<br /><br />The other thing I see is missing is some sort of document control server that OO.o, inkscape, and other document apps can plug into to deal with revisions.  It would be great to set up something that sits on top of ssh that is designed to deal with the various intricacies of document management stuff.<br /><br />Really I want an end-to-end enterprise document creation/storage system.<br /><br />Any Takers?</div>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Autoconf 2.62 Is Now Released]]></title>
+    <link href="http://tbullock.github.io/blog/2008/04/09/autoconf-262-is-now-released/"/>
+    <updated>2008-04-09T00:00:00-06:00</updated>
+    <id>http://tbullock.github.io/blog/2008/04/09/autoconf-262-is-now-released</id>
+    <content type="html"><![CDATA[<div class='post'>
+Autoconf 2.62 has now been released.<br /><br />I have been anticipating this release for more than a year now due to its support for openmp and a number of C99 compiler check enhancements.<br /><br />This will be the last autoconf release under the GPL version 2; going forward we&#8217;ll be seeing GPL version 3.<br /><br />Spiffy.</div>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[How Soon Is Too Soon?]]></title>
+    <link href="http://tbullock.github.io/blog/2007/07/25/how-soon-is-too-soon/"/>
+    <updated>2007-07-25T00:00:00-06:00</updated>
+    <id>http://tbullock.github.io/blog/2007/07/25/how-soon-is-too-soon</id>
+    <content type="html"><![CDATA[<div class='post'>
+I have a small confession to make.<br /><br />I am unfortunately one of those folks that rather likes new features in their software&#8230;<br /><br />Since I have been developing httperf, I been trying to find the balance between modern and historical features that I should reliably be able to depend on.<br /><br />The httperf tool was primarily written in the late 1990&#8217;s and probably was developed against the GCC 2.7 or some version of EGCS, in conjunction with the HP C compiler.  Obviously, things have moved quite a bit since those days, with the EGCS/GCC merge, and now the most recent release of GCC 4.2.1.  Moreover the auto-tools have taken big steps since those times.  New elegant features abound, and I am very much tempted to use them.<br /><br />But should I?<br /><br />While openSUSE doesn&#8217;t mind the bleeding edge of gcc 4.2.1 for the upcoming 10.3 release, the OpenBSD project will be sticking with the gcc 3.3.x compiler for a while.  Moreover, some prominent users of httperf are still using FreeBSD 4.x with gcc 2.95.x.<br /><br />This puts me in a vaguely tough position.  For one, I believe that more modern compiler features can dramatically improve httperf on a whole.  But this is counter balanced with the need to not alienate existing users that are locked to an older platform for the time being.<br /><br />So my decision?  No change&#8230; Sort of.<br /><br />For the time being I will commit to maintaining existing (working) code enclosed in conditional compilation flags to make sure existing users can still use the software.  Along side with this I am developing new functionality which I will try to integrate into the old code base as feature compatibility permits.<br /><br /><a href="https://sourceforge.net/cvs/?group_id=179982" title="httperf CVS repository information on sourceforge">Check out httperf cvs</a><br /><br />-Ted</div>
+
+]]></content>
+  </entry>
+  
+</feed>

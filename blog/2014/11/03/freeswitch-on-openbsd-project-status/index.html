@@ -1,0 +1,200 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>FreeSWITCH on OpenBSD - Project Status 2014-11-02 - Depth of Knowledge</title>
+  <meta name="author" content="Ted Bullock">
+
+  
+  <meta name="description" content="After a long hiatus (since I have been known to get distracted from time to time) I have continued working on Freeswitch with regards to OpenBSD. &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://tbullock.github.io/blog/2014/11/03/freeswitch-on-openbsd-project-status">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Depth of Knowledge" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Depth of Knowledge</a></h1>
+  
+    <h2>Thoughts from a tech consultant.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="tbullock.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">FreeSWITCH on OpenBSD - Project Status 2014-11-02</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-11-03'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>3</span><span class='date-suffix'>rd</span>, <span class='date-year'>2014</span></span> <span class='time'>12:00 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><div class='post'>
+After a long hiatus (since I have been known to get distracted from time to time) I have continued working on Freeswitch with regards to OpenBSD. Before I get into the current state of affairs, I should mention that I do have I have a semi functional Freeswitch installation (from before FS started the -stable branch) running on a pair of OpenBSD 5.1-current ultrasparc VMs but the tears and pain of trying to keep that running and up to date was way too much for a mere mortal like myself to entertain. Moreover, the fact that my (unpublished) patches refused to work on a comparable 5.2 and subsequent 5.3 install told me that way lay dragons. The SSL fiasco and the new ressl work finally made me turn the systems off and resign them to the closet of dusty bits and reinstall on some linux boxes so at least I could have access to vendor patches.<br /><br />Le Sigh.<br /><br />Even to this day, the out of the box upstream install scripts don&#8217;t actually work on OpenBSD, and the software is absent from official OS repositories. Though I will nod to the fact that the upstream developers have made an attempt to get things working, they are doing stupid things in the process, like manually installing a magical &#8216;Freeswitch&#8217; versions of openssl (stupid stupid stupid), curl and libedit. Honestly its like, once they cut their finger accidentally in the kitchen, and instead of cleaning and bandaging the injury, they went ahead and put their whole hand in a Garburator.<br /><br />Anyway, I&#8217;ll try and not be too cynical here since nestled inside the monstrosity(oops sorry, still being cynical) that is Freeswitch are the necessary bytes to have a working SIP telecom platform. I&#8217;ve made some decent progress in getting the software to compile and not explode in my face, and even took the time to give the @ports mailing list some updates about project status.<br /><br /><ul><li><a href="http://marc.info/?l=openbsd-ports&amp;m=141411505924926&amp;w=2" target="_blank">2014-10-23</a></li><li><a href="http://marc.info/?l=openbsd-ports&amp;r=1&amp;b=201410&amp;w=2" target="_blank">2014-10-31</a></li></ul><h2>Stuff that works (or at least says that it works)</h2><ul><li>mod_callcenter</li><li>mod_commands</li><li>mod_conference</li><li>mod_db</li><li>mod_directory</li><li>mod_dptools</li><li>mod_esf</li><li>mod_esl/mod_hash/fs_cli</li><li>mod_fifo </li><ul><li>Lots of manual twiddling was required here, and I still haven&#8217;t turned on the c++ esl API&nbsp; that lets swig bindings start working (Specifically the ESL bindings to stuff like lua, perl, Java, and C#).</li><li>Moral of the story is that fs_cli works, I&#8217;m possibly going to re-write it or write my own from-scratch version at some point to be less terrible, though at least it uses getopt (but not the operating system provided version of getopt).</li><li>By the way, fs_cli has no license?</li></ul><li>mod_loopback</li><li>mod_sofia</li><ul><li>I hope this is the most challenging module to enable and have working correctly. In total I spent several days and many dozen cups of coffee at the local <a href="http://humptys.com/default.asp" rel="nofollow" target="_blank">Greasy Spoon</a>, banging my head against this module trying to get it to work. The module depends (obviously?) on the sofia sip library from Nokia and has been dramatically patched since the last official release. Considering the transfer of so much Nokia IP to Microsoft I would be willing to bet that many of these changes will never be pushed to the official Nokia upstream library (not that the FS devs pushed many changes even before the Nokia/MS thing happened). Also, I flirted a bit with the changes that have arrived in the 1.4 tree of Freeswitch, and don&#8217;t think much of them, (network layer violation badness).</li></ul><li>mod_others_ive_forgotten</li></ul>I&#8217;ve been hand picking the modules that I want to turn on, and aggressively deleting anything that seems stupid to me. Anyone who eventually uses this port may find that their favourite module is not included with the port. Of course this is because my goals are different than upstream Freeswitch developers, this is will sometimes result in missing features and since their design, implementation or purpose are undesirable from my point of view.<br /><h2>Still to do</h2><ul><li>Modules&#8230; many mods still need to be reviewed and enabled or deleted.</li><li>Devise an appropriate default minimal configuration </li><li>Fix hashing bugs (see my @ports mail)</li><li>Launcher re-write (switch.c is full of badness&#8230; damn, cynical again)</li><li>fs_cli re-write (how about a minimal level of security)</li><li>String Slinging audit, there are lots of places I&#8217;ve seen that could be potential overflows.</li><li>Memory pool draining; lets not see a repeat of stuff like heartbleed by not using memory pools.</li><li>Update to 1.2-stable (current tree) as far as possible</li></ul><h2>A quick note on Project Goals</h2><br />A reminder that this project is a &#8216;shallow&#8217; fork of Freeswitch. I have no intention of going feature crazy and introducing anything other than a basic installation of Freeswitch that meets MY needs (SIP over TCP/UDP with TLS and SRTP). My goals specifically are feature and platform stability and security. I will be making attempts to pull security fixes from the upstream tree but I have no intention currently of ever updating past 1.2, if you think you need web sockets in your sip stack go install linux.<br /><br /><br /><br /></div>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Ted Bullock</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2014-11-03'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>3</span><span class='date-suffix'>rd</span>, <span class='date-year'>2014</span></span> <span class='time'>12:00 am</span></time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://tbullock.github.io/blog/2014/11/03/freeswitch-on-openbsd-project-status/" data-via="" data-counturl="http://tbullock.github.io/blog/2014/11/03/freeswitch-on-openbsd-project-status/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/08/27/recovering-windows-server-2011/" title="Previous Post: Recovering a Windows Server 2011 Essentials image from a USB backup drive">&laquo; Recovering a Windows Server 2011 Essentials image from a USB backup drive</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2014/11/16/freeswitch-on-openbsd-project-status_16/" title="Next Post: FreeSWITCH on OpenBSD - Project Status 2014-11-16">FreeSWITCH on OpenBSD - Project Status 2014-11-16 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/11/27/telephone-call/">Telephone Call</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/11/25/freeswitch-on-openbsd-project-status_25/">FreeSWITCH on OpenBSD - Project Status 2014-11-25</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/11/20/freeswitch-on-openbsd-project-status_20/">FreeSWITCH on OpenBSD - Project Status 2014-11-20</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/11/16/freeswitch-on-openbsd-project-status_16/">FreeSWITCH on OpenBSD - Project Status 2014-11-16</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/11/03/freeswitch-on-openbsd-project-status/">FreeSWITCH on OpenBSD - Project Status 2014-11-02</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Ted Bullock -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,206 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>FreeSWITCH on OpenBSD - Depth of Knowledge</title>
+  <meta name="author" content="Ted Bullock">
+
+  
+  <meta name="description" content="Been a while since I posted. If you're reading this post you, you probably came in from your favourite search engine while searching for OpenBSD and &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://tbullock.github.io/blog/2013/03/28/freeswitch-on-openbsd">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Depth of Knowledge" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Depth of Knowledge</a></h1>
+  
+    <h2>Thoughts from a tech consultant.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="tbullock.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">FreeSWITCH on OpenBSD</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-03-28'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>28</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>12:00 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><div class='post'>
+Been a while since I posted. If you&#8217;re reading this post you, you probably came in from your  favourite search engine while searching for OpenBSD and FreeSWITCH.<br /><br /><a href="http://www.freeswitch.org/" target="_blank">FreeSWITCH</a> is a software voice switch which handles any manner of <a href="http://wiki.freeswitch.org/wiki/Specsheet" target="_blank">voice related activities</a>.<br /><br />These days <a href="http://wiki.answers.com/Q/How_many_phone_calls_are_made_every_day_in_the_world" rel="nofollow" target="_blank">voice is pretty important</a>, and the backend infrastructure which implements it is in a decades long process of migrating from the traditional&nbsp; POTS (Plain Old Telephone System) to an <a href="http://arstechnica.com/information-technology/2013/01/the-telephone-network-is-obsolete-get-ready-for-the-all-ip-telco/" target="_blank">all IP phone system</a>. FreeSWITCH is definitely going to be on the platforms that ushers in the next generation of telecom. While I have some reservations about how the project is developed and maintained, it has a lot of things going for it like stability and a remarkable feature set.<br /><br />Using FreesSWITCH on OpenBSD might seem like a good idea seeing as how OpenBSD has the spectacular pf firewall, excellent security history and doesn&#8217;t move very far in weird and zany directions.<br /><br />FreeSWITCH on the other hand can&#8217;t seem to stop moving in weird and zany directions. They (even after moving to stable release tarballs) suggest that checking the source out from git is the best way to the most current and stable versions and don&#8217;t blink twice at dragging the entire source tree of their dependencies into their git repository. The FreeSWITCH developers attitude towards using system versions of their dependencies ranges from <a href="http://jira.freeswitch.org/browse/FS-353" target="_blank">aggressive no&#8217;s to rampant apathy</a>. I understand their reasoning (which is not exactly wrong), though for me this is pretty odd considering that pretty much every other major project doesn&#8217;t have this problem.<br /><br />So OpenBSD and FreeSWITCH&#8230; Where to start.<br /><br />At the time of writing there is no port of FreeSWITCH for OpenBSD, or any substantial package built for any major open source operating system.&nbsp; Nor is there likely to be without some serious effort. The only way to use the software is to jump though the git checkout hoops and run their gigantic build process through from start to finish (yawn). Debugging their build process on other operating systems than linux is a pain as well, given the dependency on stuff like gnu make, the position of the planets in the night sky and the inclusion of dependencies in their source tree.<br /><br />There have been thousands of hours of effort put into making those dependencies &#8216;work&#8217; properly on OpenBSD (nevermind all the other platforms out there). And replicating all that work into FreeSWITCH source tree just seems dumb and a waste of time (which it is).<br /><br />My proposed solution (and admittedly a work in progress without a finish line in sight) is the creation something along the lines of a shallow fork of upstream FreeSWITCH that could actually be used as an OpenBSD port.<br /><br />First order of business is the build system, and again since we&#8217;re talking about OpenBSD, I am not talking about using autoconf, gnu make, cmake, imake, scons, or any number of build suites. Really, I&#8217;m just talking about vanilla <a href="http://www.openbsd.org/cgi-bin/man.cgi?query=make" target="_blank">OpenBSD make</a> (<a href="http://mail-index.netbsd.org/netbsd-users/2008/10/11/msg002183.html" target="_blank">here is an interesting thread on BSD Make</a>). Of course, use system libraries or existing tested ports wherever possible.&nbsp; The source tree should contain just those files actually needed for creating a bare installation<br /><br /><br />There are a long list of modules that also need porting, including some core requirements like mod_sofia.<br /><br />After that there needs to be some work done on things like moving configuration to /etc, logs to /var/log and various other activities consistent with making FreeSWITCH a valid citizen on OpenBSD. <br /><br />As I said, this is a work in progress, you can see the progress <a href="https://github.com/tbullock/freeswitch-openbsd" target="_blank">here on github</a>.</div>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Ted Bullock</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2013-03-28'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>28</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>12:00 am</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/freeswitch/'>freeswitch</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://tbullock.github.io/blog/2013/03/28/freeswitch-on-openbsd/" data-via="" data-counturl="http://tbullock.github.io/blog/2013/03/28/freeswitch-on-openbsd/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2011/10/03/copyright-modernization-act-my-view/" title="Previous Post: Copyright Modernization Act - My View">&laquo; Copyright Modernization Act - My View</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2013/03/30/aastra-mbu-400-and-freeswitch/" title="Next Post: Aastra MBU 400 and FreeSWITCH">Aastra MBU 400 and FreeSWITCH &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/11/27/telephone-call/">Telephone Call</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/11/25/freeswitch-on-openbsd-project-status_25/">FreeSWITCH on OpenBSD - Project Status 2014-11-25</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/11/20/freeswitch-on-openbsd-project-status_20/">FreeSWITCH on OpenBSD - Project Status 2014-11-20</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/11/16/freeswitch-on-openbsd-project-status_16/">FreeSWITCH on OpenBSD - Project Status 2014-11-16</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/11/03/freeswitch-on-openbsd-project-status/">FreeSWITCH on OpenBSD - Project Status 2014-11-02</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Ted Bullock -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

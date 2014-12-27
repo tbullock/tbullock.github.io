@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Bike Touring | Depth of Knowledge]]></title>
+  <link href="http://tbullock.github.io/blog/categories/bike-touring/atom.xml" rel="self"/>
+  <link href="http://tbullock.github.io/"/>
+  <updated>2014-12-26T21:32:08-07:00</updated>
+  <id>http://tbullock.github.io/</id>
+  <author>
+    <name><![CDATA[Ted Bullock]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[New Bike Trip Scheduled]]></title>
+    <link href="http://tbullock.github.io/blog/2009/02/11/new-bike-trip-scheduled/"/>
+    <updated>2009-02-11T00:00:00-07:00</updated>
+    <id>http://tbullock.github.io/blog/2009/02/11/new-bike-trip-scheduled</id>
+    <content type="html"><![CDATA[<div class='post'>
+As many people who follow what I do in the world know, I am a former cross Canadian cyclist and manage my own <a href="http://www.comlore.com/bike">personal website</a>  as well as a cool community project called <a href="http://www.wheelsinthewater.org/">Wheels in the Water</a>.  This summer I am planning my second tour of the country by bicycle.<br /><br />I am leaving from Horse Shoe Bay in Vancouver on June 3, 2009 and will be arriving at Cape Spear at noon on September 9, 2009.<br /><br />You will be able to follow along with everything between now and then via this blog, as well as my <a href="http://identi.ca/tbullock">identi.ca feed</a>.<br /><br />-Ted</div>
+
+]]></content>
+  </entry>
+  
+</feed>

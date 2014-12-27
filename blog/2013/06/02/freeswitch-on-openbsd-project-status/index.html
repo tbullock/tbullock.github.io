@@ -1,0 +1,206 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>FreeSWITCH on OpenBSD - Project Status 2013-06-02 - Depth of Knowledge</title>
+  <meta name="author" content="Ted Bullock">
+
+  
+  <meta name="description" content="I've finally gotten around to making new headway with the FreeSWITCH on OpenBSD project. Although I can honestly see at least year (or more, really &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://tbullock.github.io/blog/2013/06/02/freeswitch-on-openbsd-project-status">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Depth of Knowledge" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Depth of Knowledge</a></h1>
+  
+    <h2>Thoughts from a tech consultant.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="tbullock.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">FreeSWITCH on OpenBSD - Project Status 2013-06-02</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-06-02'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>2</span><span class='date-suffix'>nd</span>, <span class='date-year'>2013</span></span> <span class='time'>12:00 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><div class='post'>
+I&#8217;ve finally gotten around to making new headway with the FreeSWITCH on OpenBSD project. Although I can honestly see at least year (or more, really) of labour in front of me to produce a high quality port which I would be content to run my voice services on.<br /><br />At the moment, I have a semi functional build which compiles a binary capable of executing just past the banner. I haven&#8217;t checked the last call trace yet, however it looks like we are breaking just after the process forks and spins up a bunch of threads.<br /><br /><h3>Recent Work</h3>I merged a commit today that replaces the hash table wrapper that used to point at internal sqlite APIs to a the public hash table implemented by APR.&nbsp; This is in reaction to an instant crash bug that I was encountering when the old system tried to access the internal sqlite malloc code.<br /><br />I&#8217;ll note that the original implementation of the hash table stuff used APR in the good old days (2008) and was replaced by Anthony for reasons that I am currently unclear about.<br /><br />The results tested well in an impromptu set of test cases I whipped up to see if things should work, and the configurations loaded successfully, however the test of the new implementation really will only happen down the road when we start flinging calls around.&nbsp; <br /><br /><h3>Observations</h3>I find the code style of the FreeSWITCH developers difficult to read for a couple reasons:<br /><br /><ul><li>Long symbol that_describe_what_should_be_happening_like_this</li><li>Long prototypes that disappear off the edge of my monitor, I&#8217;ve seen lines with more than 180 characters which is a bit much.</li></ul>I&#8217;m not going to whinge about the code style too much since it is what it is, however I&#8217;ve voiced my official note saying I don&#8217;t like it.<br /><br />Another issue I have is with the munging of dependencies. What I mean here is that the developers have taken a number of liberties in changing the internals of some dependencies. I suppose that they had their reasons, however it does make me twitch.<br /><br />The more I fiddle with the internals of FreeSWITCH, the more I approve of the projects that have come from the OpenBSD guys. Especially when it comes from the perspective of portability, where the dependency trees are vanishingly small.&nbsp; The FreeSWITCH perspective is somewhat along the lines of &#8220;ok, this pile of kitchen sinks seems balanced, don&#8217;t fuck with it&#8221;.<br /><br /><br /><br /><h3>Current tasks</h3>There are couple items to do right away. The first is spin up the module loading code, port some modules, and verify that the core modules are loading in what appears to be a correct manner.<br /><br />Also I noticed that I am statically linking my internal libfreeswitch library and that needs to stop.<br /><br /><h3>Down the road</h3>I really dislike the manner in which freeswitch loads its configuration. On the horizon is a new launching and configuration loading change that makes me less twitchy. I&#8217;ll make sure that everything I do here could be conceivably imported upstream.<br /><br />Also, there are couple areas that I think may need special attention, memory handling and threading<br /><br /><h3>Summary</h3>There is lots left to do!</div>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Ted Bullock</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2013-06-02'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>2</span><span class='date-suffix'>nd</span>, <span class='date-year'>2013</span></span> <span class='time'>12:00 am</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/freeswitch/'>freeswitch</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://tbullock.github.io/blog/2013/06/02/freeswitch-on-openbsd-project-status/" data-via="" data-counturl="http://tbullock.github.io/blog/2013/06/02/freeswitch-on-openbsd-project-status/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/05/27/running-openbsd-laptop/" title="Previous Post: Running an OpenBSD Laptop">&laquo; Running an OpenBSD Laptop</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2013/06/22/sun-blade-100-and-openbsd/" title="Next Post: Sun Blade 100 and OpenBSD">Sun Blade 100 and OpenBSD &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/11/27/telephone-call/">Telephone Call</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/11/25/freeswitch-on-openbsd-project-status_25/">FreeSWITCH on OpenBSD - Project Status 2014-11-25</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/11/20/freeswitch-on-openbsd-project-status_20/">FreeSWITCH on OpenBSD - Project Status 2014-11-20</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/11/16/freeswitch-on-openbsd-project-status_16/">FreeSWITCH on OpenBSD - Project Status 2014-11-16</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/11/03/freeswitch-on-openbsd-project-status/">FreeSWITCH on OpenBSD - Project Status 2014-11-02</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Ted Bullock -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,208 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>How to Diagnose and Tune Up a Windows Computer - Depth of Knowledge</title>
+  <meta name="author" content="Ted Bullock">
+
+  
+  <meta name="description" content="In my downtime, I have been spending a lot of time at the Rocky Mountain Computer Repair Shop here in Calgary, Alberta helping out with system tune- &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://tbullock.github.io/blog/2011/04/13/how-to-diagnose-and-tune-up-windows">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Depth of Knowledge" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Depth of Knowledge</a></h1>
+  
+    <h2>Thoughts from a tech consultant.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="tbullock.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">How to Diagnose and Tune Up a Windows Computer</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-04-13'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><div class='post'>
+In my downtime, I have been spending a lot of time at the <a href="http://www.rmcr.ca/">Rocky Mountain Computer Repair Shop</a> here in Calgary, Alberta helping out with system tune-ups and general computer maintenance.<br /><br />I&#8217;ve encountered a huge variety of issues while working with the machines that come in, including virus removal, slow computers, broken installations of Norton, AVG, Internet Explorer, etc. Many of the problems are major nuisances to the owners and are caused by malfunctioning software or some sort of malware running on the system, other times the problems are caused by run of the mill user ineptitude.<br /><br />I am really good at getting systems working once they have been wacked by problems and can almost always actually fix the problem at hand rather than opt for the traditional orbital nuke of format/re-installation.<br /><br />That said there are some scenarios in which I recommend reinstalling Windows:<br /><ul><li>Want to migrate from 32-bit to a 64-bit installation (note that you would need a 64-bit installation media for this, the default recover partition/disks included on many OEM machines is not sufficient for this)</li><li>Want to start fresh with no OEM software installed</li><li>Have encountered a fundamental problem with your installation of Windows (rarer than many people actually think, but it can happen).</li><li>No service packs have been installed on Windows Vista.<br /></li></ul>Many manufacturers introduce an artificial upgrade ceiling on their customers by deploying 32-bit installations of Windows on 64-bit capable machines.  By doing this, it prevents customers from ever expanding the amount of installed, usable memory beyond the 4 GB (actually 3, or 3.5 GB) threshold. This is why many machines come from the factory with only 3 GB installed.<br /><br />Anyways, this article is not really about formatting and re-installing Windows which is a tiresome task without much challenge these days (except for tracking down drivers which can be very challenging sometimes).<br /><br />Rather this article is about how to actually go about tuning up a sick or slow computer.<br /><br />The very first thing to do before beginning a tune up is to ensure that the system is actually working properly.  It is very annoying to put hours of work into a computer and then discover that the problem was simply a dying hard drive.<br /><br />There are some things that die relatively regularly on a typical computer.<br /><ol><li>Power Supply (Incredibly Common)</li><li>Hard Drive (Incredibly Common)</li><li>Fans (Incredibly Common)<br /></li><li>Memory (Occasional, but at least it&#8217;s easy to address)</li><li>Motherboard (Usually a surface mounted chip, rather than the board itself)<br /></li></ol>So if a computer is turning itself is turning off all on it&#8217;s own the first places to check those noted above. Assuming that the computer turns on, it probably isn&#8217;t the Power Supply, so the next thing to do is run a hard drive diagnostic.<br /><br /><a href="http://www.seagate.com/www/en-us/support/downloads/seatools">Seatools</a> is a perfectly good Windows Application for diagnosing hard drive failures. Generally if the Short Self Test returns no problems then the drive is usually good to go. There may be filesystem issues though which may need to be examined.  Filesystem issues can be worked at by loaded a Windows Recovery Console and running the chkdsk utility.<br /><br />If a computer is failing to boot or having trouble reading data from the drive, even though the drive reports all is well in SeaTools, then consider running chksk /B {driveletter}: against the offending drive (if on Windows Vista or later) in the recovery console. Or chkdsk /F if  running on windows XP or earlier.<br /><br />Typically for filesystem issues, I will boot from a Windows 7 install/recovery disk and run the chkdsk utility from there seeing as Windows 7 has the latest NTFS code in it.  Checking Windows 7 NTFS partitions from XP will typically not work as the filesystem has been extended since XP was released.<br /><br />If the there are no filesystem errors, then checking the memory may be appropriate. Windows 7 has a built in memory checker which works well, however the tried and true <a href="http://www.memtest86.com/">memtest86+</a> works wonders as well.<br /><br />If everything is checking fine on the diagnostics it may be appropriate to examine the system physically. This can involve popping off a side panel on a desktop or disassembling a laptop (Which can be intimidating at first but isn&#8217;t nearly as hard as you might imagine).  Issues with fans running at full tilt are often caused by dust covering heat sinks (even in laptops, where this is really hard to check, and it&#8217;s best to just blast compressed air inside and see what comes out.<br /><br />Heat sinks may need to be reseated, which is done by completely removing all of the existing thermal compound from the contact surface of the heatsink and processor with a soft brush and rubbing alcohol,  and then applying a thin layer of thermal paste to the surface of the chip and the heat sink and rubbing it in so that it fills all the micro-grooves and grains of the surface and t then remounting the cooler.<br /><br />If there is stability issues, the last piece of hardware to examine is the motherboard (and occasionally the video card). It may be necessary to apply an update to the boards firmware using the manufacturers firmware update procedure.  Intel motherboards are a pleasure to update since that manufacturer provides update ISOs which can be burned and applied without an operating system install. Other manufacturers require the use of a dos boot disk which can be a challenge to acquire.<br /><br />So now that all the hardware issues are out of the way, the operating system itself needs to be examined.<br /><br />One of the first things to check is how up to date the installation is.  Windows XP should be at Service Pack 3, Vista at Service Pack 2 and 7 and Service Pack 1.  If the system is more than one Service Pack behind the state of the art, then I suggest formatting and re-installing with up to date media because waiting for updates to download and install will take FAR more time than cleanly installing an updated OS.<br /><br />If you don&#8217;t have up to date installation media, then you may be out of luck as far this goes, but these things can always be created using <a href="http://en.wikipedia.org/wiki/Slipstream_%28computing%29">slipstreaming techniques</a>.<br /><br />If the machine just needs to be updated a bit, then by all means go about this. However if the computer is unbearably slow, the first thing to do may be to clean it up a bit.<br /><br />Download the <a href="http://www.piriform.com/ccleaner">CCleaner application</a> (and donate to the organization that makes it while you are at it. Use this application remove temporary cruft from the system, and then uninstall everything that doesn&#8217;t belong. Personally, if the machine is really slow and a memory upgrade isn&#8217;t in its future, consider removing the antivirus suite, as these applications have a tendancy to introduce a considerable amount of extra IO activity. When you are finished uninstalling all the toolbars and nonsense which doesn&#8217;t need to be there, work through the startup applications and remove as many as you would like.  Windows doesn&#8217;t actually need anything listed in the startup locations to boot and work properly so you can feel free to remove anything there.  That said, some applications are a good idea to keep running like the Java Update, Google Update and the adobe reader things  get reinstalled left-right and center anyways so you may as well leave them.<br /><br />Now restart the computer.<br /><br />It should already perform faster, and allow you to run the rest of your activities without fuss.<br /><br />Next examine the computer for software which should be updated and patched.  One of the best tools for this is the Secunia Personal Software Inspector, which is free for personal use. This application will scan the software installed on your computer and indicate to you that it should be updated.<br /><br />Follow it&#8217;s indications. No kidding.<br /><br />Anything that you cannot update, seriously consider uninstalling.<br /><br />Lastly consider which applications you are using to browse and interact with the Internet. For Windows XP, there is very little reason to be running Internet Explorer, rather any of the alternatives (Firefox, Chrome, Opera) are superior.<br /><br />Lastly examine the amount of system memory installed in the machine. Today, 4 GB of RAM is not inappropriate as the size of system applications and software requirements increases. Also, older desktops with onboard graphics can benefit greatly from discrete graphics solutions.<br /><br />Hopefully this article has been of use, let me know any of your suggestions in the comments.<br /><br />Take Care,<br /><br />Ted</div>
+<h2>Comments</h2>
+<div class='comments'>
+<div class='comment'>
+<div class='author'>Janice Clements</div>
+<div class='content'>
+I&#39;ve been using different Windows operating systems and I find them easy to use. The only problem is they have a lot of software issues, especially Windows XP. Good thing you shared your story to us.<br /><br /><a href="http://www.manchester-it.net/computer-support/computer-support-chorlton-t.asp" rel="nofollow">Chorlton computer repair</a></div>
+</div>
+</div>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Ted Bullock</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2011-04-13'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://tbullock.github.io/blog/2011/04/13/how-to-diagnose-and-tune-up-windows/" data-via="" data-counturl="http://tbullock.github.io/blog/2011/04/13/how-to-diagnose-and-tune-up-windows/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2011/02/06/uriparser-on-openbsd/" title="Previous Post: uriparser on openbsd">&laquo; uriparser on openbsd</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2011/04/19/libreoffice-is-dumb-name-someone-rename/" title="Next Post: LibreOffice is a dumb name. Someone rename it.">LibreOffice is a dumb name. Someone rename it. &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/11/27/telephone-call/">Telephone Call</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/11/25/freeswitch-on-openbsd-project-status_25/">FreeSWITCH on OpenBSD - Project Status 2014-11-25</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/11/20/freeswitch-on-openbsd-project-status_20/">FreeSWITCH on OpenBSD - Project Status 2014-11-20</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/11/16/freeswitch-on-openbsd-project-status_16/">FreeSWITCH on OpenBSD - Project Status 2014-11-16</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/11/03/freeswitch-on-openbsd-project-status/">FreeSWITCH on OpenBSD - Project Status 2014-11-02</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Ted Bullock -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

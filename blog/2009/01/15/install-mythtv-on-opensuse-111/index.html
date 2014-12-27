@@ -1,0 +1,219 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Install Mythtv on openSUSE 11.1 - Depth of Knowledge</title>
+  <meta name="author" content="Ted Bullock">
+
+  
+  <meta name="description" content="Last night I had one of those tinkering fits that occasionally over take me, and I updated my mythtv operating system to openSUSE 11.1. Since there &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://tbullock.github.io/blog/2009/01/15/install-mythtv-on-opensuse-111">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Depth of Knowledge" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Depth of Knowledge</a></h1>
+  
+    <h2>Thoughts from a tech consultant.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="tbullock.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Install Mythtv on openSUSE 11.1</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2009-01-15'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>15</span><span class='date-suffix'>th</span>, <span class='date-year'>2009</span></span> <span class='time'>12:00 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><div class='post'>
+Last night I had one of those tinkering fits that occasionally over take me, and I updated my mythtv operating system to openSUSE 11.1.  Since there aren&#8217;t any really good instructions for this procedure (even the mythtv wiki is a bit stretched), I figured I&#8217;ll post my instructions here.<br /><br />My backend (and frontend) machine:<br /><ul><li>Pentium D 920</li><li>1Gb Ram</li><li>Hauppauge PVR-350</li><li>900 Gb  hardware RAID 5 (4 x 300 Gb) with Areca ARC-1210 controller</li><li>Geforce 7300 GS</li></ul>With the exception of the video, all the components in the machine here have good out of the box drivers.<br /><br />Anyways, I chose the basic X11 installation from the DVD, since I wanted to avoid installing too much extraneous software.<br /><br />The majority of the install is done from the command line so here goes (As best as I can remember):<br /><br /><pre>zypper ar http://packman.unixheads.org/suse/11.1<br />zypper install mythtv-backend mythtv-doc myththemes mysql<br />rcmysql start && mysqladmin -u root password mysecretpassword<br /><br />mysql -u root -p < /usr/share/doc/packages/mythtv-doc/database/mc.sql<br /><br />mysql -u root -p mythconverg<br />   grant all on mythconverg.* to mythtv@"%" identified by "mythtv";<br />   flush privileges;<br />   quit;<br /></pre><br /><br />Then with a running X session run the setup program, and there is plenty of documentation available for this on the <a href="http://www.mythtv.org/wiki/index.php/User_Manual:Detailed_configuration_Backend">mythtv wiki</a><br /><br /><pre>mythtv-setup</pre><br /><br />Next I created a user &#8220;myth&#8221;, installed gdm, and configured the autologin, note that no password was set here for the user &#8220;myth&#8221; <br /><br /><pre>useradd myth -m<br />zypper install gdm<br />sed s/DISPLAYMANAGER="xdm"/DISPLAYMANAGER="gdm" /etc/sysconfig/displaymanager<br />sed s/DISPLAYMANAGER_AUTOLOGIN=""/DISPLAYMANAGER_AUTOLOGIN="myth" /etc/sysconfig/displaymanager<br /></pre><br /><br />Next I started yast and from the run level editor, I added both mythbackend and mysql to the start in run levels 3 and 5<br /><br />Finally to get the frontend to display upon boot I edited the file /home/myth/.dmrc to read<br /><br /><pre>[Desktop]<br />Session=mythTV</pre><br /><br />Restarted the machine to test all was well, and I was up and running.<br /><br />Not bad, as far as time goes either.  In total the installation took me about an hour and half.<br /><br />-Ted</div>
+<h2>Comments</h2>
+<div class='comments'>
+<div class='comment'>
+<div class='author'>Ted Bullock</div>
+<div class='content'>
+Generally speaking you want to look at using gdm or kdm for the auto login features when going for a mythtv install.<br><br>I have no idea whether or not XFCE has a login manager these days anyways&#8230;. hmm, certainly something to look up in due time<br><br>Anywho, you will need to install one or the other of the standard login managers.<br><br>As to your other question regarding the architecture thingy, I would personally go for 64bit on any machine that supports it.  I have no empirical rational behind this  but it really won&#39;t hurt.</div>
+</div>
+<div class='comment'>
+<div class='author'>jniffen</div>
+<div class='content'>
+Oh, one other question?<br><br>If a system had an AMD BE2400 with 2GB RAM would you install the 32 or 64 bit version of OpenSuse 11.1?<br><br>Thanks</div>
+</div>
+</div>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Ted Bullock</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2009-01-15'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>15</span><span class='date-suffix'>th</span>, <span class='date-year'>2009</span></span> <span class='time'>12:00 am</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/opensuse/'>opensuse</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://tbullock.github.io/blog/2009/01/15/install-mythtv-on-opensuse-111/" data-via="" data-counturl="http://tbullock.github.io/blog/2009/01/15/install-mythtv-on-opensuse-111/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2009/01/10/lappy-on-borrowed-time/" title="Previous Post: Lappy on borrowed time">&laquo; Lappy on borrowed time</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2009/01/17/pulseaudio-stereo-server/" title="Next Post: Pulseaudio Stereo Server">Pulseaudio Stereo Server &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/11/27/telephone-call/">Telephone Call</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/11/25/freeswitch-on-openbsd-project-status_25/">FreeSWITCH on OpenBSD - Project Status 2014-11-25</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/11/20/freeswitch-on-openbsd-project-status_20/">FreeSWITCH on OpenBSD - Project Status 2014-11-20</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/11/16/freeswitch-on-openbsd-project-status_16/">FreeSWITCH on OpenBSD - Project Status 2014-11-16</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/11/03/freeswitch-on-openbsd-project-status/">FreeSWITCH on OpenBSD - Project Status 2014-11-02</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Ted Bullock -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,218 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Reflow Dead Laptop Motherboard With a Toaster Oven - Depth of Knowledge</title>
+  <meta name="author" content="Ted Bullock">
+
+  
+  <meta name="description" content="I was over at Rocky Mountain Computer Repair last night looking over some of the dead machines that had been abandoned by their customers. Most &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://tbullock.github.io/blog/2011/01/30/reflow-dead-laptop-motherboard-with">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Depth of Knowledge" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Depth of Knowledge</a></h1>
+  
+    <h2>Thoughts from a tech consultant.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="tbullock.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Reflow Dead Laptop Motherboard With a Toaster Oven</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-01-30'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>30</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><div class='post'>
+I was over at <a href="http://www.rmcr.ca">Rocky Mountain Computer Repair</a> last night looking over some of the dead machines that had been abandoned by their customers. Most machines were old and rather junky looking, but a few are in decent condition, except for the fact that they simply do not turn on at all.<div><br /></div><div>One laptop in particular wouldn&#8217;t post, and I figured it was either due for a motherboard replacement, or just maybe I would see something visibly wrong that I could repair. So an hour of disassembly, some fairly rigorous testing of potential faults, and I concluded that the motherboard was dead.</div><div><br /></div><div>This would usually be the moment to either abandon the machine or buy a replacement motherboard.  However, I have an engineering degree that has put me in a lot of deep contact with computers and I have learned some extra tricks as to what it takes to fix them that aren&#8217;t exactly in the manual.</div><div><br /></div><div>So here is the situation:</div><div><ul><li>An apparently completely intact  laptop computer will not post</li><li>No visible impact damage</li><li>No visible fire or heat damage</li><li>Functional and tested power supply</li><li>System starts to initialize but shuts down after 1 or 2 seconds, and before post</li><li>No audible alarms</li></ul><div>The laptop motherboard clearly had some function components, as it would attempt to start, however some pretty critical component needed early in the initialization process was not functioning, thus causing the machine to shut down.</div><div><br /></div><div>Given the symptoms, the most likely culprit was the nvidia northbridge or maybe the CPU. However since there were no alarms indicating a cpu or memory failure, the issue likely lay with the northbridge which is intricately involved with initializing both those systems.</div></div><div><br /></div><div>And how do you repair a northbridge?</div><div><br /></div><div>Well, you don&#8217;t.  If the chip is genuinely dead then there is nothing to be done and it is officially time for a new motherboard.  However, if the chip is still good (and there isn&#8217;t a really good way to diagnose this short of desoldering and testing in a laboratory setting), then the problem likely lies with the connections between the chip and the board. And perhaps those connections can be re-established by heating the board to a point near to the melting point of solder.</div><div><br /></div><div>So here is what we did:</div><div><ul><li>Removed all plastic and tape from the board</li><li>Wrapped board in tin-foil and placed foil padding against steel grate</li><li>Pre-Heated toaster oven to 385F</li><li>Placed board in oven </li><li>Chilled out for 6 minutes</li><li>Removed board from oven</li><li>Let it cool for 10 minutes</li><li>Installed CPU and Memory</li><li>Reconnected board to laptop power supply, power button and screen</li><li>Pushed the power button</li></ul><div>The board posted, and a moment later was complaining that it was missing an operating system and would we please give it back its hard drive. This process is known as reflowing, and although it won&#8217;t fix all similar issues it may just provide a solution to those in need.</div></div></div>
+<h2>Comments</h2>
+<div class='comments'>
+<div class='comment'>
+<div class='author'>Guzzi sager</div>
+<div class='content'>
+Nice and quite informative post. I really look forward to your other posts.<br /><br /><a href="http://www.theaffordablemarket.com/products/Asus-%252d-Ultrabook-14%22-Laptop-%252d-4GB-Memory-%252d-500GB-Hard-Drive-%252d-Black.html/" title="Asus - Ultrabook 14" rel="nofollow">Asus - Ultrabook 14&quot; Laptop - 4GB Memory - 500GB Hard Drive - Black</a><br><br /><a href="http://www.theaffordablemarket.com/products/Asus-%252d-K%252dSeries-15.6%22-Laptop-%252d-4GB-Memory-%252d-500GB-Hard-Drive-%252d-Mocha.html/" title="Asus - K-Series 15.6" rel="nofollow">Asus - K-Series 15.6&quot; Laptop - 4GB Memory - 500GB Hard Drive - Mocha</a><br><br /></div>
+</div>
+<div class='comment'>
+<div class='author'>Ted Bullock</div>
+<div class='content'>
+Yes, the oven rack.<br><br>Also, I should emphasize that we wrapped the board in tin-foil to reduce the probability of other chips being damaged.<br><br>we exposed only those chips we genuinely suspected.</div>
+</div>
+<div class='comment'>
+<div class='author'>Bryan the IT Guy</div>
+<div class='content'>
+Hey Ted,<br>I have a board with the same issue. When you mention the steel grate, are you referring to just the oven rack?<br>Thanks<br>Bryan</div>
+</div>
+</div>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Ted Bullock</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2011-01-30'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>30</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://tbullock.github.io/blog/2011/01/30/reflow-dead-laptop-motherboard-with/" data-via="" data-counturl="http://tbullock.github.io/blog/2011/01/30/reflow-dead-laptop-motherboard-with/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2010/11/15/minecraft-at-lanified/" title="Previous Post: Minecraft at Lanified!">&laquo; Minecraft at Lanified!</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2011/02/06/uriparser-on-openbsd/" title="Next Post: uriparser on openbsd">uriparser on openbsd &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/11/27/telephone-call/">Telephone Call</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/11/25/freeswitch-on-openbsd-project-status_25/">FreeSWITCH on OpenBSD - Project Status 2014-11-25</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/11/20/freeswitch-on-openbsd-project-status_20/">FreeSWITCH on OpenBSD - Project Status 2014-11-20</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/11/16/freeswitch-on-openbsd-project-status_16/">FreeSWITCH on OpenBSD - Project Status 2014-11-16</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/11/03/freeswitch-on-openbsd-project-status/">FreeSWITCH on OpenBSD - Project Status 2014-11-02</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Ted Bullock -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

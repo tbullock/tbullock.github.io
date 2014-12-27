@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Bsd | Depth of Knowledge]]></title>
+  <link href="http://tbullock.github.io/blog/categories/bsd/atom.xml" rel="self"/>
+  <link href="http://tbullock.github.io/"/>
+  <updated>2014-12-26T21:32:08-07:00</updated>
+  <id>http://tbullock.github.io/</id>
+  <author>
+    <name><![CDATA[Ted Bullock]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[My Initial Experience With pfSense]]></title>
+    <link href="http://tbullock.github.io/blog/2008/05/13/my-initial-experience-with-pfsense/"/>
+    <updated>2008-05-13T00:00:00-06:00</updated>
+    <id>http://tbullock.github.io/blog/2008/05/13/my-initial-experience-with-pfsense</id>
+    <content type="html"><![CDATA[<div class='post'>
+As good as OpenBSD has been as my gateway router OS, I am pretty sure that I am going to move away from it to one of the pre-packaged routing systems.<br /><br />Specifically, I am talking about <a href="http://www.pfsense.org" title="Open Source firewall distribution">pfSense</a>. pfSense is a distribution of FreeBSD that uses the <a href="http://www.openbsd.org/faq/pf/">pf packet filter</a> technology originally from OpenBSD, and actually had its origins as a fork of the <a href="http://m0n0.ch/wall/">m0n0wall project</a> which uses ipfilter.  Both systems are extremely powerful, and importantly, easy for me to use, and because I want to stick with pf as my underlying packet filter, I have chosen pfSense.<br /><br />Installation onto my compact flash driven Compaq Evo D300 Small Form Factor, was very straightforward with the assistance of my card reader, dd, and a null-modem serial cable (after I figured out that installation is done via a serial terminal rather than the screen).  Certainly, anyone ready to do an embedded installation of pfsense just with parts lying around their house deserves major geek cred points.<br /><br />Right now, only 64Mb of the 2Gb flash card is partitioned for use (from the default image), which actually is not really a big deal since its a router. I&#8217;m not exactly going to mess with it very often.  Maybe.  I am forever tinkering with this stuff.  But I think that I will leave it until the next distribution update.</div>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Compaq Evo D300 SFF as a Router]]></title>
+    <link href="http://tbullock.github.io/blog/2008/05/12/compaq-evo-d300-sff-as-router/"/>
+    <updated>2008-05-12T00:00:00-06:00</updated>
+    <id>http://tbullock.github.io/blog/2008/05/12/compaq-evo-d300-sff-as-router</id>
+    <content type="html"><![CDATA[<div class='post'>
+About 6 months ago I purchased a reasonably cheap second hand <a href="http://h20000.www2.hp.com/bizsupport/TechSupport/Home.jsp?lang=en&cc=us&prodTypeId=12454&prodSeriesId=321968&lang=&cc=us">Compaq Evo D300 Small Form Factor PC</a>.<br /><br />Originally, the machine was intended to become a dial-up router and http proxy for my moms small gallery business in <a href="http://en.wikipedia.org/wiki/Empress,_Alberta">Empress, Alberta</a>.  After repeated failed attempts to get OpenBSD to actually dial into the ISP, I gave up on that train of thought for the time being and brought the machine back to Calgary.<br /><br />Jumping forward a bit, I decided to start using the machine (named evo on my network) as my own gateway instead.  Fine.  OpenBSD installed just peachy, and configuring dhcpd and dns took a couple hours.  Poof, instant router.  However, one of the machines problems is that unless a keyboard is attached, it will fail to boot.  Despite all my rummaging through the bios, I was unable to turn off the darned &#8220;halt keyboard missing; Press F1 to continue error&#8221;.<br /><br />This is a problem for server hardware which run headless (like a router should be able to), since if there is a power failure, I will need to manually hook up a monitor and keyboard, and press F1, and verify it is booting.  Gah, No thanks; I would rather run a crumby linksys.  Sure enough, Google came to my rescue.  Apparently, the ignore missing keyboard option is available on the machine, however, both a power and bios password need to configured to make it available in the BIOS.  <br /><br />Silly.<br /><br />That said, the machine is more than capable for a SOHO router, and now I am keeping it for myself.</div>
+
+
+<h2>Comments</h2>
+
+
+<div class='comments'>
+<div class='comment'>
+<div class='author'>Anonymous</div>
+<div class='content'>
+Searching on the Net for booting my evo d510 without keyboard, i&#39;ve found this&#8230; what to say? thanx!!!<br><br>frik&#8212;</div>
+</div>
+</div>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Say Farewell to Support for 386 Architecture on OpenBSD]]></title>
+    <link href="http://tbullock.github.io/blog/2007/05/31/say-farewell-to-support-for-386/"/>
+    <updated>2007-05-31T00:00:00-06:00</updated>
+    <id>http://tbullock.github.io/blog/2007/05/31/say-farewell-to-support-for-386</id>
+    <content type="html"><![CDATA[<div class='post'>
+As one of the rare users of a vanilla 386 computer, the news that <a href="http://marc.info/?m=118046279204104">the vanilla 386 will not be supported in future versions of openbsd</a> is somewhat sad but not unexpected.<br /><br />I have been very proud of my 386 (which I upgraded with a 387DX, 16MB of memory, a 4.3 gb hard disk as well as a collection network cards).  However, it&#8217;s days with OpenBSD are now numbered to 154 (number of days until 4.2 is released).<br /><br />In the future I will migrate that particular machine to netbsd.<br /><br />Thought you should know.<br /><br />-Ted</div>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[BSD Elitism a Fine Line]]></title>
+    <link href="http://tbullock.github.io/blog/2007/05/29/bsd-elitism-fine-line/"/>
+    <updated>2007-05-29T00:00:00-06:00</updated>
+    <id>http://tbullock.github.io/blog/2007/05/29/bsd-elitism-fine-line</id>
+    <content type="html"><![CDATA[<div class='post'>
+The entire concept behind the *BSD OS&#8217;s are awesome.  Free for any purpose.  It&#8217;s great.<br /><br />Unfortunately, these systems are built and used by people.  And as usually is the case when people get involved, a certain number of zealots creep out of the woodwork.<br /><br />These zealot people (zel-people) have the irritating habit of walking over other peoples ideas, thoughts, and perspectives.  This bugs me a lot; thus, this blog post.<br /><br />I just finished reading the following commentary about the experience that Beranger had in using the FreeBSD operating system: <a href="http://www.beranger.org/index.php?page=bsd&2007/05/28/06/50/05-taking-a-very-long-huge-break-">Taking a very long, huge break&#8230;</a>.<br /><br />I personally very much sympathize with the author of that little article/rant.<br /><br />Anyways, without going into to a long justification of how my perspective is right and those other people are wrong, I&#8217;ll finish up with a few thoughts that I sometimes try to live by.<br /><br /><ul><li>I distrust anyone who feels strongly about anything.  I feel very strongly about this.</li><li>People are a problem</li></ul></div>
+
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Personal Thoughts | Depth of Knowledge]]></title>
+  <link href="http://tbullock.github.io/blog/categories/personal-thoughts/atom.xml" rel="self"/>
+  <link href="http://tbullock.github.io/"/>
+  <updated>2014-12-26T21:32:08-07:00</updated>
+  <id>http://tbullock.github.io/</id>
+  <author>
+    <name><![CDATA[Ted Bullock]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Writing That I Love....]]></title>
+    <link href="http://tbullock.github.io/blog/2009/02/13/writing-that-i-love/"/>
+    <updated>2009-02-13T00:00:00-07:00</updated>
+    <id>http://tbullock.github.io/blog/2009/02/13/writing-that-i-love</id>
+    <content type="html"><![CDATA[<div class='post'>
+I was just reading &#8220;Last Chance to See&#8221; by Douglas Adams.  Like most of his work, his writing once again proves to move almost orthogonally to the normal train of thought.<br /><br />For instance,<br /><br /><blockquote>Virtually everything we were told in Indonesia turned out not to be true, sometimes almost immediately.  The only exception to this was when we were told that something would happen immediately, in which case it turned out not to be true over an extended period of time.</blockquote><br /><br />RIP Douglas, you&#8217;re still in my heart.</div>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Contract to Develop Firefox Extension]]></title>
+    <link href="http://tbullock.github.io/blog/2009/02/11/contract-to-develop-firefox-extension/"/>
+    <updated>2009-02-11T00:00:00-07:00</updated>
+    <id>http://tbullock.github.io/blog/2009/02/11/contract-to-develop-firefox-extension</id>
+    <content type="html"><![CDATA[<div class='post'>
+I have wanted to be part of an open source software development business for a long time.  Ha.  I&#8217;m quite giddy right now, because I just happen to own one.<br /><br />I have a number of little development contracts out right now to develop a variety of tools, website extensions and generally muck about with technology.  What&#8217;s really cool is that I am using exclusively open source tools and environments to do the work in.<br /><br />Ha, this great.<br /><br />So long, and later.</div>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Lappy on Borrowed Time]]></title>
+    <link href="http://tbullock.github.io/blog/2009/01/10/lappy-on-borrowed-time/"/>
+    <updated>2009-01-10T00:00:00-07:00</updated>
+    <id>http://tbullock.github.io/blog/2009/01/10/lappy-on-borrowed-time</id>
+    <content type="html"><![CDATA[<div class='post'>
+I have been using my Dell 700m laptop as my primary computer for the best part of a year now.  And the machine is on borrowed time.  I think.<br /><br />Last year (2007, ack, that was two years ago&#8230;. anyways), I allowed the warranty to expire on the machine because I figured that since it had been so reliable in the past that I would probably be able to get away with it.  Well, that streak is now wearing to its end.<br /><br />And it&#8217;s the little things that are starting to go.  For instance, I am missing some of those little rubber feet on the bottom that prevent it from sliding around the desk.  Also, the battery life is serious diminishing, and barely lasts 30 minutes at this point.<br /><br />However, the most recent issue is that the speakers have cut out.  Turns out the the speaker wire that runs up through the hinge area has slowly been rubbing away over the past 5 years and has now been severed due to general wear and tear.  So no more speakers.<br /><br />Dell doesn&#8217;t sell the speaker individually either, they just come with an entire new lid (including monitor) for $550.  So, I have removed the speakers and will attempt to repair them at some point in the future.<br /><br />This is just indicative of what happens with laptops I suppose.  They get exposed to all sorts of little bumps, wiggles and jiggles in their lifetimes, and eventually little things wear away.<br /><br />As I mentioned before, Lappy is on borrowed time, and sooner or later something vital is going to break, and there is no warranty left to deal with it.<br /><br />Anywho, the broken speakers thing got me interested in looking for a new machine, and the one I have come across seems to be fancy shmancy.  The dell Latitude E4200 is what I would call an &#8220;ultra-mobile workstation&#8221;.  Functionally it is more or less the same at the 700m for day to day laptop use.  The screen size is the same, graphics are still handled onboard, and the primary component manufacturer is still Intel (wooo, out of the box linux drivers).  Unlike the 700m, the E4200 can be used with Dell&#8217;s E-Series docking stations.<br /><br />I have never used a laptop with a docking station, because, for the most part, I couldn&#8217;t be bothered.  Why not just use a desktop.  But the new docks from dell support dual monitors, which is something that has really been missing for me.  Actually to be honest, I have dual monitor set-up sitting in my workshop, but they aren&#8217;t connected to a computer, they are just sitting there collecting dust.<br /><br />So I am rather tempted to hand lappy off to a deserving person and move to a shiny new computer.<br /><br />As I said, lappy is on borrowed time.<br /><br />Now if I only had a spare $4k.<br /><br />-Ted</div>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[A Spin With Gnome-blog]]></title>
+    <link href="http://tbullock.github.io/blog/2008/12/29/spin-with-gnome-blog/"/>
+    <updated>2008-12-29T00:00:00-07:00</updated>
+    <id>http://tbullock.github.io/blog/2008/12/29/spin-with-gnome-blog</id>
+    <content type="html"><![CDATA[<div class='post'>
+<p>I was poking around the software repository for opensuse 11.1, and came across a tool called gnome-blog.  This is a panel applet which is supposed to allow me to post to my blog directly from the desktop rather than the supposedly tedious process of opening the blog website and posting from there.</p><p>Anyways, the tool is supposed to allow me to drag and drop images inline with the text, so I figure I will give it a whirl.</p><p>This version of gnome-blog is from 2006, and appears to be the most recent, so I suppose that development has stalled.  Google has failed to deliver anything of interest more recent than that.</p><p>Update: I am not impressed. So long gnome-blog.<br /></p><p><br />-Ted</p></div>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[How to Synchronize a Nokia 6301 in Linux - Investigation]]></title>
+    <link href="http://tbullock.github.io/blog/2008/10/17/how-to-synchronize-nokia-6301-in-linux/"/>
+    <updated>2008-10-17T00:00:00-06:00</updated>
+    <id>http://tbullock.github.io/blog/2008/10/17/how-to-synchronize-nokia-6301-in-linux</id>
+    <content type="html"><![CDATA[<div class='post'>
+This afternoon I received my brand new <a href="http://www.nokia.ca/A4787033">Nokia 6301</a> cell phone.  In many respects, I really do like the thing.<br /><br />This nokia smartphone has a wifi antenna which allows it to be used as a VOIP handset if you are in range of an appropriate network and also supports all the normal functionality of your typical cell phone.  It also supports Bluetooth and has a mini-usb adapter.<br /><br />When physically connected to a modern linux machine (in my case openSUSE 11.0), it initially identifies itself as a USB Mass Storage device and the desktop responds appropriately by mounting it like any other USB drive.  However, the phone specifies a couple of other connectivity options, including &#8220;Data Storage&#8221; (USB Mass Storage),  &#8220;Media & Printing&#8221; (MTP) and &#8220;PC Suite&#8221;.<br /><br />When you choose &#8220;Media & Printing&#8221;, the device switches to <a href="http://en.wikipedia.org/wiki/Media_Transfer_Protocol">MTP mode</a> (Woohoo, go libmtp!) which libmtp supports very nicely, although after perusing the datastructure, I am not clear which folders are the &#8220;correct&#8221; folders for which type of file.  I guess this would just require some testing inside of Windows to see where the nokia tools put things.  That said, this also means that f-spot should work pretty much out of the box.<br /><br />Anyways, the third option &#8220;PC Suite&#8221; puts the device into a state which the nokia PC Suite application can use to synchronize the phone with Microsoft Outlook or Lotus Notes.  This third area is the most interesting for me at the moment.  I want my Evolution Contact List and Calendar to synchronize with with the phone so that I don&#8217;t need to pull out my laptop just to check if my flight to New York leaves at 10:45 or 11:45.<br /><br />There do seem to be a number of tools for solving this problem, however they are not particularly explanatory, nor have I actually been able to sync my calendar, todo list or contact list to the phone in yet in Linux.<br /><br />So, that pretty much summarizes my experience to date with the Nokia 6301 in Linux.<br /><br />I definitely would appreciate someone pointing me to documentation on how to get my calendar out of the PC and onto the phone.</div>
+
+]]></content>
+  </entry>
+  
+</feed>

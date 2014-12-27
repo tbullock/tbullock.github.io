@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Httperf | Depth of Knowledge]]></title>
+  <link href="http://tbullock.github.io/blog/categories/httperf/atom.xml" rel="self"/>
+  <link href="http://tbullock.github.io/"/>
+  <updated>2014-12-26T21:32:08-07:00</updated>
+  <id>http://tbullock.github.io/</id>
+  <author>
+    <name><![CDATA[Ted Bullock]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Httperf Update April 16, 2009]]></title>
+    <link href="http://tbullock.github.io/blog/2009/04/16/httperf-update-april-16-2009/"/>
+    <updated>2009-04-16T00:00:00-06:00</updated>
+    <id>http://tbullock.github.io/blog/2009/04/16/httperf-update-april-16-2009</id>
+    <content type="html"><![CDATA[<div class='post'>
+I have been accused of ignoring the fate of httperf recently.  hmmm.  Well, fair enough, it&#8217;s certainly been a while since I committed anything to the repository.<br /><br />That said, httperf has hardly left my thoughts.<br /><br />I am pretty familiar with the tool at this point, and to be quite honest I am more than a little bit frustrated with it&#8217;s design.  Take a look for yourself!  It&#8217;s got a quite a few weird design concepts built into it, include c-ized objects (come now&#8230;), an Any type (oh good), it&#8217;s own event loop implementation, it&#8217;s own timer implementation (which at least doesn&#8217;t leak memory since I re-wrote it) and it&#8217;s own http implementation.  It seems to come from an era before the advent of code re-use&#8230; (No offense to David Mosberger)<br /><br />That said, it does implement the workload generator aspect of it&#8217;s design quite elegantly.  Differentiating between sessions, connections and requests is quite a useful as well.<br /><br />Anyways, I have been busy recently ripping the guts out of httperf to the point where it is hardly recognizable any more.<br /><br />The event loop, timer and http implementations are going away javascript:void(0)in lieu of those built into libevent.  The core of httperf and the stats collection are moving to their own shared libraries, and the workload generators are each moving to distinct binary files.<br /><br />Sound good?</div>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Httperf Status - 2008-12-30]]></title>
+    <link href="http://tbullock.github.io/blog/2008/12/30/httperf-status-2008-12-30/"/>
+    <updated>2008-12-30T00:00:00-07:00</updated>
+    <id>http://tbullock.github.io/blog/2008/12/30/httperf-status-2008-12-30</id>
+    <content type="html"><![CDATA[<div class='post'>
+I have to acknowledge that I have been dropping the ball in regards to completing the next release of httperf.  While there has been a good amount of work done on this tool since the last release (0.9.0) I just haven&#8217;t gotten around to wrapping it up yet.<br /><br />Anways, I had better get to it now.<br /><br />Check CVS for the todo list.<br /><br />Other than simple procrastination, one major reason I put off development was that autoconf support for detecting the c99 constructs I was using wasn&#8217;t integrated until 2.62.<br /><br />Then I was going off on tangents, trying to implement my own libevent based http client library (which is definitely a useful project in my own opinion) and working to get mtp support introduced into the kernel.<br /><br />Anyways, where we stand today is that the head of cvs is not terribly stable at very very high request rates.  Maybe this is because httperf has never been able to achieve the rates that we are now reaching before and it has exposed some hithertofore unkown issue.<br /><br />Whatever, I&#8217;ll track it down.<br /><br />As for the libevent migration.  Well, Adrian Chadd was kind enough to do a partial port.  However there is much more work to be done in this area such as migrating timers, timeouts, dns and http control into the libevent core loop.<br /><br />Long term, httperf will dramatatically shrink in size.  Event logic, the http client, and metrics collection can all be loaded onto libevent and some (as of yet unwritten) plugins.  httperf will be a set tools implementing various workload generators and may further evolve into a workload language implementation.</div>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[New Version of Httperf Coming Soon (Httperf 0.9.1)!]]></title>
+    <link href="http://tbullock.github.io/blog/2008/10/03/new-version-of-httperf-coming-soon/"/>
+    <updated>2008-10-03T00:00:00-06:00</updated>
+    <id>http://tbullock.github.io/blog/2008/10/03/new-version-of-httperf-coming-soon</id>
+    <content type="html"><![CDATA[<div class='post'>
+In spite of the fact that I barely spend any time these days working on httperf, I am pleased to note that activity has not been totally absent.<br /><br />Pretty quickly we&#8217;ll be releasing a new version of httperf with a number of enhancements.<br /><br />The most dramatic change came from Adrian Chad, who implemented a basic port to the libevent notification system.  This has dramatically improved the performance of the tool (like in the realm of &#8220;orders of magnitude&#8221;).<br /><br />New period variation option &#8211;period=vT1,D1,T2,D2&#8230;.Tn,Dn<br /><br />The idleconn tool is now optional (disabled by default), and can be built using the &#8211;enable-idleconn configure option<br /><br />New options to print result data in new formats (CSV and Key=Value), however this is still being tested.<br /><br />The idleconn program has been re-written to use libevents non-blocking dns and connection API.<br /><br />Also, a number of memory leaks have been plugged with a re-write of the timer system.<br /><br />libevent is now a build requirement.<br /><br />httperf will try to compile itself with the system compilers c99 option if available.</div>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Httperf and Libevent and the Future of Everything]]></title>
+    <link href="http://tbullock.github.io/blog/2008/07/14/httperf-and-libevent-and-future-of/"/>
+    <updated>2008-07-14T00:00:00-06:00</updated>
+    <id>http://tbullock.github.io/blog/2008/07/14/httperf-and-libevent-and-future-of</id>
+    <content type="html"><![CDATA[<div class='post'>
+Firstly, congratulations to Adrian Chadd for starting the httperf port to libevent.  Already we have seen some massive performance enhancements.  CPU usage on my opensuse 11.0 workstation has improved about %3000 percent.<br /><br />Certainly there is some stability work to be done.  I am currently getting segmentation faults with very high request loads.<br /><br />The current implementation does not use a persistent event loop, which means that the other useful features that libevent provides are not available (timers for example).<br /><br />Something I want to see developed going forward is an asynchronous http client library around.  The http work already done with libevent is certainly a start to this, but is far from complete.  Essentially, what I want is a client api where I can perform some http client action asynchronously without needing to deal with any messy details.<br /><br />The intention here is to foster a deal of code-reuse between http implementation projects that all use libevent at the core.  After that, portability sits firmly on libevent&#8217;s shoulders (where it belongs).</div>
+
+]]></content>
+  </entry>
+  
+</feed>

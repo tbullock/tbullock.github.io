@@ -1,0 +1,200 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>CoApp and Visual Studio - Depth of Knowledge</title>
+  <meta name="author" content="Ted Bullock">
+
+  
+  <meta name="description" content="I have begun work on the Common Opensource Application Publishing Platform or CoApp.Before I get too carried away, I'll say a few words about CoApp &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://tbullock.github.io/blog/2010/04/15/coapp-and-visual-studio">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Depth of Knowledge" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Depth of Knowledge</a></h1>
+  
+    <h2>Thoughts from a tech consultant.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="tbullock.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">CoApp and Visual Studio</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2010-04-15'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>15</span><span class='date-suffix'>th</span>, <span class='date-year'>2010</span></span> <span class='time'>12:00 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><div class='post'>
+I have begun work on the Common Opensource Application Publishing Platform or CoApp.<br /><br />Before I get too carried away, I&#8217;ll say a few words about CoApp and why it is important.  First, there is a figurative mountain of Open Source Software out there in the world.  On a day to day basis we interact with some of it in applications like Firefox, Thunderbird, Google Chrome. In many situations, the OSS is hidden underneath a commercial application.  For instance, WinAmp, Lotus Symphony and others certainly fit into this category.<br /><br />So many of us are already using open source software on a regular basis and many times we aren&#8217;t even aware of it.<br /><br />However, if you ever take the moment to use a Linux desktop computer or a recent version of Solaris, you will know that there is much more os software &#8220;out there&#8221; than is currently available on the typical windows desktop computer.<br /><br />There are number of reasons for this, and Elizabeth Marie Smith gave a couple not too long ago<br /><br /><blockquote>Projects who don&#8217;t care.<br />Projects who don&#8217;t have the developers who know Windows.<br />Projects who don&#8217;t have the tools to develop for Windows.<br />Or don&#8217;t want to learn the windows API - who expect windows to work  exactly like unix or linux<br /></blockquote><br /><br />I would personally like to add one more to this list<br /><br /><blockquote>It&#8217;s really hard</blockquote><br />When it comes down to it, bringing an the typical OSS application to windows requires an enormous amount of cajoling and sometimes magic.  For instance, if you want a headache, look at what it takes to bring something a straight forward as the <a href="http://live.gnome.org/Gedit/Windows">gedit text editor to windows</a>.<br /><br />The library dependencies are where we fall down.  Much of the software was written for the linux environment, and although it has been somewhat ported to work on windows, there is an awful long way to go.  Most of the libraries do not compile under Visual Studio C++ (the Windows native compiler for C/C++ ) without significant effort.<br /><br />This is where CoApp will step in; the project intends to produce tools which greatly ease the porting process, and to provide a software repository and package management system to install the dependencies as needed.<br /><br />Most importantly is the developer end of the story.<br /><br />CoApp will develop an extension to Visual Studio which which will allow developers to choose which open source dependencies they want to link to. On build time, these will be downloaded, and installed on the developers machine in a common reliable location and linked against the developers binary in a safe and redistributable fashion.</div>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Ted Bullock</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2010-04-15'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>15</span><span class='date-suffix'>th</span>, <span class='date-year'>2010</span></span> <span class='time'>12:00 am</span></time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://tbullock.github.io/blog/2010/04/15/coapp-and-visual-studio/" data-via="" data-counturl="http://tbullock.github.io/blog/2010/04/15/coapp-and-visual-studio/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2010/03/12/on-managing-email/" title="Previous Post: On Managing Email">&laquo; On Managing Email</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2010/05/15/coapp-summit-may-2010/" title="Next Post: CoApp Summit May 2010">CoApp Summit May 2010 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/11/27/telephone-call/">Telephone Call</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/11/25/freeswitch-on-openbsd-project-status_25/">FreeSWITCH on OpenBSD - Project Status 2014-11-25</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/11/20/freeswitch-on-openbsd-project-status_20/">FreeSWITCH on OpenBSD - Project Status 2014-11-20</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/11/16/freeswitch-on-openbsd-project-status_16/">FreeSWITCH on OpenBSD - Project Status 2014-11-16</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/11/03/freeswitch-on-openbsd-project-status/">FreeSWITCH on OpenBSD - Project Status 2014-11-02</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Ted Bullock -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
