@@ -1,0 +1,13 @@
+---
+layout: post
+title: "My initial experience with pfSense"
+date: 2008-05-13
+comments: false
+categories:
+ - Hardware
+ - Software
+ - BSD
+---
+
+<div class='post'>
+As good as OpenBSD has been as my gateway router OS, I am pretty sure that I am going to move away from it to one of the pre-packaged routing systems.<br /><br />Specifically, I am talking about <a href="http://www.pfsense.org" title="Open Source firewall distribution">pfSense</a>. pfSense is a distribution of FreeBSD that uses the <a href="http://www.openbsd.org/faq/pf/">pf packet filter</a> technology originally from OpenBSD, and actually had its origins as a fork of the <a href="http://m0n0.ch/wall/">m0n0wall project</a> which uses ipfilter.  Both systems are extremely powerful, and importantly, easy for me to use, and because I want to stick with pf as my underlying packet filter, I have chosen pfSense.<br /><br />Installation onto my compact flash driven Compaq Evo D300 Small Form Factor, was very straightforward with the assistance of my card reader, dd, and a null-modem serial cable (after I figured out that installation is done via a serial terminal rather than the screen).  Certainly, anyone ready to do an embedded installation of pfsense just with parts lying around their house deserves major geek cred points.<br /><br />Right now, only 64Mb of the 2Gb flash card is partitioned for use (from the default image), which actually is not really a big deal since its a router. I'm not exactly going to mess with it very often.  Maybe.  I am forever tinkering with this stuff.  But I think that I will leave it until the next distribution update.</div>

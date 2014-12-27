@@ -1,0 +1,11 @@
+---
+layout: post
+title: "autoconf and libtool wasting time checking for g++ and g77"
+date: 2007-05-29
+comments: false
+categories:
+ - Development
+---
+
+<div class='post'>
+While the gnu auto tools are certainly the best build system<br>configurators on the face of the planet, I can&#39;t help but be aggrivated<br>by the AC_PROG_LIBTOOL macro.<p>Supposedly this macro tells the build system how to configure itself to<br>link in libraries to a program, and for the most part it does the trick.<p>However, whenever I run the configure script to set up the build<br>environment, this macro tests for the presence and usability of a c++<br>and fortran compiler.  It does this regardless of the fact that I am not<br>using c++ nor fortran and additionally not linking to a library written<br>in either of those two languages.<p>Not a big deal but it is certainly a waste of time (which becomes<br>readily apparent on my vanilla openbsd 386 with 16mb of ram).<p>Here&#39;s hoping unneccessary checks like this can be removed when libtool<br>2.0 roles into town.<p>-Ted</div>

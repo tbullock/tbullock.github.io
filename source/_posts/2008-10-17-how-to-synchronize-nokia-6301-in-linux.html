@@ -1,0 +1,13 @@
+---
+layout: post
+title: "How to synchronize a Nokia 6301 in Linux - Investigation"
+date: 2008-10-17
+comments: false
+categories:
+ - Hardware
+ - Personal Thoughts
+ - Software
+---
+
+<div class='post'>
+This afternoon I received my brand new <a href="http://www.nokia.ca/A4787033">Nokia 6301</a> cell phone.  In many respects, I really do like the thing.<br /><br />This nokia smartphone has a wifi antenna which allows it to be used as a VOIP handset if you are in range of an appropriate network and also supports all the normal functionality of your typical cell phone.  It also supports Bluetooth and has a mini-usb adapter.<br /><br />When physically connected to a modern linux machine (in my case openSUSE 11.0), it initially identifies itself as a USB Mass Storage device and the desktop responds appropriately by mounting it like any other USB drive.  However, the phone specifies a couple of other connectivity options, including "Data Storage" (USB Mass Storage),  "Media & Printing" (MTP) and "PC Suite".<br /><br />When you choose "Media & Printing", the device switches to <a href="http://en.wikipedia.org/wiki/Media_Transfer_Protocol">MTP mode</a> (Woohoo, go libmtp!) which libmtp supports very nicely, although after perusing the datastructure, I am not clear which folders are the "correct" folders for which type of file.  I guess this would just require some testing inside of Windows to see where the nokia tools put things.  That said, this also means that f-spot should work pretty much out of the box.<br /><br />Anyways, the third option "PC Suite" puts the device into a state which the nokia PC Suite application can use to synchronize the phone with Microsoft Outlook or Lotus Notes.  This third area is the most interesting for me at the moment.  I want my Evolution Contact List and Calendar to synchronize with with the phone so that I don't need to pull out my laptop just to check if my flight to New York leaves at 10:45 or 11:45.<br /><br />There do seem to be a number of tools for solving this problem, however they are not particularly explanatory, nor have I actually been able to sync my calendar, todo list or contact list to the phone in yet in Linux.<br /><br />So, that pretty much summarizes my experience to date with the Nokia 6301 in Linux.<br /><br />I definitely would appreciate someone pointing me to documentation on how to get my calendar out of the PC and onto the phone.</div>

@@ -1,0 +1,11 @@
+---
+layout: post
+title: "httperf status - 2008-12-30"
+date: 2008-12-30
+comments: false
+categories:
+ - httperf
+---
+
+<div class='post'>
+I have to acknowledge that I have been dropping the ball in regards to completing the next release of httperf.  While there has been a good amount of work done on this tool since the last release (0.9.0) I just haven't gotten around to wrapping it up yet.<br /><br />Anways, I had better get to it now.<br /><br />Check CVS for the todo list.<br /><br />Other than simple procrastination, one major reason I put off development was that autoconf support for detecting the c99 constructs I was using wasn't integrated until 2.62.<br /><br />Then I was going off on tangents, trying to implement my own libevent based http client library (which is definitely a useful project in my own opinion) and working to get mtp support introduced into the kernel.<br /><br />Anyways, where we stand today is that the head of cvs is not terribly stable at very very high request rates.  Maybe this is because httperf has never been able to achieve the rates that we are now reaching before and it has exposed some hithertofore unkown issue.<br /><br />Whatever, I'll track it down.<br /><br />As for the libevent migration.  Well, Adrian Chadd was kind enough to do a partial port.  However there is much more work to be done in this area such as migrating timers, timeouts, dns and http control into the libevent core loop.<br /><br />Long term, httperf will dramatatically shrink in size.  Event logic, the http client, and metrics collection can all be loaded onto libevent and some (as of yet unwritten) plugins.  httperf will be a set tools implementing various workload generators and may further evolve into a workload language implementation.</div>

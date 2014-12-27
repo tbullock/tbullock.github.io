@@ -1,0 +1,27 @@
+---
+layout: post
+title: "Reflow Dead Laptop Motherboard with a toaster oven"
+date: 2011-01-30
+comments: false
+---
+
+<div class='post'>
+I was over at <a href="http://www.rmcr.ca">Rocky Mountain Computer Repair</a> last night looking over some of the dead machines that had been abandoned by their customers. Most machines were old and rather junky looking, but a few are in decent condition, except for the fact that they simply do not turn on at all.<div><br /></div><div>One laptop in particular wouldn't post, and I figured it was either due for a motherboard replacement, or just maybe I would see something visibly wrong that I could repair. So an hour of disassembly, some fairly rigorous testing of potential faults, and I concluded that the motherboard was dead.</div><div><br /></div><div>This would usually be the moment to either abandon the machine or buy a replacement motherboard.  However, I have an engineering degree that has put me in a lot of deep contact with computers and I have learned some extra tricks as to what it takes to fix them that aren't exactly in the manual.</div><div><br /></div><div>So here is the situation:</div><div><ul><li>An apparently completely intact  laptop computer will not post</li><li>No visible impact damage</li><li>No visible fire or heat damage</li><li>Functional and tested power supply</li><li>System starts to initialize but shuts down after 1 or 2 seconds, and before post</li><li>No audible alarms</li></ul><div>The laptop motherboard clearly had some function components, as it would attempt to start, however some pretty critical component needed early in the initialization process was not functioning, thus causing the machine to shut down.</div><div><br /></div><div>Given the symptoms, the most likely culprit was the nvidia northbridge or maybe the CPU. However since there were no alarms indicating a cpu or memory failure, the issue likely lay with the northbridge which is intricately involved with initializing both those systems.</div></div><div><br /></div><div>And how do you repair a northbridge?</div><div><br /></div><div>Well, you don't.  If the chip is genuinely dead then there is nothing to be done and it is officially time for a new motherboard.  However, if the chip is still good (and there isn't a really good way to diagnose this short of desoldering and testing in a laboratory setting), then the problem likely lies with the connections between the chip and the board. And perhaps those connections can be re-established by heating the board to a point near to the melting point of solder.</div><div><br /></div><div>So here is what we did:</div><div><ul><li>Removed all plastic and tape from the board</li><li>Wrapped board in tin-foil and placed foil padding against steel grate</li><li>Pre-Heated toaster oven to 385F</li><li>Placed board in oven </li><li>Chilled out for 6 minutes</li><li>Removed board from oven</li><li>Let it cool for 10 minutes</li><li>Installed CPU and Memory</li><li>Reconnected board to laptop power supply, power button and screen</li><li>Pushed the power button</li></ul><div>The board posted, and a moment later was complaining that it was missing an operating system and would we please give it back its hard drive. This process is known as reflowing, and although it won't fix all similar issues it may just provide a solution to those in need.</div></div></div>
+<h2>Comments</h2>
+<div class='comments'>
+<div class='comment'>
+<div class='author'>Guzzi sager</div>
+<div class='content'>
+Nice and quite informative post. I really look forward to your other posts.<br /><br /><a href="http://www.theaffordablemarket.com/products/Asus-%252d-Ultrabook-14%22-Laptop-%252d-4GB-Memory-%252d-500GB-Hard-Drive-%252d-Black.html/" title="Asus - Ultrabook 14" rel="nofollow">Asus - Ultrabook 14&quot; Laptop - 4GB Memory - 500GB Hard Drive - Black</a><br><br /><a href="http://www.theaffordablemarket.com/products/Asus-%252d-K%252dSeries-15.6%22-Laptop-%252d-4GB-Memory-%252d-500GB-Hard-Drive-%252d-Mocha.html/" title="Asus - K-Series 15.6" rel="nofollow">Asus - K-Series 15.6&quot; Laptop - 4GB Memory - 500GB Hard Drive - Mocha</a><br><br /></div>
+</div>
+<div class='comment'>
+<div class='author'>Ted Bullock</div>
+<div class='content'>
+Yes, the oven rack.<br><br>Also, I should emphasize that we wrapped the board in tin-foil to reduce the probability of other chips being damaged.<br><br>we exposed only those chips we genuinely suspected.</div>
+</div>
+<div class='comment'>
+<div class='author'>Bryan the IT Guy</div>
+<div class='content'>
+Hey Ted,<br>I have a board with the same issue. When you mention the steel grate, are you referring to just the oven rack?<br>Thanks<br>Bryan</div>
+</div>
+</div>

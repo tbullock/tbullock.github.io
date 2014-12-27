@@ -1,0 +1,11 @@
+---
+layout: post
+title: "httperf and libevent and the future of everything"
+date: 2008-07-14
+comments: false
+categories:
+ - httperf
+---
+
+<div class='post'>
+Firstly, congratulations to Adrian Chadd for starting the httperf port to libevent.  Already we have seen some massive performance enhancements.  CPU usage on my opensuse 11.0 workstation has improved about %3000 percent.<br /><br />Certainly there is some stability work to be done.  I am currently getting segmentation faults with very high request loads.<br /><br />The current implementation does not use a persistent event loop, which means that the other useful features that libevent provides are not available (timers for example).<br /><br />Something I want to see developed going forward is an asynchronous http client library around.  The http work already done with libevent is certainly a start to this, but is far from complete.  Essentially, what I want is a client api where I can perform some http client action asynchronously without needing to deal with any messy details.<br /><br />The intention here is to foster a deal of code-reuse between http implementation projects that all use libevent at the core.  After that, portability sits firmly on libevent's shoulders (where it belongs).</div>

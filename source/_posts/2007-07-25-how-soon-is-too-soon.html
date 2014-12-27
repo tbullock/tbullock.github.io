@@ -1,0 +1,11 @@
+---
+layout: post
+title: "How soon is too soon?"
+date: 2007-07-25
+comments: false
+categories:
+ - Development
+---
+
+<div class='post'>
+I have a small confession to make.<br /><br />I am unfortunately one of those folks that rather likes new features in their software...<br /><br />Since I have been developing httperf, I been trying to find the balance between modern and historical features that I should reliably be able to depend on.<br /><br />The httperf tool was primarily written in the late 1990's and probably was developed against the GCC 2.7 or some version of EGCS, in conjunction with the HP C compiler.  Obviously, things have moved quite a bit since those days, with the EGCS/GCC merge, and now the most recent release of GCC 4.2.1.  Moreover the auto-tools have taken big steps since those times.  New elegant features abound, and I am very much tempted to use them.<br /><br />But should I?<br /><br />While openSUSE doesn't mind the bleeding edge of gcc 4.2.1 for the upcoming 10.3 release, the OpenBSD project will be sticking with the gcc 3.3.x compiler for a while.  Moreover, some prominent users of httperf are still using FreeBSD 4.x with gcc 2.95.x.<br /><br />This puts me in a vaguely tough position.  For one, I believe that more modern compiler features can dramatically improve httperf on a whole.  But this is counter balanced with the need to not alienate existing users that are locked to an older platform for the time being.<br /><br />So my decision?  No change... Sort of.<br /><br />For the time being I will commit to maintaining existing (working) code enclosed in conditional compilation flags to make sure existing users can still use the software.  Along side with this I am developing new functionality which I will try to integrate into the old code base as feature compatibility permits.<br /><br /><a href="https://sourceforge.net/cvs/?group_id=179982" title="httperf CVS repository information on sourceforge">Check out httperf cvs</a><br /><br />-Ted</div>

@@ -1,0 +1,11 @@
+---
+layout: post
+title: "httperf update April 16, 2009"
+date: 2009-04-16
+comments: false
+categories:
+ - httperf
+---
+
+<div class='post'>
+I have been accused of ignoring the fate of httperf recently.  hmmm.  Well, fair enough, it's certainly been a while since I committed anything to the repository.<br /><br />That said, httperf has hardly left my thoughts.<br /><br />I am pretty familiar with the tool at this point, and to be quite honest I am more than a little bit frustrated with it's design.  Take a look for yourself!  It's got a quite a few weird design concepts built into it, include c-ized objects (come now...), an Any type (oh good), it's own event loop implementation, it's own timer implementation (which at least doesn't leak memory since I re-wrote it) and it's own http implementation.  It seems to come from an era before the advent of code re-use... (No offense to David Mosberger)<br /><br />That said, it does implement the workload generator aspect of it's design quite elegantly.  Differentiating between sessions, connections and requests is quite a useful as well.<br /><br />Anyways, I have been busy recently ripping the guts out of httperf to the point where it is hardly recognizable any more.<br /><br />The event loop, timer and http implementations are going away javascript:void(0)in lieu of those built into libevent.  The core of httperf and the stats collection are moving to their own shared libraries, and the workload generators are each moving to distinct binary files.<br /><br />Sound good?</div>

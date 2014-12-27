@@ -1,0 +1,9 @@
+---
+layout: post
+title: "FreeSWITCH on OpenBSD - Project Status 2014-11-25"
+date: 2014-11-25
+comments: false
+---
+
+<div class='post'>
+There is this thing called the y2038 issue. It's similar to the y2k bug, but in my opinion, much more likely to cause issues. If you have a moment read this <a href="http://www.openbsd.org/papers/eurobsdcon_2013_time_t/" target="_blank">2013 paper on moving to 64bit time_t</a>. So moral of the story is that openbsd has migrated to 64bit time_t and this is of course impacting software which casually depends on 32bit time_t.<br /><br />The first time_t bug I squashed in freeswitch (at least on my openbsd shallow fork project thing) is in the extension registration code where it tries to update the registration expiration time in the registration db. The fs 1.2 code presumes that time_t is 32 bits by using printf %lu to build its sqlite query; at the same time as patching the code I improved its readability (in my opinion) and corrected a memory leak. This particular bug was easy to find since it was causing a segmentation fault, other similar problems may(will) be more subtle.<br /><br />Anyway <a href="https://github.com/tbullock/freeswitch-openbsd/commit/dd5e04543f985b22df18a6dea1b4d09589ddffec" target="_blank">here's the patch</a>. I've seen a number of other similar calls, which I will be auditing carefully.</div>

@@ -1,0 +1,11 @@
+---
+layout: post
+title: "More bugs in openSUSE 11.0 Beta 1"
+date: 2008-04-21
+comments: false
+categories:
+ - openSUSE
+---
+
+<div class='post'>
+Although I haven't done another major test run at openSUSE 11.0, I did have noticed that <a href="https://bugzilla.novell.com/show_bug.cgi?id=343858">Bug 343858</a> (gdm packages downloaded with control-center upgrade use resolution specified for external monitor) is mostly fixed. I did hit the problem with maximized windows in metacity not filling the screen in certain circumstances.  All should be well on this front.<br /><br />Having xrandr extend my desktop to an external monitor is currently not possible without explicitly using the Virtual keyword in xorg.conf.  I filed <a href="https://bugzilla.novell.com/show_bug.cgi?id=381765">bug 381765</a>, however the problem is apparently inherent with RANDR 1.2<br /><br />Oh well.<br /><br />I still have not grasped how the new pulseaudio stuff is supposed to let me record things from my microphone.  There are too many switches to play with for my emotional well-being (or something... Anyways I haven't learned it yet).<br /><br />Testing a SD card in the 700m's onboard reader was problematic.  An icon for the card flickered on and off the desktop about 100 times with lots of pop up windows trying to let me know of deep seeded grief, and checking dmesg shows numerous IO errors.  I have not filed a bug yet, but I will sometime this week.<br /><br />Anyways, it seems that the system is starting to now formally stabilize; and while this release won't meet my every wim (working nouveau? autoconf 2.62? ifolder? bongo?), I will definitely be migrating most of my machines after the release.  Unless something dramatic occurs, the media server probably won't change until support concludes from Novell for 10.3.<br /><br />More later.<br /><br />-Ted</div>

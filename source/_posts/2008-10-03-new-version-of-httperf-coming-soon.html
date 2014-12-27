@@ -1,0 +1,11 @@
+---
+layout: post
+title: "New version of httperf coming soon (httperf 0.9.1)!"
+date: 2008-10-03
+comments: false
+categories:
+ - httperf
+---
+
+<div class='post'>
+In spite of the fact that I barely spend any time these days working on httperf, I am pleased to note that activity has not been totally absent.<br /><br />Pretty quickly we'll be releasing a new version of httperf with a number of enhancements.<br /><br />The most dramatic change came from Adrian Chad, who implemented a basic port to the libevent notification system.  This has dramatically improved the performance of the tool (like in the realm of "orders of magnitude").<br /><br />New period variation option --period=vT1,D1,T2,D2....Tn,Dn<br /><br />The idleconn tool is now optional (disabled by default), and can be built using the --enable-idleconn configure option<br /><br />New options to print result data in new formats (CSV and Key=Value), however this is still being tested.<br /><br />The idleconn program has been re-written to use libevents non-blocking dns and connection API.<br /><br />Also, a number of memory leaks have been plugged with a re-write of the timer system.<br /><br />libevent is now a build requirement.<br /><br />httperf will try to compile itself with the system compilers c99 option if available.</div>

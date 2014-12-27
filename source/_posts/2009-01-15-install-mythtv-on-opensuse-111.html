@@ -1,0 +1,24 @@
+---
+layout: post
+title: "Install mythtv on openSUSE 11.1"
+date: 2009-01-15
+comments: false
+categories:
+ - openSUSE
+---
+
+<div class='post'>
+Last night I had one of those tinkering fits that occasionally over take me, and I updated my mythtv operating system to openSUSE 11.1.  Since there aren't any really good instructions for this procedure (even the mythtv wiki is a bit stretched), I figured I'll post my instructions here.<br /><br />My backend (and frontend) machine:<br /><ul><li>Pentium D 920</li><li>1Gb Ram</li><li>Hauppauge PVR-350</li><li>900 Gb  hardware RAID 5 (4 x 300 Gb) with Areca ARC-1210 controller</li><li>Geforce 7300 GS</li></ul>With the exception of the video, all the components in the machine here have good out of the box drivers.<br /><br />Anyways, I chose the basic X11 installation from the DVD, since I wanted to avoid installing too much extraneous software.<br /><br />The majority of the install is done from the command line so here goes (As best as I can remember):<br /><br /><pre>zypper ar http://packman.unixheads.org/suse/11.1<br />zypper install mythtv-backend mythtv-doc myththemes mysql<br />rcmysql start && mysqladmin -u root password mysecretpassword<br /><br />mysql -u root -p < /usr/share/doc/packages/mythtv-doc/database/mc.sql<br /><br />mysql -u root -p mythconverg<br />   grant all on mythconverg.* to mythtv@"%" identified by "mythtv";<br />   flush privileges;<br />   quit;<br /></pre><br /><br />Then with a running X session run the setup program, and there is plenty of documentation available for this on the <a href="http://www.mythtv.org/wiki/index.php/User_Manual:Detailed_configuration_Backend">mythtv wiki</a><br /><br /><pre>mythtv-setup</pre><br /><br />Next I created a user "myth", installed gdm, and configured the autologin, note that no password was set here for the user "myth" <br /><br /><pre>useradd myth -m<br />zypper install gdm<br />sed s/DISPLAYMANAGER="xdm"/DISPLAYMANAGER="gdm" /etc/sysconfig/displaymanager<br />sed s/DISPLAYMANAGER_AUTOLOGIN=""/DISPLAYMANAGER_AUTOLOGIN="myth" /etc/sysconfig/displaymanager<br /></pre><br /><br />Next I started yast and from the run level editor, I added both mythbackend and mysql to the start in run levels 3 and 5<br /><br />Finally to get the frontend to display upon boot I edited the file /home/myth/.dmrc to read<br /><br /><pre>[Desktop]<br />Session=mythTV</pre><br /><br />Restarted the machine to test all was well, and I was up and running.<br /><br />Not bad, as far as time goes either.  In total the installation took me about an hour and half.<br /><br />-Ted</div>
+<h2>Comments</h2>
+<div class='comments'>
+<div class='comment'>
+<div class='author'>Ted Bullock</div>
+<div class='content'>
+Generally speaking you want to look at using gdm or kdm for the auto login features when going for a mythtv install.<br><br>I have no idea whether or not XFCE has a login manager these days anyways.... hmm, certainly something to look up in due time<br><br>Anywho, you will need to install one or the other of the standard login managers.<br><br>As to your other question regarding the architecture thingy, I would personally go for 64bit on any machine that supports it.  I have no empirical rational behind this  but it really won&#39;t hurt.</div>
+</div>
+<div class='comment'>
+<div class='author'>jniffen</div>
+<div class='content'>
+Oh, one other question?<br><br>If a system had an AMD BE2400 with 2GB RAM would you install the 32 or 64 bit version of OpenSuse 11.1?<br><br>Thanks</div>
+</div>
+</div>
