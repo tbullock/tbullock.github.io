@@ -9,7 +9,7 @@
   <meta name="author" content="Ted Bullock">
 
   
-  <meta name="description" content="Been a while since I posted. If you're reading this post you, you probably came in from your favourite search engine while searching for OpenBSD and &hellip;">
+  <meta name="description" content="After a long hiatus (since I have been known to get distracted from time to time) I have continued working on Freeswitch with regards to OpenBSD. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -71,7 +71,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2013/03/28/freeswitch-on-openbsd/">FreeSWITCH on OpenBSD</a></h1>
+      <h1 class="entry-title"><a href="/blog/2014/11/03/freeswitch-on-openbsd-project-status/">FreeSWITCH on OpenBSD - Project Status 2014-11-02</a></h1>
     
     
       <p class="meta">
@@ -80,7 +80,7 @@
 
 
 
-<time class='entry-date' datetime='2013-03-28'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>28</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>12:00 am</span></time>
+<time class='entry-date' datetime='2014-11-03'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>3</span><span class='date-suffix'>rd</span>, <span class='date-year'>2014</span></span> <span class='time'>12:00 am</span></time>
         
       </p>
     
@@ -88,7 +88,7 @@
 
 
   <div class="entry-content"><div class='post'>
-Been a while since I posted. If you&#8217;re reading this post you, you probably came in from your  favourite search engine while searching for OpenBSD and FreeSWITCH.<br /><br /><a href="http://www.freeswitch.org/" target="_blank">FreeSWITCH</a> is a software voice switch which handles any manner of <a href="http://wiki.freeswitch.org/wiki/Specsheet" target="_blank">voice related activities</a>.<br /><br />These days <a href="http://wiki.answers.com/Q/How_many_phone_calls_are_made_every_day_in_the_world" rel="nofollow" target="_blank">voice is pretty important</a>, and the backend infrastructure which implements it is in a decades long process of migrating from the traditional&nbsp; POTS (Plain Old Telephone System) to an <a href="http://arstechnica.com/information-technology/2013/01/the-telephone-network-is-obsolete-get-ready-for-the-all-ip-telco/" target="_blank">all IP phone system</a>. FreeSWITCH is definitely going to be on the platforms that ushers in the next generation of telecom. While I have some reservations about how the project is developed and maintained, it has a lot of things going for it like stability and a remarkable feature set.<br /><br />Using FreesSWITCH on OpenBSD might seem like a good idea seeing as how OpenBSD has the spectacular pf firewall, excellent security history and doesn&#8217;t move very far in weird and zany directions.<br /><br />FreeSWITCH on the other hand can&#8217;t seem to stop moving in weird and zany directions. They (even after moving to stable release tarballs) suggest that checking the source out from git is the best way to the most current and stable versions and don&#8217;t blink twice at dragging the entire source tree of their dependencies into their git repository. The FreeSWITCH developers attitude towards using system versions of their dependencies ranges from <a href="http://jira.freeswitch.org/browse/FS-353" target="_blank">aggressive no&#8217;s to rampant apathy</a>. I understand their reasoning (which is not exactly wrong), though for me this is pretty odd considering that pretty much every other major project doesn&#8217;t have this problem.<br /><br />So OpenBSD and FreeSWITCH&#8230; Where to start.<br /><br />At the time of writing there is no port of FreeSWITCH for OpenBSD, or any substantial package built for any major open source operating system.&nbsp; Nor is there likely to be without some serious effort. The only way to use the software is to jump though the git checkout hoops and run their gigantic build process through from start to finish (yawn). Debugging their build process on other operating systems than linux is a pain as well, given the dependency on stuff like gnu make, the position of the planets in the night sky and the inclusion of dependencies in their source tree.<br /><br />There have been thousands of hours of effort put into making those dependencies &#8216;work&#8217; properly on OpenBSD (nevermind all the other platforms out there). And replicating all that work into FreeSWITCH source tree just seems dumb and a waste of time (which it is).<br /><br />My proposed solution (and admittedly a work in progress without a finish line in sight) is the creation something along the lines of a shallow fork of upstream FreeSWITCH that could actually be used as an OpenBSD port.<br /><br />First order of business is the build system, and again since we&#8217;re talking about OpenBSD, I am not talking about using autoconf, gnu make, cmake, imake, scons, or any number of build suites. Really, I&#8217;m just talking about vanilla <a href="http://www.openbsd.org/cgi-bin/man.cgi?query=make" target="_blank">OpenBSD make</a> (<a href="http://mail-index.netbsd.org/netbsd-users/2008/10/11/msg002183.html" target="_blank">here is an interesting thread on BSD Make</a>). Of course, use system libraries or existing tested ports wherever possible.&nbsp; The source tree should contain just those files actually needed for creating a bare installation<br /><br /><br />There are a long list of modules that also need porting, including some core requirements like mod_sofia.<br /><br />After that there needs to be some work done on things like moving configuration to /etc, logs to /var/log and various other activities consistent with making FreeSWITCH a valid citizen on OpenBSD. <br /><br />As I said, this is a work in progress, you can see the progress <a href="https://github.com/tbullock/freeswitch-openbsd" target="_blank">here on github</a>.</div>
+After a long hiatus (since I have been known to get distracted from time to time) I have continued working on Freeswitch with regards to OpenBSD. Before I get into the current state of affairs, I should mention that I do have I have a semi functional Freeswitch installation (from before FS started the -stable branch) running on a pair of OpenBSD 5.1-current ultrasparc VMs but the tears and pain of trying to keep that running and up to date was way too much for a mere mortal like myself to entertain. Moreover, the fact that my (unpublished) patches refused to work on a comparable 5.2 and subsequent 5.3 install told me that way lay dragons. The SSL fiasco and the new ressl work finally made me turn the systems off and resign them to the closet of dusty bits and reinstall on some linux boxes so at least I could have access to vendor patches.<br /><br />Le Sigh.<br /><br />Even to this day, the out of the box upstream install scripts don&#8217;t actually work on OpenBSD, and the software is absent from official OS repositories. Though I will nod to the fact that the upstream developers have made an attempt to get things working, they are doing stupid things in the process, like manually installing a magical &#8216;Freeswitch&#8217; versions of openssl (stupid stupid stupid), curl and libedit. Honestly its like, once they cut their finger accidentally in the kitchen, and instead of cleaning and bandaging the injury, they went ahead and put their whole hand in a Garburator.<br /><br />Anyway, I&#8217;ll try and not be too cynical here since nestled inside the monstrosity(oops sorry, still being cynical) that is Freeswitch are the necessary bytes to have a working SIP telecom platform. I&#8217;ve made some decent progress in getting the software to compile and not explode in my face, and even took the time to give the @ports mailing list some updates about project status.<br /><br /><ul><li><a href="http://marc.info/?l=openbsd-ports&amp;m=141411505924926&amp;w=2" target="_blank">2014-10-23</a></li><li><a href="http://marc.info/?l=openbsd-ports&amp;r=1&amp;b=201410&amp;w=2" target="_blank">2014-10-31</a></li></ul><h2>Stuff that works (or at least says that it works)</h2><ul><li>mod_callcenter</li><li>mod_commands</li><li>mod_conference</li><li>mod_db</li><li>mod_directory</li><li>mod_dptools</li><li>mod_esf</li><li>mod_esl/mod_hash/fs_cli</li><li>mod_fifo </li><ul><li>Lots of manual twiddling was required here, and I still haven&#8217;t turned on the c++ esl API&nbsp; that lets swig bindings start working (Specifically the ESL bindings to stuff like lua, perl, Java, and C#).</li><li>Moral of the story is that fs_cli works, I&#8217;m possibly going to re-write it or write my own from-scratch version at some point to be less terrible, though at least it uses getopt (but not the operating system provided version of getopt).</li><li>By the way, fs_cli has no license?</li></ul><li>mod_loopback</li><li>mod_sofia</li><ul><li>I hope this is the most challenging module to enable and have working correctly. In total I spent several days and many dozen cups of coffee at the local <a href="http://humptys.com/default.asp" rel="nofollow" target="_blank">Greasy Spoon</a>, banging my head against this module trying to get it to work. The module depends (obviously?) on the sofia sip library from Nokia and has been dramatically patched since the last official release. Considering the transfer of so much Nokia IP to Microsoft I would be willing to bet that many of these changes will never be pushed to the official Nokia upstream library (not that the FS devs pushed many changes even before the Nokia/MS thing happened). Also, I flirted a bit with the changes that have arrived in the 1.4 tree of Freeswitch, and don&#8217;t think much of them, (network layer violation badness).</li></ul><li>mod_others_ive_forgotten</li></ul>I&#8217;ve been hand picking the modules that I want to turn on, and aggressively deleting anything that seems stupid to me. Anyone who eventually uses this port may find that their favourite module is not included with the port. Of course this is because my goals are different than upstream Freeswitch developers, this is will sometimes result in missing features and since their design, implementation or purpose are undesirable from my point of view.<br /><h2>Still to do</h2><ul><li>Modules&#8230; many mods still need to be reviewed and enabled or deleted.</li><li>Devise an appropriate default minimal configuration </li><li>Fix hashing bugs (see my @ports mail)</li><li>Launcher re-write (switch.c is full of badness&#8230; damn, cynical again)</li><li>fs_cli re-write (how about a minimal level of security)</li><li>String Slinging audit, there are lots of places I&#8217;ve seen that could be potential overflows.</li><li>Memory pool draining; lets not see a repeat of stuff like heartbleed by not using memory pools.</li><li>Update to 1.2-stable (current tree) as far as possible</li></ul><h2>A quick note on Project Goals</h2><br />A reminder that this project is a &#8216;shallow&#8217; fork of Freeswitch. I have no intention of going feature crazy and introducing anything other than a basic installation of Freeswitch that meets MY needs (SIP over TCP/UDP with TLS and SRTP). My goals specifically are feature and platform stability and security. I will be making attempts to pull security fixes from the upstream tree but I have no intention currently of ever updating past 1.2, if you think you need web sockets in your sip stack go install linux.<br /><br /><br /><br /></div>
 </div>
   
   
@@ -101,7 +101,7 @@ Been a while since I posted. If you&#8217;re reading this post you, you probably
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2011/10/03/copyright-modernization-act-my-view/">Copyright Modernization Act - My View</a></h1>
+      <h1 class="entry-title"><a href="/blog/2013/08/27/recovering-windows-server-2011/">Recovering a Windows Server 2011 Essentials Image From a USB Backup Drive</a></h1>
     
     
       <p class="meta">
@@ -110,7 +110,7 @@ Been a while since I posted. If you&#8217;re reading this post you, you probably
 
 
 
-<time class='entry-date' datetime='2011-10-03'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>3</span><span class='date-suffix'>rd</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+<time class='entry-date' datetime='2013-08-27'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>27</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>12:00 am</span></time>
         
       </p>
     
@@ -118,7 +118,7 @@ Been a while since I posted. If you&#8217;re reading this post you, you probably
 
 
   <div class="entry-content"><div class='post'>
-For some pre-reading for this article:<br /><br /><ul><li><a href="http://www.balancedcopyright.gc.ca/eic/site/crp-prda.nsf/eng/rp01182.html">http://www.balancedcopyright.gc.ca/eic/site/crp-prda.nsf/eng/rp01182.html</a></li><li><a href="http://arstechnica.com/tech-policy/news/2011/09/caving-to-washington-canadian-dmca-expected-to-pass.ars">http://arstechnica.com/tech-policy/news/2011/09/caving-to-washington-canadian-dmca-expected-to-pass.ars</a></li><li><a href="http://www.cbc.ca/news/canada/story/2011/09/29/f-copyright-explainer.html">http://www.cbc.ca/news/canada/story/2011/09/29/f-copyright-explainer.html</a></li></ul><div>I am not satisfied by what I read about the upcoming&nbsp;<i>Copyright Modernization Act</i>. As a technology industry expert I am quite familiar with the methodologies and rationale involved with the implementation of <i>Digital Rights Management</i>.&nbsp;</div><div><br /></div><div>Most importantly is the implications around digital content locks and their viability.</div><div><br /></div><div>Foremost in my concern is that otherwise legitimate usage of digital content is permanently restricted simply by the presence of a digital lock of any kind. The implications of this is that legally purchased content can only be accessed through pre-approved processes and devices. Otherwise fair access to the locked content becomes illegal under the provisions of the new bill.</div><div><br /></div><div>For instance, my mother has been a subscriber to Audible.com where she purchases recorded audio books which are stored in the DRM encumbered audible format. However, one of her intentions for purchasing the content is to be able to consume it while in her vehicle. &nbsp;Unfortunately her vehicle does not include authorized audible decryption software, so it becomes necessary to convert the encrypted files to a format which the vehicle does comprehend (in this case MP3). In no way is this an illegal activity, nor should it be under any appropriate copyright law, however with the new digital lock provisions, doing this becomes illegal.</div><div><br /></div><div>There are a number of other consequences to the act that I am uncertain are covered by exemptions such as recovering installation keys to installed software products on Microsoft Windows and viewing encrypted content over an unsecured monitor.</div><div><br /></div><div>Effectively the law has the digital locking aspects backwards, where fair dealing with content should trump any locking provisions, not the other way around.</div></div>
+I have a customer which uses Windows SBS 2011 Essentials as a basic file and backup server. It runs on one of those little supermicro servers with an integrated atom chip and 4GB of RAM. Hardly a workhorse, but it is perfectly adequate for running his three person office.<br /><br />Anyway, this morning I got a call saying that the server was down, and couldn&#8217;t seem to be restarted.<br /><br />When this kind of thing happens, I usually presume that its some kind of minor user error (like its not plugged in, or the tooth fairies pulled out the network cable overnight) and almost always, I can get in and out within a few minutes and couple magical key strokes.<br /><br />Well&#8230; Today was a genuine problem requiring some actual work.<br /><br />Turns out the the hard drive (yes there is just one drive in the unit) suffered some sort of mechanical fault and started clicking rather badly.<br /><br />Well, a quick run to the local computer shop and a few minutes of minor surgery yielded a perfectly functional, yet completely blank file server (being blank is very bad for a server). The value the server had nothing to do with the actual cost of the equipment, but its value rests entirely on its function as a repository of all the companies data and that data is on the dead drive.<br /><br />Fortunately, I had seen this coming a long time ago and the machine has been dumping daily images to an old drobo sitting on the shelf for something on the order of 3 years. Btw, those old drobo&#8217;s aren&#8217;t good for much, but this is one job that they do pretty well.<br /><br />Anyway, recovering the image was fairly straight forward (this server doesn&#8217;t have a DVD drive) so I needed to image a USB stick with the SBS 2011 Essentials installation disk, which works fine except for the fact that the Windows recovery software doesn&#8217;t like magical new drives showing up when its about to recover an image, so annoyingly I needed to disconnect the USB stick just after the software had identified the recovery image and before starting the recovery process otherwise I would be whacked with error 0x80070057 which basically says that the recovery system is shaped differently than it should be.<br /><br />Yawn.<br /><br />All in all the recovery process is fairly straight forward, and the only thing I&#8217;d like to see added is a way to clone the recovery images to an offsite storage thingy. <br /><br /></div>
 </div>
   
   
@@ -131,7 +131,7 @@ For some pre-reading for this article:<br /><br /><ul><li><a href="http://www.ba
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2011/09/27/smart-payout-software-demonstration-in/">SMART Payout Software Demonstration in .net WPF</a></h1>
+      <h1 class="entry-title"><a href="/blog/2013/06/22/sun-blade-100-and-openbsd/">Sun Blade 100 and OpenBSD</a></h1>
     
     
       <p class="meta">
@@ -140,7 +140,7 @@ For some pre-reading for this article:<br /><br /><ul><li><a href="http://www.ba
 
 
 
-<time class='entry-date' datetime='2011-09-27'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>27</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+<time class='entry-date' datetime='2013-06-22'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>22</span><span class='date-suffix'>nd</span>, <span class='date-year'>2013</span></span> <span class='time'>12:00 am</span></time>
         
       </p>
     
@@ -148,55 +148,7 @@ For some pre-reading for this article:<br /><br /><ul><li><a href="http://www.ba
 
 
   <div class="entry-content"><div class='post'>
-I wrote a WPF demonstration software for use with the Innovative Technology SMART Payout recently. I am available to provide software consulting services around this device and its cousin the SMART Hopper.<br /><br /><div class="separator" style="clear: both; text-align: center;"><a href="http://4.bp.blogspot.com/-9vO0V0VgxTM/ToHkAM0Ao-I/AAAAAAAAABY/Y9XKrIbHIBg/s1600/SMART_Payout.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="219" src="http://4.bp.blogspot.com/-9vO0V0VgxTM/ToHkAM0Ao-I/AAAAAAAAABY/Y9XKrIbHIBg/s320/SMART_Payout.png" width="320" /></a></div><br /><br />Features:<br /><br /><ul><li>Recycling Bill Dispensor</li><li>12V powered</li><li>Removable Cashbox</li><li>Bunch of other stuff, see the site:&nbsp;<a href="http://www.innovative-technology.co.uk/index.php?option=com_displayproducts&amp;id=7&amp;view=single&amp;Itemid=2&amp;lang=en">http://www.innovative-technology.co.uk/index.php?option=com_displayproducts&amp;id=7&amp;view=single&amp;Itemid=2&amp;lang=en</a></li></ul><div>My software is a good demonstration of how to interact with the device. Naturally it needs to not look crummy :) &nbsp;Was written in C# .NET 4 WPF inside of Expression Blend 4.</div><div><br /></div><div class="separator" style="clear: both; text-align: center;"><a href="http://1.bp.blogspot.com/-xL7JkSYxS1E/ToHkhZYC1XI/AAAAAAAAABc/u8pWgnzd2V8/s1600/Cashbox-Demonstration.PNG" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="272" src="http://1.bp.blogspot.com/-xL7JkSYxS1E/ToHkhZYC1XI/AAAAAAAAABc/u8pWgnzd2V8/s320/Cashbox-Demonstration.PNG" width="320" /></a></div><div><br /></div></div>
-<h2>Comments</h2>
-<div class='comments'>
-<div class='comment'>
-<div class='author'>Kacper Wikieł</div>
-<div class='content'>
-Can you publish your code or send it to me? </div>
-</div>
-<div class='comment'>
-<div class='author'>Ted Bullock</div>
-<div class='content'>
-Sure, I can track this down. Might take a day or two though.</div>
-</div>
-<div class='comment'>
-<div class='author'>Ted Bullock</div>
-<div class='content'>
-Sure, I can track this down. Might take a day or two though.</div>
-</div>
-<div class='comment'>
-<div class='author'>Palacios Tebal</div>
-<div class='content'>
-hi, <br /><br />I am programming in wpf and nv200, and I have many problems with device or library. Can you provide codes of your software ?, I could send you my code and software.<br /><br />Many thanks,<br />Miguel.</div>
-</div>
-<div class='comment'>
-<div class='author'>Ted Bullock</div>
-<div class='content'>
-Yes, I have the code.</div>
-</div>
-<div class='comment'>
-<div class='author'>Ted Bullock</div>
-<div class='content'>
-Old comment, sorry.<br /><br />Ok, I&#39;m not sure how stable the device is in deployment.  My observations while developing against it weren&#39;t great though.<br /><br />Had some firmware issues though (couldn&#39;t get it to run on current firmware) end result of which was to revert to previous version.<br /><br />Support from the manufacturer was alright, I got an engineer to walk me through a variety of features on the phone with very little in the way of preliminaries.  Although it was a call to the UK which wasn&#39;t cheap.</div>
-</div>
-<div class='comment'>
-<div class='author'>Ted Bullock</div>
-<div class='content'>
-Oh sorry, haven&#39;t been watching for comments.<br /><br />Uh yeah, I might still have the code around somewhere.  I&#39;ll look.  Do you still need it?</div>
-</div>
-<div class='comment'>
-<div class='author'>Nemanja</div>
-<div class='content'>
-Is this device stable? I&#39;m developing app for NV200 Smart Payout and Smart Hopper in C# 4.0. <br />I noticed some problems with device or provided library.</div>
-</div>
-<div class='comment'>
-<div class='author'>Дмитрий Сергеев</div>
-<div class='content'>
-Can you provide codes of your software&amp;</div>
-</div>
-</div>
+I find that I get distracted from the task at hand very easily.<br /><br />My latest distraction from the FreeSWITCH on OpenBSD project has been a renewed interest in UltraSPARC hardware. I recently purchased a pair of Sun Fire V215 servers to act as routers, and on the way I got interested in the newer generations of UltraSPARC processors, which I think are very interesting for a variety of workloads that I have to deal with.<br /><br />Anyway, this evening while out at my parents place I rummaged in the basement for a few minutes trying to find an old system I had left out here a few years ago.<br /><br />Sure enough, sitting under a small pile of dust, I discovered my old Sun Blade 100 workstation. I had purchased the machine some years ago when I was working on a project which I wanted to ensure ran on big-endian architectures.<br /><br />Plugging in the system, I was pleased to discover everything was exactly as I had left it (apparently in 2007 since it still had a OpenBSD 4.1 install disk inside it).<br /><br />Quickly burning a copy of OpenBSD 5.3 for UltraSPARC, and running the install took about 10 minutes and I was pleased to discover a fully operational desktop.<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://4.bp.blogspot.com/-ccJ-BEaetio/UcVfn_Tni0I/AAAAAAAAAGw/dluZ9L8hfY8/s1600/IMG_00000267.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="640" src="http://4.bp.blogspot.com/-ccJ-BEaetio/UcVfn_Tni0I/AAAAAAAAAGw/dluZ9L8hfY8/s640/IMG_00000267.jpg" width="360" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">OpenBSD 5.3 running out of the box on a Sun Blade 100 UltraSPARC workstation</td></tr></tbody></table>These workstations were very useful in their day, and I am pleased to see that mine is still running. &nbsp;Performance is a little lower than I would like for some activities like browsing the web, but its actually perfectly acceptable as a development environment (and nicely free of distractions too).</div>
 </div>
   
   
@@ -209,7 +161,7 @@ Can you provide codes of your software&amp;</div>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2011/09/27/how-to-secure-computer-in-hour/">How to Secure a Computer in an Hour</a></h1>
+      <h1 class="entry-title"><a href="/blog/2013/06/02/freeswitch-on-openbsd-project-status/">FreeSWITCH on OpenBSD - Project Status 2013-06-02</a></h1>
     
     
       <p class="meta">
@@ -218,7 +170,7 @@ Can you provide codes of your software&amp;</div>
 
 
 
-<time class='entry-date' datetime='2011-09-27'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>27</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+<time class='entry-date' datetime='2013-06-02'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>2</span><span class='date-suffix'>nd</span>, <span class='date-year'>2013</span></span> <span class='time'>12:00 am</span></time>
         
       </p>
     
@@ -226,7 +178,7 @@ Can you provide codes of your software&amp;</div>
 
 
   <div class="entry-content"><div class='post'>
-I&#8217;m not a security expert.<br /><div><br /></div><div>Well, let me say that I am the most technically skilled security expert that I know, however, I do not consider myself to be a security expert.&nbsp;My general approach to security is, turn off as much as possible, block everything except those few things I need and while I am at it, update everything to fix as many vulnerabilities as possible.</div><div><br /></div><div>So I am now administrating a server rack full of equipment running a slew of operating systems from linux to OpenBSD, to Windows Server 2003, 2008 and 2008 R2. &nbsp;Now there is nowhere nearly enough time in my day to audit these systems for&nbsp;vulnerabilities, and beyond running windows update, patching the linux/bsd machines, turning features off and putting a pf firewall in front of the entire rack, I am not certain what else I should be doing?</div><div><br /></div><div>I&#8217;d love some input here? If I were to spend a single hour tomorrow above and beyond my regular work securing the services, where would the best place to start be?</div></div>
+I&#8217;ve finally gotten around to making new headway with the FreeSWITCH on OpenBSD project. Although I can honestly see at least year (or more, really) of labour in front of me to produce a high quality port which I would be content to run my voice services on.<br /><br />At the moment, I have a semi functional build which compiles a binary capable of executing just past the banner. I haven&#8217;t checked the last call trace yet, however it looks like we are breaking just after the process forks and spins up a bunch of threads.<br /><br /><h3>Recent Work</h3>I merged a commit today that replaces the hash table wrapper that used to point at internal sqlite APIs to a the public hash table implemented by APR.&nbsp; This is in reaction to an instant crash bug that I was encountering when the old system tried to access the internal sqlite malloc code.<br /><br />I&#8217;ll note that the original implementation of the hash table stuff used APR in the good old days (2008) and was replaced by Anthony for reasons that I am currently unclear about.<br /><br />The results tested well in an impromptu set of test cases I whipped up to see if things should work, and the configurations loaded successfully, however the test of the new implementation really will only happen down the road when we start flinging calls around.&nbsp; <br /><br /><h3>Observations</h3>I find the code style of the FreeSWITCH developers difficult to read for a couple reasons:<br /><br /><ul><li>Long symbol that_describe_what_should_be_happening_like_this</li><li>Long prototypes that disappear off the edge of my monitor, I&#8217;ve seen lines with more than 180 characters which is a bit much.</li></ul>I&#8217;m not going to whinge about the code style too much since it is what it is, however I&#8217;ve voiced my official note saying I don&#8217;t like it.<br /><br />Another issue I have is with the munging of dependencies. What I mean here is that the developers have taken a number of liberties in changing the internals of some dependencies. I suppose that they had their reasons, however it does make me twitch.<br /><br />The more I fiddle with the internals of FreeSWITCH, the more I approve of the projects that have come from the OpenBSD guys. Especially when it comes from the perspective of portability, where the dependency trees are vanishingly small.&nbsp; The FreeSWITCH perspective is somewhat along the lines of &#8220;ok, this pile of kitchen sinks seems balanced, don&#8217;t fuck with it&#8221;.<br /><br /><br /><br /><h3>Current tasks</h3>There are couple items to do right away. The first is spin up the module loading code, port some modules, and verify that the core modules are loading in what appears to be a correct manner.<br /><br />Also I noticed that I am statically linking my internal libfreeswitch library and that needs to stop.<br /><br /><h3>Down the road</h3>I really dislike the manner in which freeswitch loads its configuration. On the horizon is a new launching and configuration loading change that makes me less twitchy. I&#8217;ll make sure that everything I do here could be conceivably imported upstream.<br /><br />Also, there are couple areas that I think may need special attention, memory handling and threading<br /><br /><h3>Summary</h3>There is lots left to do!</div>
 </div>
   
   
@@ -239,7 +191,7 @@ I&#8217;m not a security expert.<br /><div><br /></div><div>Well, let me say tha
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2011/09/25/qnx-blackberry-devices-and-future-of/">QNX Blackberry Devices and the Future of RIM</a></h1>
+      <h1 class="entry-title"><a href="/blog/2013/05/27/running-openbsd-laptop/">Running an OpenBSD Laptop</a></h1>
     
     
       <p class="meta">
@@ -248,7 +200,7 @@ I&#8217;m not a security expert.<br /><div><br /></div><div>Well, let me say tha
 
 
 
-<time class='entry-date' datetime='2011-09-25'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>25</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+<time class='entry-date' datetime='2013-05-27'><span class='date'><span class='date-month'>May</span> <span class='date-day'>27</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>12:00 am</span></time>
         
       </p>
     
@@ -256,165 +208,7 @@ I&#8217;m not a security expert.<br /><div><br /></div><div>Well, let me say tha
 
 
   <div class="entry-content"><div class='post'>
-I&#8217;ve been reading a lot of negative reviews and opinions about the Blackberry PlayBook and the future of RIM and I want to put my input in before things get out of hand.&nbsp;I own a PlayBook (really I do), and I read the reviews and general disrepute which people are holding RIM, and I don&#8217;t really get it. <br /><br />Many of the complaints about RIM are that they are behind the times with the deployment of messaging and contact software on the PlayBook. &nbsp;Obviously, this isn&#8217;t the case with their current mobile phones, where they dominate the mobile messaging market with their email and bbm.<br /><br />So, then what&#8217;s up with the PlayBook; how come to so many people they appear to be struggling (as reflected by their stock price, and the plethora of nasty comments by people on the Ars forums)?<br /><br />In the world right now we have a handful of mobile platforms to work with; Apple, Google, Microsoft, Nokia, Palm (HP) and RIM share almost the entirety of the mobile smart device market and with HP out and Nokia walking away from the software game with the recent deal with Microsoft, that leaves us with a grand total of four vendors supplying most of the worlds software platforms.<br /><br />When Apple released their tablet platform in 2010, it looked cool which had many people buy it, however, for many others, their was a major level of uncertainty as to how useful it would be to, you know, get something done. And of course, it&#8217;s not a good device to get something done on; the form factor is simply not conducive to actual real world work unless someone goes out of their way to write custom software which addresses the relevant silo (hence the app store). The iPad got&nbsp;relegated&nbsp;to the world of entertainment, which it appears to do well since people seem to enjoy movies and browsing the web and playing target games.<br /><br />Now, the real problem is that all that fun stuff goes only so far, and when it comes down to it, a $400 laptop is a heck of a lot more useful than a $600 tablet.<br /><br />And into this market comes the rest of the industry, which is super keen on exploiting and investigating this new form factor to see if any fortunes can be made; and of course they are running into the issues of usability, time to market and competition. The real fortunes in tablets might already have been made by Apple, and from now on the prices don&#8217;t have a heck of a lot to go except down.<br /><br />Now the rest of the industry has a couple options:<br /><br /><ol><li>Develop a new tablet platform from scratch (With plenty of time to do it right)</li><li>Develop a tablet platform from existing non-tablet technology (and hopefully do it right)</li><li>Adapt an existing handset platform for use on tablets (and maybe do it right, but end up with effectively the same product as any competitor which follows suit)</li><li>Don&#8217;t enter the tablet market</li></ol><div>When the iPad was originally released it was very clear that Apple had simply shoehorned the iPhone operating system onto a bigger device and called it the iPad, and the vast majority of the competitors looking in on that thought that would be a good idea to follow with the Android platform. So in short order the world was engulfed in tablet computers running handset operating systems.</div><div><br /></div><div>Undoubtedly RIM was looking at this situation, and it&#8217;s decision makers weighed the value of shoehorning their Blackberry OS onto a tablet like Apple and Google&#8217;s vendors have or jumping on the Google bandwagon and making yet another Android device. However RIM is different from every other current vendor in that they have an enormous investment and market share in their current technology platform (including BES, BBM and BIS email) and are obligated to support their existing customer base. In one weird sense, RIM is held back from just whipping up a hardware product and installing the latest head release of Android by the fact it has a reputation to uphold (I don&#8217;t believe RIM could have used Android as it&#8217;s tablet OS and maintained credibility).</div><div><br /></div><div>Moreover, when RIM examined its own software stack to see how it would fit onto a tablet, I am certain that key decision makers in the company saw (rightfully so too) that a handset platform is not a good fit for a tablet, especially if you actually want to get something done on it, and that an investment into a fresh design would be the only way to actually distinguish the product on the market in the long run.</div><div><br /></div><div>With that in mind RIM acquired the QNX platform for use on the PlayBook.</div><div><br /></div><div>Now, out of the box QNX was not a tablet operating system, but neither was it burdened by years of specialization as a handset operating system. Pressured by time to market considerations, and the imminent depreciation of the entire tablet market with ever lowering prices RIM got a functional 1.0 release out the door by April of 2011. However, the product didn&#8217;t include direct support for existing RIM technologies likely because their simply wasn&#8217;t time to rewrite all the necessary software for the new operating system.</div><div><br /></div><div>That said, RIM did ensure that&nbsp;existing&nbsp;customers would be able to still use their BES, BBM and BIS email technology by using their existing fully featured blackberry handsets as a proxy for the service and writing thin clients on the PlayBook to interact with the handsets.</div><div><br /></div><div>Thus the PlayBook came to market.</div><div><br /></div><div>The criticisms that RIM has faced are that the the PlayBook doesn&#8217;t have a built in email client, messaging software, calendaring or contact manager. However it is important to note that, while this is true, RIM did manage to bring their product to market with support for their existing customers, even if the product didn&#8217;t have a great deal to attract new ones out of the gate. The promise being that since their is so much at stake for the company, that they will continue to support the PlayBook for the foreseeable future.</div><div><br /></div><div>Which brings us to the current date.</div><div><br /></div><div>Still unanswered is the actual real world usefulness of the tablet form factor. Data input via typing is painful, and will probably never be considered a strength of the form factor, however gestures and the multi-touch interface go an incredibly long way towards making the device usable, however, this is limited to only certain classes of software.</div><div><br /></div><div>The QNX platform though is quite advanced and likely offers the best long term software choice in the industry. The migration to the handset from the tablet will likely prove much easier in the long run than the reverse.</div><div><br /></div><div>Where the PlayBook really shines, and needs special attention is how it is used in a business context. The onboard HDMI port makes the device entirely usable for presentations, and with a little more work on the built-in powerpoint clone, this could be one of the main selling points of the device.</div><div><br /></div><div>Still missing is a robust way to share files with a standard desktop computer running Windows or other portable devices. &nbsp;The necessity to use BlackBerry Desktop Manager to sync and manage files on the PlayBook is completely untenable. MTP/Bluetooth, MTP/WIFI and standard MTP are how this should be done and RIM should know that by now.</div><div><br /></div><div>File format support should be expanded to include all the same formats as supported by the latest BlackBerry handsets. Notably missing are ogg vorbis and webm formats (in addition to a handful of others).</div><div><br /></div><div>The built in video conferencing software needs a great deal more attention. Support for interactions via Microsoft Lync, Skype, Jabber and SIP are critical to the business story of the device. &nbsp;Since a native full BBM client is imminent, I haven&#8217;t included it in this list.</div><div><br /></div><div>Fallback to a tethered handset data provider is not seamless, and appears&nbsp;inaccessible&nbsp;from some applications, notably the bundled mapping software.</div><div><br /></div><div>The developer story is poor. &nbsp;Really an add-in to visual studio is what is needed here with a preconfigured &#8216;run on&nbsp;simulated&nbsp;device&#8217;, &#8216;publish to hardware&#8217; and &#8216;submit to app world&#8217; with support for digital signatures out of the box.</div><div><br /></div><div>I&#8217;ll summarize this post with the following comments:</div><div><br /></div><div>I feel that the platform has a great deal of potential, especially with the imminent Android application software compatibility layer arriving in October and the rest of the basic messaging services like email and BBM arriving as full native clients. Since RIM is hardly going anywhere from the corporate point of view and QNX is the future of the company, owners can expect a long product life cycle which will probably only be matched by Microsoft with Windows 8.</div><div><br /></div><div>Shareholders should stop panicking, and running. &nbsp;RIM has done a good job with what they had available in front of them, had they taken any other actions, their credibility would have been worse off. Yes, it takes a while to do this kind of work properly, for hints at just how long, look at Microsoft (arguably the most&nbsp;capable&nbsp;software manufacturer in the world) and how much R&amp;D they are putting into the tablet user experience.</div><div><br /></div><div>RIM, the tablet needs more ongoing support for new features. Some of these I have already mentioned, however others are simple things like copy/paste, or more complex like messaging and notifications while &#8220;in-app&#8221;. &nbsp;Tile based window management would be a good feature to add, since the device already supports concurrent software.</div><div><br /></div><div>Anyway, Good Luck and keep on swimming, Canadian high tech is depending on you.</div></div>
-<h2>Comments</h2>
-<div class='comments'>
-<div class='comment'>
-<div class='author'>Graeme Smithereenz</div>
-<div class='content'>
-Nice article and I agree whole heartedly. I have been a &#39;bit&#39; of a Blackberry fan for four years now and have to listen the people beating it down in favour of the competition. Blackberry has a way to go to get themselves back to the fore in mobile technology, lets hope OS8 and beyond can do this.</div>
-</div>
-</div>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/09/25/google-apps-migration-finally-complete/">Google Apps Migration Finally Complete</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2011-09-25'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>25</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-Ok,<br /><br />So this evening I finally to the time to complete the migration of my google apps account and the google account for my address (by far the most challenging migration in my entire company&#8230;. Sheesh)<br /><br />Anyway, this means that I can once again post to my blog!<br /><br />I&#8217;ve been pleasantly surprised by the new blogger interface which seems fun and cozy in tune with the facelift work that Google has been performing across all its services.</div>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/05/24/intellectual-property/">Intellectual Property</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2011-05-24'><span class='date'><span class='date-month'>May</span> <span class='date-day'>24</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-I read an interesting article in Ars Technica today regarding intellectual property. Fascinating debate.<div><br /></div><div>For a worthwhile hour of time, I suggest watching the following video.</div><br /><br /><iframe width="560" height="349" src="http://www.youtube.com/embed/AZc8R8yYAb0" frameborder="0" allowfullscreen></iframe></div>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/05/15/lotus-symphony-30-fixpack-2/">Lotus Symphony 3.0 Fixpack 2</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2011-05-15'><span class='date'><span class='date-month'>May</span> <span class='date-day'>15</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-The second service release to the Lotus Symphony 3.0 Office Suite was released pretty quietly last month. FP2 contains a small collection of security patches for the underlying OpenOffice.org code as well as some compatibility fixes when interacting with other office suites.<div><br /></div><div><a href="http://www.comlore.com/redist_files/Lotus_Symphony3_fp2.exe">Download Lotus Symphony 3.0 Fixpack 2 here</a> (For Windows) (or <a href="http://www-03.ibm.com/software/lotus/symphony/help.nsf/ReleaseNotes?OpenForm&amp;version=3%20fix%20pack%202">here</a> for Official download source)</div><div><br /></div><div>This release is Officially compatible with:</div><div><ul><li>Windows XP SP3, Windows Vista SP2, Windows 7<br /></li><li>SuSE Linux Enterprise Desktop 11, RedHat Enterprise Linux 5 Update 4, Ubuntu 8.04<br /></li><li>Macintosh OS X 10.5, Macintosh OS X 10.6.2, Intel only</li></ul>Fixes from the FP2 Release Notes:<blockquote><ul><li><a href="http://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2010-4643">CVE-2010-4643</a>: A security vulnerability in OpenOffice.org which is related to TGA file processing might lead to arbitrary code execution.</li><li><a href="http://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2010-3689">CVE-2010-3689</a>: The OpenOffice.org start script and other shell scripts expand the LD_LIBRARY_PATH in an insecure way.</li><li><a href="http://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2010-2935">CVE-2010-2935</a> / <a href="http://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2010-2936">CVE-2010-2936</a>: A security vulnerability in OpenOffice.org which is related to PowerPoint document processing might lead to arbitrary code execution.</li><li><a href="http://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2010-4253">CVE-2010-4253</a>: A security vulnerability in OpenOffice.org which is related to PNG file processing might lead to arbitrary code execution.</li><li><a href="http://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2010-3453">CVE-2010-3453</a> / <a href="http://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2010-3454">CVE-2010-3454</a>: A security vulnerability in OpenOffice.org which is related to Word document processing might lead to arbitrary code execution.</li><li><a href="http://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2010-3451">CVE-2010-3451</a> / <a href="http://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2010-3452">CVE-2010-3452</a>: A security vulnerability in OpenOffice.org which is related to RTF document processing might lead to arbitrary code execution.</li><li><a href="http://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2010-4008">CVE-2010-4008</a> / <a href="http://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2010-4494">CVE-2010-4494</a>: Possible Security Vulnerability in OpenOffice.org resulting from 3rd party library LIBXML2.</li><li><a href="http://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2010-3450">CVE-2010-3450</a>: A directory traversal vulnerability in OpenOffice.org which is related to zip/jar package extraction might lead to overwriting files and even to arbitrary code execution.</li><li>SPR #JCHC89R945: Include mandatory Eclipse help patches, SPR #MSTO89WRX8: Enhanced selective access control support.</li><li>PPT files with grouped objects will be corrupted if save them in Symphony and open them again in MS Office which contains a security patch claimed in <a href="http://www.microsoft.com/technet/security/bulletin/ms10-087.mspx">Microsoft Security Bulletin MS10-087</a>. For detailed patch information, please refer to http://www.microsoft.com/technet/security/bulletin/ms10-087.mspx.</li><li>Optimize preload notification behavior by removing the notification bubble.</li><li>Password protected MS Excel with edit password cannot be edited.</li><li>The cell border orientation will be lost when opening a MS Excel file in Lotus Symphony.</li><li>The result is wrong when copying a table which contains hidden columns from Lotus Symphony spreadsheet to Lotus Notes.</li><li>The behavior of Subtotal in DataPilot is wrong when there are more than one items in Data area.</li><li>&#8216;divide by 1000&#8217; format is not supported in Lotus Symphony 3 Spreadsheet.</li></ul></blockquote></div></div>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/04/19/odf-12-support-in-microsoft-office/">ODF 1.2 Support in Microsoft Office</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2011-04-19'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>19</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-Anyone who has tried to move Open Document Format (ODF) documents to Microsoft Office, has probably encountered fidelity problems. This is especially apparent when loading a *.ods spreadsheet in either MS Office 2007 SP2 or MS Office 2010.<br /><br />Formulas simply don&#8217;t get migrated over, and spreadsheets effectively turn into flat files when used in Excel.<br /><br />The fix for this will come with the arrival of functional ODF 1.2 import and export support.<br /><br /><a href="http://blogs.msdn.com/b/dmahugh/archive/2009/05/05/odf-spreadsheet-interoperability.aspx">Microsoft has obviously been aware of the problem for quite</a> a while, and while they are sympathetic, they haven&#8217;t yet released a fix to this problem and won&#8217;t until ODF 1.2 is finalized. This of course raises some interesting questions; like what degree of &#8220;finished&#8221; will be required before an implementation will be made available, and what software packages will receive support when it finally does become available.<br /><br />My hope is that Microsoft Office 2007 SP3 (if this is scheduled, 30 seconds on Google gave no hits yet) and Microsoft Office 2010 SP1 take serious stabs at implementing this, but for that to have any hope of happening the ODF 1.2 standard will need to be finalized &#8220;enough&#8221; for Microsoft to be willing to set it in stone (or easily malleable software, as the case may be).<br /><br />Recently (just last month), the <a href="http://www.opendocsociety.org/news/odf-tc-approves-odf-1.2">ODF TC approved ODF 1.2</a> as something known as a committee specification, which as I understand that OASIS rules means we&#8217;re nearing official OASIS blessing.<br /><br />So, will Microsoft consider this finalized &#8220;enough&#8221; to get their office suite ready to support it? We&#8217;ll see. I certainly can see their business case for holding off for something even &#8220;more&#8221; finalized like an ISO specification.<br /><br />A completed ODF implementation in MS Office is not exactly conducive to the long term market dominance of their office suite, and I would be willing to bet the longer they can hold off releasing an ODF 1.2 compatible implementation, the longer they will feel at ease with the proliferation of ODF centric office suites such as Lotus Symphony and the <a href="http://tbullock.comlore.com/2011/04/libreoffice-is-dumb-name-someone-rename.html">poorly named LibreOffice</a>. Competition will only really have a possibility of becoming fierce when documents can be tossed between office suites with little to no loss in fidelity.<br /><br />Anyway, the usability experience gap between Microsoft Office and it&#8217;s competitors is still so incredibly substantial (Although Lotus Symphony is very good), that I doubt the company needs to worry any time this decade. LibreOffice is no Firefox in my opinion.<br /><br />If I had to hazard a guess, I would bet that Microsoft Office 2007 will never get ODF 1.2 support, and that Microsoft Office 2010 will get it by Service Pack 2 in 2012 (or whenever it is released). Then again, maybe they&#8217;ll surprise me; maybe behind closed doors Microsoft has been readying ODF 1.2 support and is just awaiting OASIS certification.</div>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/04/19/libreoffice-is-dumb-name-someone-rename/">LibreOffice Is a Dumb Name. Someone Rename It.</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2011-04-19'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>19</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-I have been complaining that <a href="http://reverendted.wordpress.com/2006/09/08/dont-kill-the-penguin/#comment-1687">open source software suffers from dumb names for a while</a>. In fact, when I presented the httperf talk at WWW2007, the track officiator specifically mentioned that very blog post when he introduced me.<br /><br />So I can&#8217;t help but feel squirmy whenever I hear or read the name LibreOffice.<br /><br />I think this is a dumb name; like really (OpenOffice.org is really dumb too)<br /><ul><li>Uses lingo which is never a good idea if you want to get beyond your grassroots (yay! marketing to myself, but not new people woooo!)<br /></li><li>Potentially hard to pronounce (needs a <a href="http://www.libreoffice.org/get-help/faq/general-faq/how-do-you-pronounce-libreoffice/">page devoted to how pronounce it&#8217;s name</a>)<br /></li><li>Doesn&#8217;t roll off the tongue (see comments on recent <a href="http://arstechnica.com/open-source/news/2011/04/oracle-gives-up-on-ooo-after-community-forks-the-project.ars?comments=1#comments-bar">Oracle OpenOffice.org ArsTechnica article</a>)</li><li>There is a fair amount of <a href="http://twitter.com/#search?q=libreoffice%20name">dissent about the quality of the name</a>.</li><li>Many people <a href="http://www.google.ca/search?q=libreoffice+name+catchy">don&#8217;t find the name LibreOffice catchy</a>, rather they find it difficult.</li></ul>That said, there is evidence that some people like the name, so either they are crazy and should be first up against the wall when the revolution comes or genuinely don&#8217;t mind it.<br /><br />Anyway, I&#8217;m hung up on this. Seriously, I really am. I don&#8217;t like it, and I want someone to make the effort to change it.</div>
+I&#8217;ve been a long time user of OpenBSD for various projects since I worked for Nortel back in the good old days (2004? Wow, that&#8217;s nine years and counting). My experience with the operating system is mostly on howling servers that you would never run on your desk.<br /><br />Anyway, I&#8217;ve been working on porting some software to OpenBSD for a couple months and kept thinking to myself<br /><blockquote class="tr_bq">&#8220;Boy I should get a proper workstation setup&#8221;</blockquote>At first I was just using an ssh shell to one of my servers and working off that, which was a pain in the ass when the network was slow or out, or otherwise unavailable.<br /><br />Second thought was,<br /><blockquote class="tr_bq">&#8220;Maybe a VM on my main laptop will do?&#8221;</blockquote>Uh, no. I don&#8217;t like VMs, and to be honest I need a bit more performance than typing into a VM console. I have friend that is a VM hipster who thinks they are the best thing since butter, but I&#8217;m just not that kind of guy.<br /><br />Anyway, after setting up a workstation on a spare P4 that has been sitting on the shelf behind me for a couple years and enjoying the experience, I grabbed a Dell D620 from a local company which sold all its old gear to me for a tuppence.<br /><br /><h3>Power Management</h3>Last year I sat through a talk by Theo de Raadt where he claimed that OpenBSD has the best ACPI implementation of any of the free operating systems. After noticing that the stock installation of OpenBSD ran a little hot on the D620, I opened the <a href="http://www.openbsd.org/cgi-bin/man.cgi?query=acpi" rel="nofollow" target="_blank">acpi(4)</a> man page which said:<br /><blockquote class="tr_bq">&#8220;Userland may access <b>acpi </b>by using the <a href="http://www.openbsd.org/cgi-bin/man.cgi?query=apm&amp;sektion=4&amp;arch=i386&amp;apropos=0&amp;manpath=OpenBSD+Current" target="_blank">apm(4)</a> device.&#8221;</blockquote>After a little bit of reading, I concluded that editing rc.conf.local to start the apmd daemon (responsible for handling the power management stuff) in &#8220;keep my computer cool mode&#8221; should do the trick.<br /><br /><blockquote class="tr_bq">apmd_flags=&#8221;-C&#8221;</blockquote>On the advice of a random webpage I un-commented the line in /etc/sysctl.conf which tells the system to suspend whenever the laptop lid is closed.<br /><blockquote class="tr_bq">machdep.lidsuspend=1 </blockquote>After a nice demo by Henning Braur after his talk at BSDCan this year I am pleased to confirm a nice suspend and resume experience. Not only does the laptop take a nice nap when the lid is closed, it actually gets out of bed and back to work when its open.<br /><h3>Docking</h3>Along with the laptop came a dock, which I specifically wanted to enable a modest transition from mobile to fixed workstation. And after a solid 7 minutes of rummaging through man pages I couldn&#8217;t find any hooks to detecting when the machine has been docked.<br /><br />Basically I wanted the following to automatically happen when the laptop is docked<br /><ol><li>Turn off wifi</li><li>Disable suspend on closed lid</li><li>Turn on my desktop monitor</li><li>Turn off the LVDS laptop panel</li></ol>1 and 2 require some root permissions which means configuring sudo, 3 and 4 are easy with xrandr (<a href="http://www.youtube.com/watch?v=tMMuVBygK-s" target="_blank">thanks keith packard</a>).<br /><br />Upon undocking, I want to reverse this behaviour.<br /><br />So far I have two scripts sitting on my desktop called docked and undocked which I can run to manually cut things over to the preferred state. I suppose this will do for now, since I have other things that need my attention.<br /><br />Does anyone know of a more elegant way to do this? Or would someone like to write up a small daemon to handle this in the background? Maybe it could be called dockd?<br /><h3>Summary</h3>In anycase, getting the system up and running has not been terribly difficult, and I should have no more excuses when it comes to getting to work on the <a href="http://tbullock.comlore.com/2013/03/freeswitch-on-openbsd.html" target="_blank">OpenBSD port of FreeSWITCH</a> I was going on about recently.<br /><br /></div>
 </div>
   
   
@@ -439,6 +233,10 @@ I have been complaining that <a href="http://reverendted.wordpress.com/2006/09/0
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/12/26/new-blogblog-generator/">New Blogblog Generator</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/11/27/telephone-call/">Telephone Call</a>
       </li>
     
@@ -452,10 +250,6 @@ I have been complaining that <a href="http://reverendted.wordpress.com/2006/09/0
     
       <li class="post">
         <a href="/blog/2014/11/16/freeswitch-on-openbsd-project-status_16/">FreeSWITCH on OpenBSD - Project Status 2014-11-16</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/11/03/freeswitch-on-openbsd-project-status/">FreeSWITCH on OpenBSD - Project Status 2014-11-02</a>
       </li>
     
   </ul>

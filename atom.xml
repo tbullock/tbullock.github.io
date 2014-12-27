@@ -4,7 +4,7 @@
   <title><![CDATA[Depth of Knowledge]]></title>
   <link href="http://tbullock.github.io/atom.xml" rel="self"/>
   <link href="http://tbullock.github.io/"/>
-  <updated>2014-12-26T21:32:08-07:00</updated>
+  <updated>2014-12-26T23:18:42-07:00</updated>
   <id>http://tbullock.github.io/</id>
   <author>
     <name><![CDATA[Ted Bullock]]></name>
@@ -12,6 +12,37 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[New Blogblog Generator]]></title>
+    <link href="http://tbullock.github.io/blog/2014/12/26/new-blogblog-generator/"/>
+    <updated>2014-12-26T23:00:33-07:00</updated>
+    <id>http://tbullock.github.io/blog/2014/12/26/new-blogblog-generator</id>
+    <content type="html"><![CDATA[<p>So&hellip; I have decided to try my hand at using a new blogging platform thing.
+This is actually my first post with it. The blogging software is this thing
+called octopress which is a ruby application (with too many dependencies in
+my opinion&hellip;) that does a lot of the work of producing the icky html and
+css crap that I hate doing and spits out a nice static set of pages which
+can either be synced off to your own http server or pushed to something like
+github pages.</p>
+
+<p>For the last bunches of years I have been using a blogging suite called
+blogger which was bought by google in the dawn of time. Blogger does all the
+post sorting/slicing and dicing so you don&rsquo;t have to do too much icky html
+or css stuff. However its not great for some stuff like pasting code blocks
+and also produces a copius amount of code to generate some pretty simple
+layouts.</p>
+
+<p>Anyway the octopress stuff takes plaintext mardown files as input and spits
+out delicious static files, so hosting the blog has a lot less surface area
+when you compare it to rabbit holes like wordpress or whatever other website
+thing is out there.</p>
+
+<p>I&rsquo;m not totally thrilled with the amount of dependencies that octopress
+requires but once things are setup it seems fairly easy to get on with the
+business of occasionally hammering out a few paragraphs.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Telephone Call]]></title>
@@ -256,16 +287,6 @@ The second service release to the Lotus Symphony 3.0 Office Suite was released p
     <id>http://tbullock.github.io/blog/2011/04/19/odf-12-support-in-microsoft-office</id>
     <content type="html"><![CDATA[<div class='post'>
 Anyone who has tried to move Open Document Format (ODF) documents to Microsoft Office, has probably encountered fidelity problems. This is especially apparent when loading a *.ods spreadsheet in either MS Office 2007 SP2 or MS Office 2010.<br /><br />Formulas simply don&#8217;t get migrated over, and spreadsheets effectively turn into flat files when used in Excel.<br /><br />The fix for this will come with the arrival of functional ODF 1.2 import and export support.<br /><br /><a href="http://blogs.msdn.com/b/dmahugh/archive/2009/05/05/odf-spreadsheet-interoperability.aspx">Microsoft has obviously been aware of the problem for quite</a> a while, and while they are sympathetic, they haven&#8217;t yet released a fix to this problem and won&#8217;t until ODF 1.2 is finalized. This of course raises some interesting questions; like what degree of &#8220;finished&#8221; will be required before an implementation will be made available, and what software packages will receive support when it finally does become available.<br /><br />My hope is that Microsoft Office 2007 SP3 (if this is scheduled, 30 seconds on Google gave no hits yet) and Microsoft Office 2010 SP1 take serious stabs at implementing this, but for that to have any hope of happening the ODF 1.2 standard will need to be finalized &#8220;enough&#8221; for Microsoft to be willing to set it in stone (or easily malleable software, as the case may be).<br /><br />Recently (just last month), the <a href="http://www.opendocsociety.org/news/odf-tc-approves-odf-1.2">ODF TC approved ODF 1.2</a> as something known as a committee specification, which as I understand that OASIS rules means we&#8217;re nearing official OASIS blessing.<br /><br />So, will Microsoft consider this finalized &#8220;enough&#8221; to get their office suite ready to support it? We&#8217;ll see. I certainly can see their business case for holding off for something even &#8220;more&#8221; finalized like an ISO specification.<br /><br />A completed ODF implementation in MS Office is not exactly conducive to the long term market dominance of their office suite, and I would be willing to bet the longer they can hold off releasing an ODF 1.2 compatible implementation, the longer they will feel at ease with the proliferation of ODF centric office suites such as Lotus Symphony and the <a href="http://tbullock.comlore.com/2011/04/libreoffice-is-dumb-name-someone-rename.html">poorly named LibreOffice</a>. Competition will only really have a possibility of becoming fierce when documents can be tossed between office suites with little to no loss in fidelity.<br /><br />Anyway, the usability experience gap between Microsoft Office and it&#8217;s competitors is still so incredibly substantial (Although Lotus Symphony is very good), that I doubt the company needs to worry any time this decade. LibreOffice is no Firefox in my opinion.<br /><br />If I had to hazard a guess, I would bet that Microsoft Office 2007 will never get ODF 1.2 support, and that Microsoft Office 2010 will get it by Service Pack 2 in 2012 (or whenever it is released). Then again, maybe they&#8217;ll surprise me; maybe behind closed doors Microsoft has been readying ODF 1.2 support and is just awaiting OASIS certification.</div>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[LibreOffice Is a Dumb Name. Someone Rename It.]]></title>
-    <link href="http://tbullock.github.io/blog/2011/04/19/libreoffice-is-dumb-name-someone-rename/"/>
-    <updated>2011-04-19T00:00:00-06:00</updated>
-    <id>http://tbullock.github.io/blog/2011/04/19/libreoffice-is-dumb-name-someone-rename</id>
-    <content type="html"><![CDATA[<div class='post'>
-I have been complaining that <a href="http://reverendted.wordpress.com/2006/09/08/dont-kill-the-penguin/#comment-1687">open source software suffers from dumb names for a while</a>. In fact, when I presented the httperf talk at WWW2007, the track officiator specifically mentioned that very blog post when he introduced me.<br /><br />So I can&#8217;t help but feel squirmy whenever I hear or read the name LibreOffice.<br /><br />I think this is a dumb name; like really (OpenOffice.org is really dumb too)<br /><ul><li>Uses lingo which is never a good idea if you want to get beyond your grassroots (yay! marketing to myself, but not new people woooo!)<br /></li><li>Potentially hard to pronounce (needs a <a href="http://www.libreoffice.org/get-help/faq/general-faq/how-do-you-pronounce-libreoffice/">page devoted to how pronounce it&#8217;s name</a>)<br /></li><li>Doesn&#8217;t roll off the tongue (see comments on recent <a href="http://arstechnica.com/open-source/news/2011/04/oracle-gives-up-on-ooo-after-community-forks-the-project.ars?comments=1#comments-bar">Oracle OpenOffice.org ArsTechnica article</a>)</li><li>There is a fair amount of <a href="http://twitter.com/#search?q=libreoffice%20name">dissent about the quality of the name</a>.</li><li>Many people <a href="http://www.google.ca/search?q=libreoffice+name+catchy">don&#8217;t find the name LibreOffice catchy</a>, rather they find it difficult.</li></ul>That said, there is evidence that some people like the name, so either they are crazy and should be first up against the wall when the revolution comes or genuinely don&#8217;t mind it.<br /><br />Anyway, I&#8217;m hung up on this. Seriously, I really am. I don&#8217;t like it, and I want someone to make the effort to change it.</div>
 ]]></content>
   </entry>
   

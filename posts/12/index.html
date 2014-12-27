@@ -1,0 +1,296 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Depth of Knowledge</title>
+  <meta name="author" content="Ted Bullock">
+
+  
+  <meta name="description" content="This afternoon I received my brand new Nokia 6301 cell phone. In many respects, I really do like the thing.This nokia smartphone has a wifi antenna &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://tbullock.github.io/posts/12">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Depth of Knowledge" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Depth of Knowledge</a></h1>
+  
+    <h2>Thoughts from a tech consultant.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="tbullock.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/10/17/how-to-synchronize-nokia-6301-in-linux/">How to Synchronize a Nokia 6301 in Linux - Investigation</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2008-10-17'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2008</span></span> <span class='time'>12:00 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+This afternoon I received my brand new <a href="http://www.nokia.ca/A4787033">Nokia 6301</a> cell phone.  In many respects, I really do like the thing.<br /><br />This nokia smartphone has a wifi antenna which allows it to be used as a VOIP handset if you are in range of an appropriate network and also supports all the normal functionality of your typical cell phone.  It also supports Bluetooth and has a mini-usb adapter.<br /><br />When physically connected to a modern linux machine (in my case openSUSE 11.0), it initially identifies itself as a USB Mass Storage device and the desktop responds appropriately by mounting it like any other USB drive.  However, the phone specifies a couple of other connectivity options, including &#8220;Data Storage&#8221; (USB Mass Storage),  &#8220;Media & Printing&#8221; (MTP) and &#8220;PC Suite&#8221;.<br /><br />When you choose &#8220;Media & Printing&#8221;, the device switches to <a href="http://en.wikipedia.org/wiki/Media_Transfer_Protocol">MTP mode</a> (Woohoo, go libmtp!) which libmtp supports very nicely, although after perusing the datastructure, I am not clear which folders are the &#8220;correct&#8221; folders for which type of file.  I guess this would just require some testing inside of Windows to see where the nokia tools put things.  That said, this also means that f-spot should work pretty much out of the box.<br /><br />Anyways, the third option &#8220;PC Suite&#8221; puts the device into a state which the nokia PC Suite application can use to synchronize the phone with Microsoft Outlook or Lotus Notes.  This third area is the most interesting for me at the moment.  I want my Evolution Contact List and Calendar to synchronize with with the phone so that I don&#8217;t need to pull out my laptop just to check if my flight to New York leaves at 10:45 or 11:45.<br /><br />There do seem to be a number of tools for solving this problem, however they are not particularly explanatory, nor have I actually been able to sync my calendar, todo list or contact list to the phone in yet in Linux.<br /><br />So, that pretty much summarizes my experience to date with the Nokia 6301 in Linux.<br /><br />I definitely would appreciate someone pointing me to documentation on how to get my calendar out of the PC and onto the phone.</div>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/10/09/problem-with-current-design-software/">The Problem With Current Design Software</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2008-10-09'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>9</span><span class='date-suffix'>th</span>, <span class='date-year'>2008</span></span> <span class='time'>12:00 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+The more experience that I have with how engineering and electrical design is done, more I am astonished at how much effort goes into problems that are fundamentally trivial.<br /><br />For instance, when designing a schematic, I need to spend a considerable amount of time figuring out which terminal block contacts are available, and whether or not the final wiring layout is electrically consistent with the schematic.<br /><br />I don&#8217;t care about that!<br /><br />No kidding.<br /><br />I cannot believe that I need to do that in this day and age.  I should be able to plug device one into device two and my design software should just know how to make it happen.  Period.<br /><br />At the end of the day I want to be able to say to my machine<br /><br /><blockquote>&#8220;Connect these devices in this order&#8221;</blockquote><br /><br />I should be able to just figure out basic system layout, and all the wiring, schematics and general fiddling should be just figured out for me.</div>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/10/07/opensuse-110-and-nouveau-driver/">openSUSE 11.0 and the Nouveau Driver</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2008-10-07'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>7</span><span class='date-suffix'>th</span>, <span class='date-year'>2008</span></span> <span class='time'>12:00 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+I recently got my nVidia dual-head <a href="http://www.pny.com/products/quadro/nvs/280NvsPciEx.asp">Quadro NVS 280 PCIe</a> graphics card functioning in openSUSE 11.0 with the open source <a href="http://nouveau.freedesktop.org/wiki/FrontPage">nouveau driver</a>!<br /><br />Originally I was inclined to use the proprietary nvidia driver since the nv driver does not support multi-head setups with my particular card.  However, the legacy nvidia driver is not functioning at the moment with the current kernel iteration of openSUSE 11.0.  So after a few hours of frustration, I blew away the proprietary driver and began work on installing nouveau.<br /><br />The binary version that is comes packaged for the distribution won&#8217;t let me start X for some reason or another, and besides, I wanted to try out the latest and greatest developments towards the driver.<br /><br />Following the <a href="http://nouveau.freedesktop.org/wiki/InstallNouveau">installation instructions</a> was straightforward after I installed the necessary devel packages that come with the distribution.  And within a few minutes I had a functioning desktop cloned across my two monitors.<br /><br />The next step was enabling telling randr to spread the desktop across both monitors, by folling the <a href="http://nouveau.freedesktop.org/wiki/Randr12Howto">randr instructions</a> on the nouveau wiki.<br /><br />Clearing out a good bit of the autogenerated cruft from the <a href="http://www.comlore.com/xorg.conf">xorg.conf</a> file provided me finally with a functioning extended desktop.  All this with the open source driver, and a bit of perseverance.<br /><br /><a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://www.comlore.com/uploaded_images/nouveau-desktop-761016.png"><img style="display:block; margin:0px auto 10px; text-align:center;cursor:pointer; cursor:hand;" src="http://www.comlore.com/uploaded_images/nouveau-desktop-760467.png" border="0" alt="" /></a><br /><br />Thanks to the folks on IRC!  Very helpful, and best wishes!<br /><br />-Ted</div>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/10/03/new-version-of-httperf-coming-soon/">New Version of Httperf Coming Soon (Httperf 0.9.1)!</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2008-10-03'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>3</span><span class='date-suffix'>rd</span>, <span class='date-year'>2008</span></span> <span class='time'>12:00 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+In spite of the fact that I barely spend any time these days working on httperf, I am pleased to note that activity has not been totally absent.<br /><br />Pretty quickly we&#8217;ll be releasing a new version of httperf with a number of enhancements.<br /><br />The most dramatic change came from Adrian Chad, who implemented a basic port to the libevent notification system.  This has dramatically improved the performance of the tool (like in the realm of &#8220;orders of magnitude&#8221;).<br /><br />New period variation option &#8211;period=vT1,D1,T2,D2&#8230;.Tn,Dn<br /><br />The idleconn tool is now optional (disabled by default), and can be built using the &#8211;enable-idleconn configure option<br /><br />New options to print result data in new formats (CSV and Key=Value), however this is still being tested.<br /><br />The idleconn program has been re-written to use libevents non-blocking dns and connection API.<br /><br />Also, a number of memory leaks have been plugged with a re-write of the timer system.<br /><br />libevent is now a build requirement.<br /><br />httperf will try to compile itself with the system compilers c99 option if available.</div>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/07/14/httperf-and-libevent-and-future-of/">Httperf and Libevent and the Future of Everything</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2008-07-14'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>14</span><span class='date-suffix'>th</span>, <span class='date-year'>2008</span></span> <span class='time'>12:00 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+Firstly, congratulations to Adrian Chadd for starting the httperf port to libevent.  Already we have seen some massive performance enhancements.  CPU usage on my opensuse 11.0 workstation has improved about %3000 percent.<br /><br />Certainly there is some stability work to be done.  I am currently getting segmentation faults with very high request loads.<br /><br />The current implementation does not use a persistent event loop, which means that the other useful features that libevent provides are not available (timers for example).<br /><br />Something I want to see developed going forward is an asynchronous http client library around.  The http work already done with libevent is certainly a start to this, but is far from complete.  Essentially, what I want is a client api where I can perform some http client action asynchronously without needing to deal with any messy details.<br /><br />The intention here is to foster a deal of code-reuse between http implementation projects that all use libevent at the core.  After that, portability sits firmly on libevent&#8217;s shoulders (where it belongs).</div>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/posts/13">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/posts/11">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/12/26/new-blogblog-generator/">New Blogblog Generator</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/11/27/telephone-call/">Telephone Call</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/11/25/freeswitch-on-openbsd-project-status_25/">FreeSWITCH on OpenBSD - Project Status 2014-11-25</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/11/20/freeswitch-on-openbsd-project-status_20/">FreeSWITCH on OpenBSD - Project Status 2014-11-20</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/11/16/freeswitch-on-openbsd-project-status_16/">FreeSWITCH on OpenBSD - Project Status 2014-11-16</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Ted Bullock -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
